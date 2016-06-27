@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UberRides
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        //Point to Uber's sandbox env
+        Configuration.setSandboxEnabled(true)
+        
+        // Handle incoming Uber SSO Requests
+        RidesAppDelegate.sharedInstance.application(application, didFinishLaunchingWithOptions: launchOptions)
+
+        return true
+    }
+    
+    @available(iOS 9, *)
+    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        
+        let handledURL = RidesAppDelegate.sharedInstance.application(app, openURL: url, sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String, annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
+        
+        if (!handledURL) {
+            print("Could not parse Uber SSO URL")
+        }
+        
+        return true
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        let handledURL = RidesAppDelegate.sharedInstance.application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+        
+        if (!handledURL) {
+            print("Could not parse Uber SSO URL")
+        }
+        
         return true
     }
 
