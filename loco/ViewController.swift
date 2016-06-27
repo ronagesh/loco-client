@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import UberRides
+import Parse
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
