@@ -22,8 +22,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        //locationManager.requestLocation()
-        locationManager.startUpdatingLocation()
+        locationManager.requestLocation()
         
         print("finished view did load")
         
