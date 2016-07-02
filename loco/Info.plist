@@ -26,6 +26,7 @@
             <key>CFBundleURLSchemes</key>
             <array>
                 <string>loco</string>
+                <string>fb1747668542182293</string>
             </array>
         </dict>
     </array>
@@ -35,6 +36,10 @@
 	<array>
 		<string>uberauth</string>
 		<string>uber</string>
+        <string>fbapi</string>
+        <string>fb-messenger-api</string>
+        <string>fbauth2</string>
+        <string>fbshareextension</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -67,5 +72,10 @@
 	<string>Zutd3Ycqk-sDfhFYzbzobI7Gdt6pc2IW</string>
 	<key>UberDisplayName</key>
 	<string>loco</string>
+    <key>FacebookAppID</key>
+    <string>1747668542182293</string>
+    <key>FacebookDisplayName</key>
+    <string>loco</string>
+    
 </dict>
 </plist>
