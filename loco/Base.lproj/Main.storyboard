@@ -14,13 +14,35 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yI-bh-F7Y">
+                                <rect key="frame" x="69" y="311" width="237" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="237" id="H8V-IE-f6a"/>
+                                    <constraint firstAttribute="height" constant="46" id="nJX-V8-Ooo"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="fb_login_button.png"/>
+                                <connections>
+                                    <action selector="fbLoginButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="ULR-yH-YrS"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4yI-bh-F7Y" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ks0-do-1nu"/>
+                            <constraint firstItem="4yI-bh-F7Y" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="S2T-O6-nG0"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="699.5" y="406.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="fb_login_button.png" width="288" height="62"/>
+    </resources>
 </document>

@@ -34,11 +34,11 @@
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>uberauth</string>
-		<string>uber</string>
         <string>fbapi</string>
-        <string>fb-messenger-api</string>
         <string>fbauth2</string>
+        <string>uberauth</string>
+		<string>uber</string>
+        <string>fb-messenger-api</string>
         <string>fbshareextension</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
@@ -76,6 +76,10 @@
     <string>1747668542182293</string>
     <key>FacebookDisplayName</key>
     <string>loco</string>
-    
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
 </dict>
 </plist>

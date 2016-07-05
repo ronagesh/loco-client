@@ -9,6 +9,7 @@
 import UIKit
 import UberRides
 import Parse
+import ParseFacebookUtilsV4
 
 // If you want to use any of the UI components, uncomment this line
 // import ParseUI
@@ -30,15 +31,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // ****************************************************************************
         
-        Parse.setApplicationId("959vFrGwHcDQTfbdhkKlI9UTiWrqXXMfITHM6qKD", clientKey: "9JqYShpzZShzkyylkH4sU8DDzFMmnugzDEqVUF9i")
-        //
-        // If you are using Facebook, uncomment and add your FacebookAppID to your bundle's plist as
-        // described here: https://developers.facebook.com/docs/getting-started/facebook-sdk-for-ios/
-        // Uncomment the line inside ParseStartProject-Bridging-Header and the following line here:
-        // PFFacebookUtils.initializeFacebook()
-        // ****************************************************************************
-
         
+        let parseConfiguration = ParseClientConfiguration {
+            $0.applicationId = "loco234908fads09842"
+            $0.clientKey = "24930fads0f9234f"
+            $0.server = "https://loco-local-concierge.herokuapp.com/parse"
+        }
+        
+        
+        Parse.initializeWithConfiguration(parseConfiguration)
+        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         PFUser.enableAutomaticUser()
         
         let defaultACL = PFACL();
@@ -95,30 +97,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Handle incoming Uber SSO Requests
         RidesAppDelegate.sharedInstance.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        //Handle FB Login requests
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
         return true
     }
     
-    //Handle Uber callbacks
+    //Handle Uber and Facebook callbacks
     @available(iOS 9, *)
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
         
-        let handledURL = RidesAppDelegate.sharedInstance.application(app, openURL: url, sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String, annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
+        print("In application open URL function#1")
+
         
-        if (!handledURL) {
+        let handledUberURL = RidesAppDelegate.sharedInstance.application(app, openURL: url, sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String, annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
+        
+        let handledFBURL = FBSDKApplicationDelegate.sharedInstance().application(app, openURL: url, sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as! String, annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
+        
+        if (!handledUberURL) {
             print("Could not parse Uber SSO URL")
         }
         
+        print("Formed FB URL \(handledFBURL)")
+        
+        if (!handledFBURL) {
+            print("Could not parse FB URL")
+        }
+
         return true
     }
     
-    //Handle Uber callbacks
+    //Handle Uber and Facebook callbacks
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        let handledURL = RidesAppDelegate.sharedInstance.application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+        print("In application open URL function#2")
         
-        if (!handledURL) {
+        let handledUberURL = RidesAppDelegate.sharedInstance.application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+        
+        if (!handledUberURL) {
             print("Could not parse Uber SSO URL")
         }
+        
+        let handledFBURL = FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url,
+                                                                                 sourceApplication: sourceApplication,
+                                                                                 annotation: annotation)
+        
+        print("Formed FB URL \(handledFBURL)")
+        
+        if (!handledFBURL) {
+            print("Could not parse FB URL")
+        }
+        
         
         return true
     }
@@ -127,12 +156,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Facebook SDK Integration
     //--------------------------------------
     
-    ///////////////////////////////////////////////////////////
-    // Uncomment this method if you are using Facebook
-    ///////////////////////////////////////////////////////////
-    // func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-    //     return FBAppCall.handleOpenURL(url, sourceApplication:sourceApplication, session:PFFacebookUtils.session())
-    // }
 
 
     //--------------------------------------
@@ -195,6 +218,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        FBSDKAppEvents.activateApp()
     }
 
     func applicationWillTerminate(application: UIApplication) {
