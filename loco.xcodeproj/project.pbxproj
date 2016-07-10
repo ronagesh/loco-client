@@ -15,7 +15,8 @@
 		1C1E4CFE1D2095BE00A714C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1E4CFC1D2095BE00A714C9 /* LaunchScreen.storyboard */; };
 		1C1E4D091D2095BE00A714C9 /* locoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E4D081D2095BE00A714C9 /* locoTests.swift */; };
 		1C1E4D141D2095BE00A714C9 /* locoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E4D131D2095BE00A714C9 /* locoUITests.swift */; };
-		1CA39A761D2B8017000DAA01 /* fb_login_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CA39A751D2B8017000DAA01 /* fb_login_button.png */; };
+		1C23A6321D303AD2007F563D /* TutorialPageContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C23A6311D303AD2007F563D /* TutorialPageContentController.swift */; };
+		1CA39A7E1D2F163B000DAA01 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA39A7D1D2F163B000DAA01 /* TutorialPageViewController.swift */; };
 		2D31F70572AF1B158842435C /* Pods_locoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8ED390AA0D9DDC050C246E /* Pods_locoUITests.framework */; };
 		F577AB8314031A541F5BF158 /* Pods_locoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 254079378B102A1CE73A028C /* Pods_locoTests.framework */; };
 /* End PBXBuildFile section */
@@ -53,10 +54,11 @@
 		1C1E4D0F1D2095BE00A714C9 /* locoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = locoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C1E4D131D2095BE00A714C9 /* locoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locoUITests.swift; sourceTree = "<group>"; };
 		1C1E4D151D2095BE00A714C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C23A6311D303AD2007F563D /* TutorialPageContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageContentController.swift; sourceTree = "<group>"; };
 		1C743C291D28960C00CA622A /* loco-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "loco-Bridging-Header.h"; sourceTree = "<group>"; };
 		1C8788451D28F66A00CA0914 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKCoreKit/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		1C8788471D28F67200CA0914 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
-		1CA39A751D2B8017000DAA01 /* fb_login_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fb_login_button.png; path = ../../../Downloads/fb_login_button.png; sourceTree = "<group>"; };
+		1CA39A7D1D2F163B000DAA01 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
 		254079378B102A1CE73A028C /* Pods_locoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_locoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66012A5D1A9752C5278998F4 /* Pods-locoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-locoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-locoUITests/Pods-locoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6E8ED390AA0D9DDC050C246E /* Pods_locoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_locoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,9 +124,10 @@
 				1C1E4CF31D2095BE00A714C9 /* AppDelegate.swift */,
 				1C1E4CF51D2095BE00A714C9 /* ViewController.swift */,
 				1C1E4CF71D2095BE00A714C9 /* Main.storyboard */,
+				1C23A6311D303AD2007F563D /* TutorialPageContentController.swift */,
+				1CA39A7D1D2F163B000DAA01 /* TutorialPageViewController.swift */,
 				1C1E4CFA1D2095BE00A714C9 /* Assets.xcassets */,
 				1C1E4CFC1D2095BE00A714C9 /* LaunchScreen.storyboard */,
-				1CA39A751D2B8017000DAA01 /* fb_login_button.png */,
 				1C743C2A1D28961100CA622A /* Supporting Files */,
 			);
 			path = loco;
@@ -296,7 +299,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C1E4CFE1D2095BE00A714C9 /* LaunchScreen.storyboard in Resources */,
-				1CA39A761D2B8017000DAA01 /* fb_login_button.png in Resources */,
 				1C1E4CFB1D2095BE00A714C9 /* Assets.xcassets in Resources */,
 				1C1E4CF91D2095BE00A714C9 /* Main.storyboard in Resources */,
 			);
@@ -448,6 +450,8 @@
 			files = (
 				1C1E4CF61D2095BE00A714C9 /* ViewController.swift in Sources */,
 				1C1E4CF41D2095BE00A714C9 /* AppDelegate.swift in Sources */,
+				1C23A6321D303AD2007F563D /* TutorialPageContentController.swift in Sources */,
+				1CA39A7E1D2F163B000DAA01 /* TutorialPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
