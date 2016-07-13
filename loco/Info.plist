@@ -18,26 +18,40 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>loco</string>
-            </array>
-        </dict>
-    </array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>loco</string>
+				<string>fb1747668542182293</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>1747668542182293</string>
+	<key>FacebookDisplayName</key>
+	<string>loco</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>fbapi</string>
+		<string>fbauth2</string>
 		<string>uberauth</string>
 		<string>uber</string>
+		<string>fb-messenger-api</string>
+		<string>fbshareextension</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We need your location to provide personalized local recommendations</string>
 	<key>UILaunchStoryboardName</key>
@@ -51,8 +65,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UberCallbackURIs</key>
 	<array>
