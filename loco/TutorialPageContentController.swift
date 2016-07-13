@@ -13,7 +13,7 @@ class TutorialPageContentController: UIViewController {
     //MARK: Outlets
     @IBOutlet weak var pageImage: UIImageView!
     @IBOutlet weak var pageBlurb: UILabel!
-
+    
     //MARK: Properties
     var blurbString = ""
     var imageName = ""
