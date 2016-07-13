@@ -153,12 +153,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iap-qN-VWW">
-                                <rect key="frame" x="304" y="212" width="33" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yI-bh-F7Y">
+                                <rect key="frame" x="69" y="311" width="237" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="237" id="H8V-IE-f6a"/>
+                                    <constraint firstAttribute="height" constant="46" id="nJX-V8-Ooo"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="fb_login_button"/>
+                                <connections>
+                                    <action selector="fbLoginButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="ULR-yH-YrS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
