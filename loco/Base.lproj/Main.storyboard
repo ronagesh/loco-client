@@ -295,14 +295,15 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sFC-eK-aDF">
-                                <rect key="frame" x="279" y="544" width="42" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Next"/>
-                                <connections>
-                                    <action selector="submitPreferences" destination="t2q-Fl-Z7a" eventType="touchUpInside" id="iQM-A9-JfK"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzV-cK-GqH">
+                                <rect key="frame" x="132" y="289" width="336" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="U9b-LF-yqu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What cuisines do you and your partner like?" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hiN-vM-6n2">
                                 <rect key="frame" x="90" y="28" width="420" height="21"/>
                                 <constraints>
@@ -317,15 +318,14 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzV-cK-GqH">
-                                <rect key="frame" x="132" y="289" width="336" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="U9b-LF-yqu"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sFC-eK-aDF">
+                                <rect key="frame" x="279" y="544" width="42" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="submitPreferences" destination="t2q-Fl-Z7a" eventType="touchUpInside" id="iQM-A9-JfK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -363,10 +363,95 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <segue destination="UD6-OZ-Olf" kind="show" identifier="segueToBudgetPreferences" id="sYv-Pf-ryh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zlk-9i-U1W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-624" y="1144"/>
+        </scene>
+        <!--Budget Preferences View Controller-->
+        <scene sceneID="Pkd-dB-Rhq">
+            <objects>
+                <viewController storyboardIdentifier="budgetPreferences" id="UD6-OZ-Olf" customClass="BudgetPreferencesViewController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gT2-VW-gbZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="DXy-ld-9P9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5tW-dW-RNc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wu9-rR-hn1">
+                                <rect key="frame" x="90" y="154" width="47" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="47" id="3a3-oh-SrO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Luxe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnP-IP-qb3">
+                                <rect key="frame" x="473" y="154" width="37" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="5FG-wt-Yoa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upscale" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRl-v8-tpJ">
+                                <rect key="frame" x="269" y="154" width="63" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="63" id="cz4-1N-s0s"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is your budget range?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ra-B6-bK8">
+                                <rect key="frame" x="194" y="28" width="212" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="y7G-9C-wVq">
+                                <rect key="frame" x="88" y="104" width="424" height="31"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <action selector="budgetSliderChanged" destination="UD6-OZ-Olf" eventType="valueChanged" id="9ZW-AS-6ZE"/>
+                                    <outletCollection property="gestureRecognizers" destination="L3r-Vm-aqj" appends="YES" id="E8q-wF-R5F"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="y7G-9C-wVq" firstAttribute="top" secondItem="4Ra-B6-bK8" secondAttribute="bottom" constant="55" id="AVk-bd-4DJ"/>
+                            <constraint firstItem="4Ra-B6-bK8" firstAttribute="top" secondItem="gT2-VW-gbZ" secondAttribute="bottom" constant="8" id="AYg-ba-xEl"/>
+                            <constraint firstItem="oRl-v8-tpJ" firstAttribute="top" secondItem="y7G-9C-wVq" secondAttribute="bottom" constant="20" id="C6d-mg-hhK"/>
+                            <constraint firstItem="y7G-9C-wVq" firstAttribute="centerX" secondItem="5tW-dW-RNc" secondAttribute="centerX" id="DOr-9D-zks"/>
+                            <constraint firstItem="XnP-IP-qb3" firstAttribute="trailing" secondItem="y7G-9C-wVq" secondAttribute="trailing" id="KiL-r7-saV"/>
+                            <constraint firstItem="y7G-9C-wVq" firstAttribute="width" secondItem="5tW-dW-RNc" secondAttribute="width" multiplier="0.7" id="Qbq-mm-cqS"/>
+                            <constraint firstItem="wu9-rR-hn1" firstAttribute="leading" secondItem="y7G-9C-wVq" secondAttribute="leading" id="gDt-eT-PhZ"/>
+                            <constraint firstItem="wu9-rR-hn1" firstAttribute="top" secondItem="y7G-9C-wVq" secondAttribute="bottom" constant="20" id="gtw-ms-VXB"/>
+                            <constraint firstItem="4Ra-B6-bK8" firstAttribute="centerX" secondItem="5tW-dW-RNc" secondAttribute="centerX" id="hus-VG-9d3"/>
+                            <constraint firstItem="XnP-IP-qb3" firstAttribute="top" secondItem="y7G-9C-wVq" secondAttribute="bottom" constant="20" id="qZT-d2-Wa3"/>
+                            <constraint firstItem="oRl-v8-tpJ" firstAttribute="centerX" secondItem="y7G-9C-wVq" secondAttribute="centerX" id="srb-6j-A7i"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="budgetSlider" destination="y7G-9C-wVq" id="cxI-qu-lzq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wYX-0m-UhT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="L3r-Vm-aqj">
+                    <connections>
+                        <action selector="budgetSliderTapped:" destination="UD6-OZ-Olf" id="jcb-xs-qKA"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="62" y="1144"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="kCe-kP-2sP">

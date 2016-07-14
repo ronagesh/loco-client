@@ -72,6 +72,7 @@ class CuisinePreferencesViewController: UIViewController {
         } else {
             print("Saving cuisine preferences array: \(cuisinesSelected)")
             NSUserDefaults.standardUserDefaults().setObject(cuisinesSelected, forKey: "userCuisinePreferences")
+            self.performSegueWithIdentifier("segueToBudgetPreferences", sender: self)
         }
     }
     

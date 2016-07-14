@@ -16,6 +16,7 @@
 		1C1E4D091D2095BE00A714C9 /* locoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E4D081D2095BE00A714C9 /* locoTests.swift */; };
 		1C1E4D141D2095BE00A714C9 /* locoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E4D131D2095BE00A714C9 /* locoUITests.swift */; };
 		1C23A6321D303AD2007F563D /* TutorialPageContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C23A6311D303AD2007F563D /* TutorialPageContentController.swift */; };
+		1C7A04A31D37102D001B6924 /* BudgetPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A04A21D37102D001B6924 /* BudgetPreferencesViewController.swift */; };
 		1CA39A7E1D2F163B000DAA01 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA39A7D1D2F163B000DAA01 /* TutorialPageViewController.swift */; };
 		1CABC8EA1D35C6BF00B8D30A /* CuisinePreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CABC8E91D35C6BF00B8D30A /* CuisinePreferencesViewController.swift */; };
 		2D31F70572AF1B158842435C /* Pods_locoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8ED390AA0D9DDC050C246E /* Pods_locoUITests.framework */; };
@@ -57,6 +58,7 @@
 		1C1E4D151D2095BE00A714C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C23A6311D303AD2007F563D /* TutorialPageContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageContentController.swift; sourceTree = "<group>"; };
 		1C743C291D28960C00CA622A /* loco-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "loco-Bridging-Header.h"; sourceTree = "<group>"; };
+		1C7A04A21D37102D001B6924 /* BudgetPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetPreferencesViewController.swift; sourceTree = "<group>"; };
 		1C8788451D28F66A00CA0914 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKCoreKit/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		1C8788471D28F67200CA0914 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		1CA39A7D1D2F163B000DAA01 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				1C1E4CF31D2095BE00A714C9 /* AppDelegate.swift */,
 				1C1E4CF51D2095BE00A714C9 /* ViewController.swift */,
 				1C1E4CF71D2095BE00A714C9 /* Main.storyboard */,
+				1C7A04A21D37102D001B6924 /* BudgetPreferencesViewController.swift */,
 				1CABC8E91D35C6BF00B8D30A /* CuisinePreferencesViewController.swift */,
 				1C23A6311D303AD2007F563D /* TutorialPageContentController.swift */,
 				1CA39A7D1D2F163B000DAA01 /* TutorialPageViewController.swift */,
@@ -453,6 +456,7 @@
 			files = (
 				1C1E4CF61D2095BE00A714C9 /* ViewController.swift in Sources */,
 				1C1E4CF41D2095BE00A714C9 /* AppDelegate.swift in Sources */,
+				1C7A04A31D37102D001B6924 /* BudgetPreferencesViewController.swift in Sources */,
 				1CABC8EA1D35C6BF00B8D30A /* CuisinePreferencesViewController.swift in Sources */,
 				1C23A6321D303AD2007F563D /* TutorialPageContentController.swift in Sources */,
 				1CA39A7E1D2F163B000DAA01 /* TutorialPageViewController.swift in Sources */,
