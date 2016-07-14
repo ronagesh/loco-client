@@ -383,32 +383,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wu9-rR-hn1">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wu9-rR-hn1">
                                 <rect key="frame" x="90" y="154" width="47" height="21"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="47" id="3a3-oh-SrO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="U0K-uy-MP3" appends="YES" id="NZc-cp-12y"/>
+                                </connections>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Luxe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnP-IP-qb3">
-                                <rect key="frame" x="473" y="154" width="37" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="37" id="5FG-wt-Yoa"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upscale" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRl-v8-tpJ">
+                            <label opaque="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upscale" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRl-v8-tpJ">
                                 <rect key="frame" x="269" y="154" width="63" height="21"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="63" id="cz4-1N-s0s"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Wzp-mE-uqw" appends="YES" id="lH0-y2-wrP"/>
+                                </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is your budget range?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ra-B6-bK8">
                                 <rect key="frame" x="194" y="28" width="212" height="21"/>
@@ -424,6 +423,19 @@
                                     <outletCollection property="gestureRecognizers" destination="L3r-Vm-aqj" appends="YES" id="E8q-wF-R5F"/>
                                 </connections>
                             </slider>
+                            <label opaque="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Luxe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnP-IP-qb3">
+                                <rect key="frame" x="473" y="154" width="37" height="21"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="5FG-wt-Yoa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Nry-CP-FZ7" appends="YES" id="tQE-TY-oX9"/>
+                                </connections>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -450,6 +462,22 @@
                         <action selector="budgetSliderTapped:" destination="UD6-OZ-Olf" id="jcb-xs-qKA"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="U0K-uy-MP3">
+                    <connections>
+                        <action selector="smartLabelTapped:" destination="UD6-OZ-Olf" id="DXs-Ut-ych"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Wzp-mE-uqw">
+                    <connections>
+                        <action selector="upscaleLabelTapped:" destination="UD6-OZ-Olf" id="2EE-DM-qSw"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Nry-CP-FZ7">
+                    <connections>
+                        <action selector="luxeLabelTapped:" destination="UD6-OZ-Olf" id="b2Q-TY-tz2"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="TcZ-eq-fLf"/>
             </objects>
             <point key="canvasLocation" x="62" y="1144"/>
         </scene>

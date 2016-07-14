@@ -12,6 +12,13 @@ class BudgetPreferencesViewController: UIViewController {
 
     @IBOutlet weak var budgetSlider: UISlider!
     
+    //Dict mapping budget modes to storyboard tag numbers and corresponding slider values
+    let budgetModes: [String: Float] = [
+        "Smart": 0,
+        "Upscale": 1,
+        "Luxe": 2
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         budgetSlider.continuous = false
@@ -30,6 +37,7 @@ class BudgetPreferencesViewController: UIViewController {
 
 
     @IBAction func budgetSliderTapped(sender: UITapGestureRecognizer) {
+        print("Slider tapped")
         let sliderStartingX = Float(budgetSlider.frame.minX)
         let sliderEndingX = Float(budgetSlider.frame.maxX)
         let numSliderSegments = budgetSlider.maximumValue - budgetSlider.minimumValue
@@ -50,6 +58,24 @@ class BudgetPreferencesViewController: UIViewController {
                 cursor += sliderInterval
             }
         }
+    }
+    
+    
+    @IBAction func smartLabelTapped(sender: UITapGestureRecognizer) {
+        print("Smart label tapped")
+        budgetSlider.setValue(budgetModes["Smart"]!, animated: true)
+    }
+    
+    
+    @IBAction func upscaleLabelTapped(sender: UITapGestureRecognizer) {
+        print("Upscale label tapped")
+        budgetSlider.setValue(budgetModes["Upscale"]!, animated: true)
+
+    }
+    
+    @IBAction func luxeLabelTapped(sender: UITapGestureRecognizer) {
+        print("Luxe label tapped")
+        budgetSlider.setValue(budgetModes["Luxe"]!, animated: true)
     }
     
     
