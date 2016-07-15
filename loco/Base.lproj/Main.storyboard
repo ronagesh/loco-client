@@ -241,7 +241,7 @@
                                     <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4GN-fs-vVP">
                                         <rect key="frame" x="0.0" y="132" width="118" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Mexican"/>
+                                        <state key="normal" title="Mediterranean"/>
                                         <connections>
                                             <action selector="selectCuisine:" destination="t2q-Fl-Z7a" eventType="touchUpInside" id="DHl-12-Zfv"/>
                                         </connections>
@@ -283,10 +283,10 @@
                                             <action selector="selectCuisine:" destination="t2q-Fl-Z7a" eventType="touchUpInside" id="AlB-1i-Kew"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IqM-Ko-Kso">
+                                    <button opaque="NO" tag="7" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IqM-Ko-Kso">
                                         <rect key="frame" x="0.0" y="132" width="118" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Mediterranean"/>
+                                        <state key="normal" title="Mexican"/>
                                         <connections>
                                             <action selector="selectCuisine:" destination="t2q-Fl-Z7a" eventType="touchUpInside" id="fja-I4-zr9"/>
                                         </connections>

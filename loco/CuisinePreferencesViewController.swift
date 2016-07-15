@@ -16,19 +16,16 @@ class CuisinePreferencesViewController: UIViewController {
     let cuisineChoices = [
         "American": 0,
         "Chinese": 1,
-        "Fusion": 2,
+        "French": 2,
         "Indian": 3,
         "Italian": 4,
         "Japanese": 5,
-        "Korean": 6,
+        "Mediterranean": 6,
         "Mexican": 7,
-        "Middle-Eastern": 8,
-        "Thai": 9,
-        "Vegetarian": 10,
-        "Vietnamese": 11,
+        "Thai": 8,
+        "Vegetarian": 9,
     ]
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
