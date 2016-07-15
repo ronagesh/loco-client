@@ -11,6 +11,7 @@ import UIKit
 class BudgetPreferencesViewController: UIViewController {
 
     @IBOutlet weak var budgetSlider: UISlider!
+    @IBOutlet weak var submitButton: UIButton!
     
     //Dict mapping budget modes to storyboard tag numbers and corresponding slider values
     let budgetModes: [String: Float] = [
@@ -22,6 +23,11 @@ class BudgetPreferencesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         budgetSlider.continuous = false
+        
+        if let userBudgetPreferences = NSUserDefaults.standardUserDefaults().objectForKey("userBudgetPreferences") as? Float {
+            budgetSlider.setValue(userBudgetPreferences, animated: true)
+        }
+        
 
     }
 
@@ -78,6 +84,13 @@ class BudgetPreferencesViewController: UIViewController {
         budgetSlider.setValue(budgetModes["Luxe"]!, animated: true)
     }
     
+    @IBAction func finishButtonTapped() {
+        
+        //Save budget preferences to NSUSerDefaults
+        print("Saving budget preferences: \(budgetSlider.value)")
+        NSUserDefaults.standardUserDefaults().setObject(budgetSlider.value, forKey: "userBudgetPreferences")
+        
+    }
     
     /*
     // MARK: - Navigation

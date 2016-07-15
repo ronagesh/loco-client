@@ -7,13 +7,11 @@
 //
 
 import UIKit
-import Parse
 
 class CuisinePreferencesViewController: UIViewController {
 
     var cuisinesSelected = [String]()
-    
-   
+
     //maps cuisine string to storyboard tag to identify corresponding button
     let cuisineChoices = [
         "American": 0,
@@ -34,6 +32,7 @@ class CuisinePreferencesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //Pull in already saved cuisine preferences
         if let userCuisinePreferences = NSUserDefaults.standardUserDefaults().objectForKey("userCuisinePreferences") as? [String] {
             for cuisine in userCuisinePreferences {
                 cuisinesSelected.append(cuisine)
@@ -66,15 +65,16 @@ class CuisinePreferencesViewController: UIViewController {
     
     @IBAction func submitPreferences() {
         if cuisinesSelected.count == 0 {
-            let alert = UIAlertController(title: "Whoops", message: "Please select at least one cuisine.", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Whoops!", message: "Please select at least one cuisine.", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         } else {
             print("Saving cuisine preferences array: \(cuisinesSelected)")
             NSUserDefaults.standardUserDefaults().setObject(cuisinesSelected, forKey: "userCuisinePreferences")
-            self.performSegueWithIdentifier("segueToBudgetPreferences", sender: self)
+            self.performSegueWithIdentifier("cuisineToBudgetPreferences", sender: self)
         }
     }
+    
     
 
     /*

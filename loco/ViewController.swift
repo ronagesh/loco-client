@@ -93,6 +93,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         print("User's location is \(latitude) latitude and \(longitude) longitude")
         print("Location services enabled: \(CLLocationManager.locationServicesEnabled())")
+        print("Location services authorized for app: \(CLLocationManager.authorizationStatus())")
         
         // Pass in a UIViewController to modally present the Uber Ride Request Widget over
         let behavior = RideRequestViewRequestingBehavior(presentingViewController: self)
