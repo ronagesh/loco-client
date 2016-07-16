@@ -191,15 +191,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="t2q-Fl-Z7a" kind="show" identifier="locationToCuisinePreferences" id="bym-TJ-9uw"/>
-                        <segue destination="qWR-DI-e4R" kind="show" identifier="locationPermissionsToManualLocation" id="yXi-cL-107"/>
+                        <segue destination="mvb-an-oqO" kind="show" identifier="locationToCuisinePreferences" id="bym-TJ-9uw"/>
+                        <segue destination="Z04-KD-1MB" kind="show" identifier="locationPermissionsToManualLocation" id="yXi-cL-107"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yQk-AN-EcA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1245" y="1302"/>
         </scene>
-        <!--Cuisine Preferences View Controller-->
+        <!--Cuisine Preferences-->
         <scene sceneID="uBA-3d-YU9">
             <objects>
                 <viewController id="t2q-Fl-Z7a" customClass="CuisinePreferencesViewController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
@@ -283,7 +283,7 @@
                                             <action selector="selectCuisine:" destination="t2q-Fl-Z7a" eventType="touchUpInside" id="AlB-1i-Kew"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="7" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IqM-Ko-Kso">
+                                    <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IqM-Ko-Kso">
                                         <rect key="frame" x="0.0" y="132" width="118" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Mexican"/>
@@ -302,7 +302,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What cuisines do you and your partner like?" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hiN-vM-6n2">
-                                <rect key="frame" x="60" y="28" width="480" height="21"/>
+                                <rect key="frame" x="60" y="72" width="480" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="ZqR-ig-tRN"/>
                                 </constraints>
@@ -351,15 +351,16 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="Cuisine Preferences" id="S3X-KZ-H3b"/>
                     <connections>
                         <segue destination="UD6-OZ-Olf" kind="show" identifier="cuisineToBudgetPreferences" id="sYv-Pf-ryh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zlk-9i-U1W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-548" y="1302"/>
+            <point key="canvasLocation" x="264" y="1302"/>
         </scene>
-        <!--Budget Preferences View Controller-->
+        <!--Budget Preferences-->
         <scene sceneID="Pkd-dB-Rhq">
             <objects>
                 <viewController storyboardIdentifier="budgetPreferences" id="UD6-OZ-Olf" customClass="BudgetPreferencesViewController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
@@ -372,7 +373,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wu9-rR-hn1">
-                                <rect key="frame" x="90" y="154" width="47" height="21"/>
+                                <rect key="frame" x="90" y="198" width="47" height="21"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="47" id="3a3-oh-SrO"/>
@@ -385,7 +386,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upscale" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRl-v8-tpJ">
-                                <rect key="frame" x="269" y="154" width="63" height="21"/>
+                                <rect key="frame" x="269" y="198" width="63" height="21"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="63" id="cz4-1N-s0s"/>
@@ -397,14 +398,8 @@
                                     <outletCollection property="gestureRecognizers" destination="Wzp-mE-uqw" appends="YES" id="lH0-y2-wrP"/>
                                 </connections>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is your budget range?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ra-B6-bK8">
-                                <rect key="frame" x="194" y="28" width="212" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="y7G-9C-wVq">
-                                <rect key="frame" x="88" y="104" width="424" height="31"/>
+                                <rect key="frame" x="88" y="148" width="424" height="31"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <action selector="budgetSliderChanged" destination="UD6-OZ-Olf" eventType="valueChanged" id="9ZW-AS-6ZE"/>
@@ -412,7 +407,7 @@
                                 </connections>
                             </slider>
                             <label opaque="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Luxe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnP-IP-qb3">
-                                <rect key="frame" x="473" y="154" width="37" height="21"/>
+                                <rect key="frame" x="473" y="198" width="37" height="21"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="37" id="5FG-wt-Yoa"/>
@@ -430,9 +425,15 @@
                                 <state key="normal" title="Finish"/>
                                 <connections>
                                     <action selector="finishButtonTapped" destination="UD6-OZ-Olf" eventType="touchUpInside" id="Sz9-aa-oPT"/>
-                                    <segue destination="52e-CD-R15" kind="show" identifier="budgetToRecs" id="8bp-aF-zdf"/>
+                                    <segue destination="En6-qZ-xnG" kind="show" identifier="budgetToRecs" id="8bp-aF-zdf"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is your budget range?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ra-B6-bK8">
+                                <rect key="frame" x="194" y="72" width="212" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -451,6 +452,7 @@
                             <constraint firstItem="oRl-v8-tpJ" firstAttribute="centerX" secondItem="y7G-9C-wVq" secondAttribute="centerX" id="srb-6j-A7i"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Budget Preferences" id="UeY-wA-yMQ"/>
                     <connections>
                         <outlet property="budgetSlider" destination="y7G-9C-wVq" id="cxI-qu-lzq"/>
                         <outlet property="submitButton" destination="bde-xf-6Hj" id="6tT-ja-gyA"/>
@@ -481,7 +483,7 @@
             </objects>
             <point key="canvasLocation" x="-548" y="2183"/>
         </scene>
-        <!--Manual Location View Controller-->
+        <!--Home Location-->
         <scene sceneID="ET8-uI-KKE">
             <objects>
                 <viewController id="qWR-DI-e4R" customClass="ManualLocationViewController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
@@ -494,29 +496,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please tell us your home location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FxV-bf-tzh">
-                                <rect key="frame" x="175" y="28" width="251" height="21"/>
+                                <rect key="frame" x="175" y="72" width="251" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Palo Alto" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AAJ-2E-ZCs">
-                                <rect key="frame" x="115" y="86" width="465" height="30"/>
+                                <rect key="frame" x="115" y="130" width="465" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="California" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oMK-R3-FaM">
-                                <rect key="frame" x="115" y="135" width="465" height="30"/>
+                                <rect key="frame" x="115" y="179" width="465" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwm-2n-u1u">
-                                <rect key="frame" x="20" y="90" width="31" height="21"/>
+                                <rect key="frame" x="20" y="134" width="31" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJ1-pN-Rmh">
-                                <rect key="frame" x="20" y="139" width="41" height="21"/>
+                                <rect key="frame" x="20" y="183" width="41" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -549,17 +551,18 @@
                             <constraint firstItem="dJ1-pN-Rmh" firstAttribute="top" secondItem="Zwm-2n-u1u" secondAttribute="bottom" constant="28" id="vYf-We-IvM"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Home Location" id="JrJ-BR-NO9"/>
                     <connections>
                         <outlet property="cityText" destination="AAJ-2E-ZCs" id="k0W-yq-eB5"/>
                         <outlet property="stateText" destination="oMK-R3-FaM" id="Kws-2z-DIL"/>
-                        <segue destination="t2q-Fl-Z7a" kind="show" identifier="manualLocationToCuisine" id="TbA-od-DxW"/>
+                        <segue destination="t2q-Fl-Z7a" kind="show" identifier="manualLocationToCuisine" id="pLR-1W-TXu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q0I-jB-dUT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="160" y="1302"/>
+            <point key="canvasLocation" x="1784" y="1302"/>
         </scene>
-        <!--View Controller-->
+        <!--Restaurant Picks for You-->
         <scene sceneID="Pmi-sJ-cvy">
             <objects>
                 <viewController id="52e-CD-R15" sceneMemberID="viewController">
@@ -570,20 +573,13 @@
                     <view key="view" contentMode="scaleToFill" id="O8e-Kt-h8c">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Top picks for Rohan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="523-Ew-MGF">
-                                <rect key="frame" x="224" y="28" width="152" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Restaurant Picks for You" id="4aU-g5-KMb"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LGk-ST-aam" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="339" y="2183"/>
+            <point key="canvasLocation" x="1151" y="2183"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="kCe-kP-2sP">
@@ -620,11 +616,65 @@
             </objects>
             <point key="canvasLocation" x="-290" y="3541"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="W5w-Ew-NoY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mvb-an-oqO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ial-qp-YGu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="t2q-Fl-Z7a" kind="relationship" relationship="rootViewController" id="rhw-bH-u5N"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fXy-o1-pmR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-548" y="1302"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="b9W-rQ-hVG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="En6-qZ-xnG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JJ5-KN-QR6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="52e-CD-R15" kind="relationship" relationship="rootViewController" id="GPd-3R-45H"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y5P-O0-MbR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="339" y="2183"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="IiB-xh-PsR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Z04-KD-1MB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ilq-dH-L1u">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qWR-DI-e4R" kind="relationship" relationship="rootViewController" id="vkZ-Rn-IIg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5A0-uk-lwA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="972" y="1302"/>
+        </scene>
     </scenes>
     <resources>
         <image name="fb_login_button" width="288" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="TbA-od-DxW"/>
+        <segue reference="pLR-1W-TXu"/>
     </inferredMetricsTieBreakers>
 </document>
