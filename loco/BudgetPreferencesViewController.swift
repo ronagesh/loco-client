@@ -85,11 +85,14 @@ class BudgetPreferencesViewController: UIViewController {
     }
     
     @IBAction func finishButtonTapped() {
-        
         //Save budget preferences to NSUSerDefaults
         print("Saving budget preferences: \(budgetSlider.value)")
         NSUserDefaults.standardUserDefaults().setObject(budgetSlider.value, forKey: "userBudgetPreferences")
         
+        //Jump to core loop storyboard
+        let coreLoopStoryboard = UIStoryboard(name: "Core", bundle: nil)
+        let nextVC = coreLoopStoryboard.instantiateViewControllerWithIdentifier("coreLoopVC")
+        self.presentViewController(nextVC, animated: true, completion: nil)
     }
     
     /*

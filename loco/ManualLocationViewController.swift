@@ -72,6 +72,11 @@ class ManualLocationViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func unwindToManualLocation(segue: UIStoryboardSegue) {
+        
+    }
+    
+    
 
     /*
     // MARK: - Navigation
