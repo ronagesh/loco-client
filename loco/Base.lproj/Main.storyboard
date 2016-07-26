@@ -337,12 +337,9 @@
                     <navigationItem key="navigationItem" title="Cuisine Preferences" id="S3X-KZ-H3b"/>
                     <connections>
                         <segue destination="UD6-OZ-Olf" kind="show" identifier="cuisineToBudgetPreferences" id="sYv-Pf-ryh"/>
-                        <segue destination="Z1g-zQ-0ur" kind="unwind" identifier="unwindCuisineToWelcome" unwindAction="unwindToWelcomeVC:" id="kzy-l3-UZM"/>
-                        <segue destination="Z1g-zQ-0ur" kind="unwind" identifier="unwindCuisineToLocation" unwindAction="unwindToManualLocation:" id="Mrm-Wg-sBC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zlk-9i-U1W" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Z1g-zQ-0ur" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-161" y="1532"/>
         </scene>

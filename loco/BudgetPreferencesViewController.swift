@@ -24,11 +24,23 @@ class BudgetPreferencesViewController: UIViewController {
         super.viewDidLoad()
         budgetSlider.continuous = false
         
-        if let userBudgetPreferences = NSUserDefaults.standardUserDefaults().objectForKey("userBudgetPreferences") as? Float {
-            budgetSlider.setValue(userBudgetPreferences, animated: true)
+        if let userBudgetPreferences = NSUserDefaults.standardUserDefaults().objectForKey("userBudgetPreferences") as? String {
+            
+            switch userBudgetPreferences {
+            case RestaurantBudgetRatings.Smart.rawValue:
+                budgetSlider.setValue(budgetModes["Smart"]!, animated: true)
+                break
+            case RestaurantBudgetRatings.Upscale.rawValue:
+                budgetSlider.setValue(budgetModes["Upscale"]!, animated: true)
+                break
+            case RestaurantBudgetRatings.Luxe.rawValue:
+                budgetSlider.setValue(budgetModes["Luxe"]!, animated: true)
+                break
+            default:
+                print("Error obtaining budget preferences from client storage")
+            }
         }
         
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,11 +99,25 @@ class BudgetPreferencesViewController: UIViewController {
     @IBAction func finishButtonTapped() {
         //Save budget preferences to NSUSerDefaults
         print("Saving budget preferences: \(budgetSlider.value)")
-        NSUserDefaults.standardUserDefaults().setObject(budgetSlider.value, forKey: "userBudgetPreferences")
+        
+        
+        switch budgetSlider.value {
+        case budgetModes["Smart"]!:
+            NSUserDefaults.standardUserDefaults().setObject(RestaurantBudgetRatings.Smart.rawValue, forKey: "userBudgetPreferences")
+            break
+        case budgetModes["Upscale"]!:
+            NSUserDefaults.standardUserDefaults().setObject(RestaurantBudgetRatings.Upscale.rawValue, forKey: "userBudgetPreferences")
+            break
+        case budgetModes["Luxe"]!:
+            NSUserDefaults.standardUserDefaults().setObject(RestaurantBudgetRatings.Luxe.rawValue, forKey: "userBudgetPreferences")
+            break
+        default:
+            print("Error obtaining budget slider value")
+        }
         
         //Jump to core loop storyboard
         let coreLoopStoryboard = UIStoryboard(name: "Core", bundle: nil)
-        let nextVC = coreLoopStoryboard.instantiateViewControllerWithIdentifier("coreLoopVC")
+        let nextVC = coreLoopStoryboard.instantiateViewControllerWithIdentifier("coreLoopLocation")
         self.presentViewController(nextVC, animated: true, completion: nil)
     }
     

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class Restaurant {
     
@@ -14,6 +15,7 @@ class Restaurant {
     var imageURL: String
     var cuisineType: RestaurantCuisines
     var address: String
+    var geocodedAddress: CLLocation?
     var budgetRating: RestaurantBudgetRatings
     var blurb: String
     
@@ -35,4 +37,5 @@ extension Restaurant {
     func getRideTime() -> Int {
         return 15
     }
+    
 }

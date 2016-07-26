@@ -16,6 +16,11 @@
 		1C1E4D091D2095BE00A714C9 /* locoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E4D081D2095BE00A714C9 /* locoTests.swift */; };
 		1C1E4D141D2095BE00A714C9 /* locoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E4D131D2095BE00A714C9 /* locoUITests.swift */; };
 		1C23A6321D303AD2007F563D /* TutorialPageContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C23A6311D303AD2007F563D /* TutorialPageContentController.swift */; };
+		1C4473441D414393007605BF /* ConfirmScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4473431D414393007605BF /* ConfirmScheduleViewController.swift */; };
+		1C4473461D4176D2007605BF /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4473451D4176D2007605BF /* Reservation.swift */; };
+		1C4473481D41903D007605BF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4473471D41903D007605BF /* Extensions.swift */; };
+		1C44734C1D4410CB007605BF /* ObtainUserCurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C44734B1D4410CB007605BF /* ObtainUserCurrentLocationViewController.swift */; };
+		1C44734E1D441547007605BF /* CoreTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C44734D1D441547007605BF /* CoreTabBarController.swift */; };
 		1C7A04A31D37102D001B6924 /* BudgetPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A04A21D37102D001B6924 /* BudgetPreferencesViewController.swift */; };
 		1C7A04A71D39926A001B6924 /* ManualLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A04A61D39926A001B6924 /* ManualLocationViewController.swift */; };
 		1CA39A7E1D2F163B000DAA01 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA39A7D1D2F163B000DAA01 /* TutorialPageViewController.swift */; };
@@ -66,6 +71,11 @@
 		1C1E4D131D2095BE00A714C9 /* locoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locoUITests.swift; sourceTree = "<group>"; };
 		1C1E4D151D2095BE00A714C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C23A6311D303AD2007F563D /* TutorialPageContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageContentController.swift; sourceTree = "<group>"; };
+		1C4473431D414393007605BF /* ConfirmScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmScheduleViewController.swift; sourceTree = "<group>"; };
+		1C4473451D4176D2007605BF /* Reservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
+		1C4473471D41903D007605BF /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1C44734B1D4410CB007605BF /* ObtainUserCurrentLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObtainUserCurrentLocationViewController.swift; sourceTree = "<group>"; };
+		1C44734D1D441547007605BF /* CoreTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreTabBarController.swift; sourceTree = "<group>"; };
 		1C743C291D28960C00CA622A /* loco-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "loco-Bridging-Header.h"; sourceTree = "<group>"; };
 		1C7A04A21D37102D001B6924 /* BudgetPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetPreferencesViewController.swift; sourceTree = "<group>"; };
 		1C7A04A61D39926A001B6924 /* ManualLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualLocationViewController.swift; sourceTree = "<group>"; };
@@ -149,7 +159,12 @@
 				1C1E4CF51D2095BE00A714C9 /* ViewController.swift */,
 				1C1E4CF71D2095BE00A714C9 /* Main.storyboard */,
 				1CD25A611D3F0B4B00751A68 /* Core.storyboard */,
+				1C44734D1D441547007605BF /* CoreTabBarController.swift */,
+				1C4473471D41903D007605BF /* Extensions.swift */,
+				1C44734B1D4410CB007605BF /* ObtainUserCurrentLocationViewController.swift */,
+				1C4473431D414393007605BF /* ConfirmScheduleViewController.swift */,
 				1CD25A5B1D3D7EE700751A68 /* Restaurant.swift */,
+				1C4473451D4176D2007605BF /* Reservation.swift */,
 				1CD25A5D1D3D80CE00751A68 /* RestaurantCuisines.swift */,
 				1CD25A5F1D3D826800751A68 /* RestaurantBudgetRatings.swift */,
 				1CD25A1F1D3B050700751A68 /* WelcomeViewController.swift */,
@@ -485,16 +500,21 @@
 				1CD25A1E1D3ABC5600751A68 /* RecommendationsContentViewController.swift in Sources */,
 				1C1E4CF61D2095BE00A714C9 /* ViewController.swift in Sources */,
 				1CD25A1C1D3ABBD500751A68 /* RecommendationsPageViewController.swift in Sources */,
+				1C4473441D414393007605BF /* ConfirmScheduleViewController.swift in Sources */,
 				1CD25A5E1D3D80CE00751A68 /* RestaurantCuisines.swift in Sources */,
 				1C1E4CF41D2095BE00A714C9 /* AppDelegate.swift in Sources */,
 				1C7A04A31D37102D001B6924 /* BudgetPreferencesViewController.swift in Sources */,
 				1CABC8EA1D35C6BF00B8D30A /* CuisinePreferencesViewController.swift in Sources */,
 				1C23A6321D303AD2007F563D /* TutorialPageContentController.swift in Sources */,
+				1C44734C1D4410CB007605BF /* ObtainUserCurrentLocationViewController.swift in Sources */,
+				1C44734E1D441547007605BF /* CoreTabBarController.swift in Sources */,
 				1CD25A141D3AB93100751A68 /* ProfileViewController.swift in Sources */,
 				1CD25A5C1D3D7EE700751A68 /* Restaurant.swift in Sources */,
 				1CD25A201D3B050700751A68 /* WelcomeViewController.swift in Sources */,
 				1CA39A7E1D2F163B000DAA01 /* TutorialPageViewController.swift in Sources */,
 				1CD25A601D3D826800751A68 /* RestaurantBudgetRatings.swift in Sources */,
+				1C4473481D41903D007605BF /* Extensions.swift in Sources */,
+				1C4473461D4176D2007605BF /* Reservation.swift in Sources */,
 				1C7A04A71D39926A001B6924 /* ManualLocationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

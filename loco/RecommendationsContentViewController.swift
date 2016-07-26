@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class RecommendationsContentViewController: UIViewController {
 
@@ -22,6 +23,8 @@ class RecommendationsContentViewController: UIViewController {
     
     //MARK: Properties
     var restaurant: Restaurant!
+    var reservation: Reservation!
+    let geocoder = CLGeocoder()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +36,17 @@ class RecommendationsContentViewController: UIViewController {
         merchantDriveETA.text = "\(restaurant.getRideTime()) min. drive away"
         merchantBudgetRating.text = restaurant.budgetRating.rawValue
         merchantBlurb.text = restaurant.blurb
-
+        
     }
     
-    
-    @IBAction func goTapped() {
-        print("Let's go button tapped")
+
+    @IBAction func goButtonPressed() {
+        
+        //TODO: Make backend call to lock/confirm reservation
+        let res = Reservation(merchantName: "\(restaurant.name)", dateTime: NSDate(dateString: "2016-07-31T19:00:00"), partySize: 2, customerFirstName: "Rohan", customerLastName: "Nagesh", customerEmail: "ronagesh@gmail.com", customerPhone: "6506226720", merchantCountry: "US")
+        
+        reservation = res
+        self.performSegueWithIdentifier("recommendationsToConfirmSchedule", sender: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,16 +54,26 @@ class RecommendationsContentViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let identifer = segue.identifier {
+            if identifer == "recommendationsToConfirmSchedule" {
+                if let vc = segue.destinationViewController as? ConfirmScheduleViewController {
+                    //Set properties
+                    vc.bizName = restaurant.name
+                    vc.bizAddress = restaurant.address
+                    vc.bizDriveETA = restaurant.getRideTime()
+                    vc.resTimeDisplay = reservation.dateTime.toShortTimeString()
+                    vc.dropoffLocation = restaurant.geocodedAddress
+                    
+                    //Compute Uber Pickup time string
+                    
+                    let calendar = NSCalendar.currentCalendar()
+                    let uberPickupTime = calendar.dateByAddingUnit(.Minute, value: reservation.getUberHailETA(), toDate: NSDate(), options: [])!
+                    vc.uberPickupTimeDisplay = uberPickupTime.toShortTimeString()
+                }
+            }
+        }
     }
-    */
-
 }
+
+

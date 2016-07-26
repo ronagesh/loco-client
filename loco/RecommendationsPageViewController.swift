@@ -7,38 +7,84 @@
 //
 
 import UIKit
+import CoreLocation
+import UberRides
 
 class RecommendationsPageViewController: UIPageViewController, UIPageViewControllerDataSource {
 
     // MARK: Model
-    private var restaurants = [Restaurant]()
+    var restaurants = [Restaurant]()
+    var userCurrentLocation: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        guard let tabBarCont = self.tabBarController as? CoreTabBarController else {
+            print("Error obtaining tab bar controller to load restaurants")
+            return
+        }
+        
+        guard tabBarCont.restaurants?.count > 0 else {
+            print("ERROR: Empty array of restaurants...nothing to show to user")
+            return
+        }
+            
+        restaurants = tabBarCont.restaurants!
+        userCurrentLocation = tabBarCont.userCurrentLocation
+        
         stylePageControl()
         dataSource = self
         self.view.backgroundColor = UIColor.whiteColor()
         
-        
-        
-        //TODO: Code to fetch restaurants from backend
-        
-        
-        //Hardcoded Restaurants for now
-        let rest1 = Restaurant(name: "Wayfare Tavern", imageURL: "wayfare_tavern", cuisineType: RestaurantCuisines.American, address: "San Francisco", budgetRating: RestaurantBudgetRatings.Luxe, blurb: "We picked this restaurant for its unique ambience and 4-star rating on Yelp.")
-        
-        let rest2 = Restaurant(name: "Zazie", imageURL: "zazie", cuisineType: RestaurantCuisines.French, address: "San Francisco", budgetRating: RestaurantBudgetRatings.Upscale, blurb: "We picked this restaurant for its unique French offering and 4-star rating on Yelp.")
-        
-        let rest3 = Restaurant(name: "Skool", imageURL: "skool", cuisineType: RestaurantCuisines.American, address: "San Francisco", budgetRating: RestaurantBudgetRatings.Upscale, blurb: "We picked this restaurant for its unique seafood offering and 4-star rating on Yelp.")
-        
-        restaurants.append(rest1)
-        restaurants.append(rest2)
-        restaurants.append(rest3)
-        
         let contentViewController = UIStoryboard(name: "Core", bundle: nil).instantiateViewControllerWithIdentifier("restaurantContentViewController") as! RecommendationsContentViewController
         
-        contentViewController.restaurant = restaurants[0]
+        if restaurants.count > 0 {
+            contentViewController.restaurant = restaurants.first
+        }
+        let ridesClient = RidesClient()
+        
+        //Default user budget rating to Smart if there's no value obtained
+        var prefilledUberProduct = RestaurantBudgetRatings.budgetToUberProdMap[RestaurantBudgetRatings.Smart]
+        
+        if let userBudgetRating = NSUserDefaults.standardUserDefaults().objectForKey("userBudgetPreferences") as? String {
+            prefilledUberProduct = RestaurantBudgetRatings.getUberProductForBudgetRating(userBudgetRating)
+        }
+        
+        //Async call #1: Fetch list of uber products available for user's current location
+        
+        ridesClient.fetchProducts(pickupLocation: userCurrentLocation!) { (products, response) in
+            if let error = response.error {
+                print("Error fetching uber products \(error)")
+            } else {
+                for product in products {
+                    print("Iterating through uber product with name: \(product.name) and prefilledProductName: \(prefilledUberProduct)")
+                    if product.name == prefilledUberProduct {
+                        if product.productID != nil {
+                            print("Obtained Uber Product ID")
+                            tabBarCont.uberProductID = product.productID
+                            break
+                        }
+                    }
+                }
+            }
+        }
+
+        
+        //Async call #2: Geocode first restaurant's address if it hasn't already been
+        if restaurants[0].geocodedAddress == nil {
+            let geocoder = CLGeocoder()
+            geocoder.geocodeAddressString(restaurants[0].address, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
+                if error != nil {
+                    print(error)
+                } else {
+                    if let placemarksArr = placemarks {
+                        self.restaurants[0].geocodedAddress = placemarksArr[0].location
+                        print("Geocoded dropoff location for restaurant \(self.restaurants[0].name): \(self.restaurants[0].geocodedAddress.debugDescription)")
+                    }
+                }
+            })
+        }
+
+        
         setViewControllers([contentViewController], direction: .Forward, animated: true, completion: nil)
 
     }
@@ -70,6 +116,21 @@ class RecommendationsPageViewController: UIPageViewController, UIPageViewControl
             
             prevViewController.restaurant = restaurants[prevIndex]
             
+            //Fire off async call to geocode prev restaurant's address if it hasn't already been
+            let geocoder = CLGeocoder()
+            if restaurants[prevIndex].geocodedAddress == nil {
+                geocoder.geocodeAddressString(self.restaurants[prevIndex].address, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
+                    if error != nil {
+                        print(error)
+                    } else {
+                        if let placemarksArr = placemarks {
+                            self.restaurants[prevIndex].geocodedAddress = placemarksArr[0].location
+                            print("Geocoded dropoff location for restaurant \(self.restaurants[prevIndex].name): \(self.restaurants[prevIndex].geocodedAddress.debugDescription)")
+                        }
+                    }
+                })
+            }
+            
             return prevViewController
         }
         
@@ -83,7 +144,7 @@ class RecommendationsPageViewController: UIPageViewController, UIPageViewControl
             
             //Lookup viewController's attached restaurant to get its index in the restaurants array in model
             guard let viewControllerIndex = restaurants.indexOf({
-                $0.name == restaurantContentController.restaurant.name
+                $0.name == restaurantContentController.restaurant?.name
             }) else {
                 return nil
             }
@@ -97,6 +158,22 @@ class RecommendationsPageViewController: UIPageViewController, UIPageViewControl
             let nextViewController = UIStoryboard(name: "Core", bundle: nil).instantiateViewControllerWithIdentifier("restaurantContentViewController") as! RecommendationsContentViewController
             
             nextViewController.restaurant = restaurants[nextIndex]
+            
+            //Fire off async call to geocode next restaurant's address if it hasn't already been
+            let geocoder = CLGeocoder()
+            if restaurants[nextIndex].geocodedAddress == nil {
+                geocoder.geocodeAddressString(self.restaurants[nextIndex].address, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
+                    if error != nil {
+                        print(error)
+                    } else {
+                        if let placemarksArr = placemarks {
+                            self.restaurants[nextIndex].geocodedAddress = placemarksArr[0].location
+                            print("Geocoded dropoff location for restaurant \(self.restaurants[nextIndex].name): \(self.restaurants[nextIndex].geocodedAddress.debugDescription)")
+                        }
+                    }
+                })
+            }
+
             
             return nextViewController
             
@@ -122,8 +199,7 @@ class RecommendationsPageViewController: UIPageViewController, UIPageViewControl
         pageControl.backgroundColor = UIColor.whiteColor()
         
     }
-
-
+    
     /*
     // MARK: - Navigation
 

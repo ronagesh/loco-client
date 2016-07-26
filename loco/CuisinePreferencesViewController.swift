@@ -7,12 +7,10 @@
 //
 
 import UIKit
-import CoreLocation
 
 class CuisinePreferencesViewController: UIViewController {
 
     var cuisinesSelected = [String]()
-    let locationManager = CLLocationManager()
 
     //maps cuisine string to storyboard tag to identify corresponding button
     let cuisineChoices = [
@@ -42,52 +40,7 @@ class CuisinePreferencesViewController: UIViewController {
             }
         }
     }
-    
-    //Custom logic to skip to appropriate view controller if user hits back button
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        //User hit back button
-        if self.isMovingFromParentViewController() {
-            if CLLocationManager.authorizationStatus() == .Denied {
-                self.performSegueWithIdentifier("unwindCuisineToLocation", sender: self)
-            } else {
-                self.performSegueWithIdentifier("unwindCuisineToWelcome", sender: self)
-            }
-            
-            
-            
-            
-            
-            /*
-            var deniedTargetVC = UIViewController()
-            var authorizedTargetVC = UIViewController()
-            
-            if let navStack = self.navigationController?.viewControllers {
-                for vc in navStack {
-                    if vc.isKindOfClass(ManualLocationViewController) {
-                        deniedTargetVC = vc
-                    } else if vc.isKindOfClass(WelcomeViewController) {
-                        authorizedTargetVC = vc
-                    }
-                }
-            }
-            
-            switch CLLocationManager.authorizationStatus() {
-            case .Denied:
-                print(self.navigationController?.popToViewController(deniedTargetVC, animated: true))
-                break
-            case .AuthorizedWhenInUse:
-                print(self.navigationController?.popToViewController(authorizedTargetVC, animated: false))
-                break
-            default:
-                print("Unknown location authorization state for user")
-                break
-            }
-        */
-        }
-    }
-
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

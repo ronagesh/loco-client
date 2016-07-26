@@ -30,10 +30,6 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func unwindToWelcomeVC(segue: UIStoryboardSegue) {
-        
-    }
-    
     @IBAction func getStartedTapped() {
         
         switch CLLocationManager.authorizationStatus() {
