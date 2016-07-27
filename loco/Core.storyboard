@@ -464,10 +464,10 @@
             </objects>
             <point key="canvasLocation" x="1238" y="2336"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Receipt Page Nav Controller-->
         <scene sceneID="sdV-it-cS1">
             <objects>
-                <navigationController id="04v-97-Kjx" sceneMemberID="viewController">
+                <navigationController id="04v-97-Kjx" customClass="ReceiptPageNavController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="slL-vZ-qyk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

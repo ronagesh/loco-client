@@ -26,11 +26,11 @@ class ObtainUserCurrentLocationViewController: UIViewController, CLLocationManag
         //TODO: Call backend to fetch list of restaurants to recommend to user
         
         //Hardcoded Restaurants for now
-        let rest1 = Restaurant(name: "Wayfare Tavern", imageURL: "wayfare_tavern", cuisineType: RestaurantCuisines.American, address: "558 Sacramento St, San Francisco, CA 94111 United States", budgetRating: RestaurantBudgetRatings.Luxe, blurb: "We picked this restaurant for its unique ambience and 4-star rating on Yelp.")
+        let rest1 = Restaurant(name: "Rangoon Ruby", imageURL: "rangoon_ruby", cuisineType: RestaurantCuisines.Thai, address: "445 Emerson Street, Palo Alto, CA 94031", budgetRating: RestaurantBudgetRatings.Smart, blurb: "Relaxed Burmese restaurant with contemporary decor, a trendy bar & exotic tiki cocktails.")
         
-        let rest2 = Restaurant(name: "Zazie", imageURL: "zazie", cuisineType: RestaurantCuisines.French, address: "941 Cole St, San Francisco, CA 94117", budgetRating: RestaurantBudgetRatings.Upscale, blurb: "We picked this restaurant for its unique French offering and 4-star rating on Yelp.")
+        let rest2 = Restaurant(name: "La Viga Restaurant", imageURL: "la_viga", cuisineType: RestaurantCuisines.Mexican, address: "1772 Broadway Street, Redwood City, CA 94063", budgetRating: RestaurantBudgetRatings.Smart, blurb: "Cozy Latin eatery features classic seafood dishes & comfort eats in a warm space with a casual vibe.")
         
-        let rest3 = Restaurant(name: "Skool", imageURL: "skool", cuisineType: RestaurantCuisines.American, address: "1725 Alameda St, San Francisco, CA 94103", budgetRating: RestaurantBudgetRatings.Upscale, blurb: "We picked this restaurant for its unique seafood offering and 4-star rating on Yelp.")
+        let rest3 = Restaurant(name: "Osteria", imageURL: "osteria", cuisineType: RestaurantCuisines.Italian, address: "247 Hamilton Ave Palo Alto, CA 94301", budgetRating: RestaurantBudgetRatings.Smart, blurb: "This Italian kitchen offers Tuscan fare in a simply appointed corner space with white linens.")
         
         restaurants.append(rest1)
         restaurants.append(rest2)
