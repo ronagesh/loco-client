@@ -69,8 +69,8 @@ class ObtainUserCurrentLocationViewController: UIViewController, CLLocationManag
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let identifer = segue.identifier {
-            if identifer == "networkCallStallingToRecs" {
+        if let identifier = segue.identifier {
+            if identifier == "networkCallStallingToRecs" {
                 if let vc = segue.destinationViewController as? CoreTabBarController {
                     vc.userCurrentLocation = userCurrentLocation
                     vc.restaurants = restaurants

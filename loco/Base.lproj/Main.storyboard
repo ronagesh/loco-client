@@ -7,10 +7,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Welcome View Controller-->
+        <!--Loco-->
         <scene sceneID="Ua0-4q-gsE">
             <objects>
-                <viewController storyboardIdentifier="welcomeViewController" id="NPG-WI-MRN" customClass="WelcomeViewController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="welcomeViewController" title="Loco" id="NPG-WI-MRN" customClass="WelcomeViewController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BAH-e7-IWE"/>
                         <viewControllerLayoutGuide type="bottom" id="frE-03-AjP"/>
@@ -57,7 +57,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="kvV-9O-K9f"/>
+                    <navigationItem key="navigationItem" title="Loco" id="kvV-9O-K9f"/>
                     <connections>
                         <segue destination="qWR-DI-e4R" kind="show" identifier="welcomeToLocation" id="pKR-Cn-Pp5"/>
                         <segue destination="t2q-Fl-Z7a" kind="show" identifier="welcomeToCuisine" id="qea-Sn-fnh"/>
@@ -145,42 +145,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ks-mp-e3V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="858.5" y="487.5"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yI-bh-F7Y">
-                                <rect key="frame" x="69" y="311" width="237" height="46"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="237" id="H8V-IE-f6a"/>
-                                    <constraint firstAttribute="height" constant="46" id="nJX-V8-Ooo"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="fb_login_button"/>
-                                <connections>
-                                    <action selector="fbLoginButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="ULR-yH-YrS"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="4yI-bh-F7Y" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ks0-do-1nu"/>
-                            <constraint firstItem="4yI-bh-F7Y" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="S2T-O6-nG0"/>
-                        </constraints>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-71.5" y="2899.5"/>
         </scene>
         <!--Cuisine Preferences-->
         <scene sceneID="uBA-3d-YU9">
@@ -477,6 +441,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJ1-pN-Rmh">
+                                <rect key="frame" x="20" y="183" width="41" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bib-zp-Pnc">
+                                <rect key="frame" x="279" y="544" width="42" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="submitManualLocation" destination="qWR-DI-e4R" eventType="touchUpInside" id="Vxi-Es-te5"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please tell us your home location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FxV-bf-tzh">
                                 <rect key="frame" x="175" y="72" width="251" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -499,20 +477,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJ1-pN-Rmh">
-                                <rect key="frame" x="20" y="183" width="41" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bib-zp-Pnc">
-                                <rect key="frame" x="279" y="544" width="42" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Next"/>
-                                <connections>
-                                    <action selector="submitManualLocation" destination="qWR-DI-e4R" eventType="touchUpInside" id="Vxi-Es-te5"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -544,45 +508,10 @@
             </objects>
             <point key="canvasLocation" x="-826" y="1532"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="kCe-kP-2sP">
-            <objects>
-                <viewController id="GTb-PS-KlG" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4cG-v8-iSv"/>
-                        <viewControllerLayoutGuide type="bottom" id="bUN-o5-Tnp"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="syb-K8-smf">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v5K-J7-5FR">
-                                <rect key="frame" x="181" y="277" width="237" height="46"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="237" id="FDd-i5-XBB"/>
-                                    <constraint firstAttribute="height" constant="46" id="YfZ-Rn-Ntk"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="fb_login_button"/>
-                                <connections>
-                                    <action selector="fbLoginButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="gUv-cd-d0y"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="v5K-J7-5FR" firstAttribute="centerY" secondItem="syb-K8-smf" secondAttribute="centerY" id="8eo-bt-eJA"/>
-                            <constraint firstItem="v5K-J7-5FR" firstAttribute="centerX" secondItem="syb-K8-smf" secondAttribute="centerX" id="xj5-j7-QC8"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Iho-dy-HRF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-810" y="2804"/>
-        </scene>
-        <!--Navigation Controller-->
+        <!--Loco-->
         <scene sceneID="VAT-bT-e74">
             <objects>
-                <navigationController storyboardIdentifier="firstLaunchRoot" automaticallyAdjustsScrollViewInsets="NO" id="9s1-8O-69M" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="firstLaunchRoot" title="Loco" automaticallyAdjustsScrollViewInsets="NO" id="9s1-8O-69M" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="O6Q-eU-1mN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -598,10 +527,7 @@
             <point key="canvasLocation" x="-1245" y="454"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="fb_login_button" width="288" height="62"/>
-    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pLR-1W-TXu"/>
+        <segue reference="qea-Sn-fnh"/>
     </inferredMetricsTieBreakers>
 </document>
