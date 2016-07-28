@@ -65,7 +65,7 @@ class ConfirmScheduleViewController: UIViewController {
 
         if dropoffLocation != nil {
             print("Setting dropoff location: \(dropoffLocation.debugDescription)")
-            builder = builder.setDropoffLocation(dropoffLocation!)
+            builder = builder.setDropoffLocation(dropoffLocation!, address: bizAddress)
         }
         
         //Prefill current location and type of Uber
