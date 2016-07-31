@@ -1,4 +1,4 @@
-//
+ //
 //  RecommendationsPageViewController.swift
 //  loco
 //
@@ -51,6 +51,25 @@ class RecommendationsPageViewController: UIPageViewController, UIPageViewControl
         
         //Async call #1: Fetch list of uber products available for user's current location
         
+   
+        
+        if let token = ridesClient.fetchAccessToken() {
+            if token.expirationDate?.compare(NSDate()) == NSComparisonResult.OrderedAscending { //Access token is expired
+                print("Access token expired for this old token: \(token.tokenString)")
+                if let refreshToken = token.refreshToken {
+                    ridesClient.refreshAccessToken(refreshToken) { (newAccessToken, response)  in
+                        if response.error != nil {
+                            print("Error refreshing Uber access token for user")
+                        } else {
+                            print("Successfully refreshed Uber access token for user. New access token: \(newAccessToken?.tokenString)")
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        /*
         ridesClient.fetchProducts(pickupLocation: userCurrentLocation!) { (products, response) in
             if let error = response.error {
                 print("Error fetching uber products \(error)")
@@ -66,7 +85,7 @@ class RecommendationsPageViewController: UIPageViewController, UIPageViewControl
                     }
                 }
             }
-        }
+        }*/
 
         
         //Async call #2: Geocode first restaurant's address if it hasn't already been

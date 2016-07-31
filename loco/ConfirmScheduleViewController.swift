@@ -62,6 +62,8 @@ class ConfirmScheduleViewController: UIViewController {
         // Pass in a UIViewController to modally present the Uber Ride Request Widget over
         var builder = RideParametersBuilder()
         let behavior = RideRequestViewRequestingBehavior(presentingViewController: self)
+        let delegate = ConfirmScheduleViewController()
+        behavior.modalRideRequestViewController.rideRequestViewController.delegate = delegate
 
         if dropoffLocation != nil {
             print("Setting dropoff location: \(dropoffLocation.debugDescription)")
@@ -190,3 +192,28 @@ class ConfirmScheduleViewController: UIViewController {
     
 
 }
+
+extension ConfirmScheduleViewController : RideRequestViewControllerDelegate {
+    func rideRequestViewController(rideRequestViewController: RideRequestViewController, didReceiveError error: NSError) {
+        let errorType = RideRequestViewErrorType(rawValue: error.code) ?? .Unknown
+        // Handle error here
+        switch errorType {
+        case .AccessTokenMissing:
+            print("Access token missing")
+            break
+        // No AccessToken saved
+        case .AccessTokenExpired:
+            print("Uber access token expired")
+            break
+        // AccessToken expired / invalid
+        case .NetworkError:
+            print("uber network error")
+            break
+        default:
+            print("unknown uber error")
+            break
+
+        }
+    }
+}
+

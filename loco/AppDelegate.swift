@@ -43,6 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         PFUser.enableAutomaticUser()
         
+        Configuration.setFallbackEnabled(false)
+
+        
         let defaultACL = PFACL();
         
         // If you would like all objects to be private by default, remove this line.
@@ -93,7 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        }
         
         //Point to Uber's sandbox env
-        Configuration.setSandboxEnabled(true)
+        //Configuration.setSandboxEnabled(true)
         
         // Handle incoming Uber SSO Requests
         RidesAppDelegate.sharedInstance.application(application, didFinishLaunchingWithOptions: launchOptions)
