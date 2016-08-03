@@ -56,6 +56,9 @@ class LoginViewController: UIViewController {
                             user.email = result["email"]! as? String
                             user["first_name"] = result["first_name"]!
                             user["last_name"] = result["last_name"]!
+                           
+                            ProfileViewController.fetchFBProfilePic()
+                            
                             //TODO: collect likes, significant_other, and birthday from Facebook and get approved for these permissions
                             
                             user.saveInBackgroundWithBlock { (success, error) in
@@ -71,6 +74,7 @@ class LoginViewController: UIViewController {
                     
                 } else {
                     print("User already exists and logged in through Facebook!")
+                    ProfileViewController.fetchFBProfilePic()
                     self.performSegueWithIdentifier("loginToConfirmSchedule", sender: self)
                     
                 }
@@ -94,6 +98,7 @@ class LoginViewController: UIViewController {
                     vc.resTimeDisplay = resTimeDisplay
                     vc.dropoffLocation = dropoffLocation
                     vc.uberPickupTimeDisplay = uberPickupTimeDisplay
+                    
                 }
             } else if identifier == "loginToUserContactInfo" {
                 if let vc = segue.destinationViewController as? LoginDetailsViewController {

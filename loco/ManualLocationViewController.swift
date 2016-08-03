@@ -29,6 +29,10 @@ class ManualLocationViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.tabBarController?.tabBar.hidden = true
+    }
+    
     // MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         

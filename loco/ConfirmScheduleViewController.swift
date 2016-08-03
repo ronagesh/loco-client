@@ -82,7 +82,6 @@ class ConfirmScheduleViewController: UIViewController {
             builder = builder.setProductID(uberProductID!)
         }
         
-        
         //Create Uber button
         print("Creating uber button")
         uberButton = RideRequestButton(rideParameters: builder.build(), requestingBehavior: behavior)

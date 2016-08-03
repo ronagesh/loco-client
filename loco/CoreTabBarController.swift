@@ -14,6 +14,7 @@ class CoreTabBarController: UITabBarController {
     var userCurrentLocation: CLLocation?
     var uberProductID: String?
     var restaurants: [Restaurant]?
+    var fbProfilePic: NSData?
     
     override func viewDidLoad() {
         super.viewDidLoad()

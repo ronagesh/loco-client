@@ -149,7 +149,7 @@
         <!--Cuisine Preferences-->
         <scene sceneID="uBA-3d-YU9">
             <objects>
-                <viewController id="t2q-Fl-Z7a" customClass="CuisinePreferencesViewController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="cuisinePreferences" id="t2q-Fl-Z7a" customClass="CuisinePreferencesViewController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B7z-oA-AVI"/>
                         <viewControllerLayoutGuide type="bottom" id="TMB-NZ-2XV"/>
@@ -402,9 +402,12 @@
                     <connections>
                         <outlet property="budgetSlider" destination="y7G-9C-wVq" id="cxI-qu-lzq"/>
                         <outlet property="submitButton" destination="bde-xf-6Hj" id="6tT-ja-gyA"/>
+                        <segue destination="gGv-BI-6rB" kind="show" identifier="budgetToAutoLocation" id="2m9-3b-9Ub"/>
+                        <segue destination="KmH-dB-LSr" kind="unwind" identifier="unwindToProfile" unwindAction="unwindToProfileFromPreferencesAdjustment:" id="Rrt-9b-QAO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wYX-0m-UhT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="KmH-dB-LSr" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="L3r-Vm-aqj">
                     <connections>
                         <action selector="budgetSliderTapped:" destination="UD6-OZ-Olf" id="jcb-xs-qKA"/>
@@ -428,6 +431,14 @@
                 <tapGestureRecognizer id="TcZ-eq-fLf"/>
             </objects>
             <point key="canvasLocation" x="583" y="1532"/>
+        </scene>
+        <!--coreLoopLocation-->
+        <scene sceneID="wlX-YZ-l6K">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Core" referencedIdentifier="coreLoopLocation" id="gGv-BI-6rB" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jLM-1W-ZAQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1130.5" y="1532"/>
         </scene>
         <!--Home Location-->
         <scene sceneID="ET8-uI-KKE">
@@ -528,6 +539,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qea-Sn-fnh"/>
+        <segue reference="pLR-1W-TXu"/>
     </inferredMetricsTieBreakers>
 </document>

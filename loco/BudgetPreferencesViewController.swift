@@ -24,6 +24,8 @@ class BudgetPreferencesViewController: UIViewController {
         super.viewDidLoad()
         budgetSlider.continuous = false
         
+
+        
         if let userBudgetPreferences = NSUserDefaults.standardUserDefaults().objectForKey("userBudgetPreferences") as? String {
             
             switch userBudgetPreferences {
@@ -41,6 +43,10 @@ class BudgetPreferencesViewController: UIViewController {
             }
         }
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.tabBarController?.tabBar.hidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -115,20 +121,30 @@ class BudgetPreferencesViewController: UIViewController {
             print("Error obtaining budget slider value")
         }
         
-        //Jump to core loop storyboard
-        let coreLoopStoryboard = UIStoryboard(name: "Core", bundle: nil)
-        let nextVC = coreLoopStoryboard.instantiateViewControllerWithIdentifier("coreLoopLocation")
-        self.presentViewController(nextVC, animated: true, completion: nil)
+            //Jump to core loop storyboard
+            NSUserDefaults.standardUserDefaults().setObject(false, forKey: "firstTimeOpen")
+            //let coreLoopStoryboard = UIStoryboard(name: "Core", bundle: nil)
+            //let nextVC = coreLoopStoryboard.instantiateViewControllerWithIdentifier("coreLoopLocation")
+            //self.presentViewController(nextVC, animated: true, completion: nil)
+            self.performSegueWithIdentifier("budgetToAutoLocation", sender: self)
+        
     }
     
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    /*
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+        if let identifier = segue.identifier {
+             if identifier == "budgetToAutoLocation" {
+                if let vc = segue.destinationViewController as? CoreTabBarController {
+                    print("In budgetToProfile segue")
+                    self.navigationController?.setViewControllers([vc], animated: true)
+                    vc.self.selectedIndex = 1
+                }
+            }
+        }
+    }*/
+ 
 
 }

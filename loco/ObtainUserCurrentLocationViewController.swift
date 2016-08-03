@@ -20,6 +20,8 @@ class ObtainUserCurrentLocationViewController: UIViewController, CLLocationManag
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBarHidden = true
 
         //print("In ObtainUserCurrentLocation VC view did load")
         
@@ -53,6 +55,9 @@ class ObtainUserCurrentLocationViewController: UIViewController, CLLocationManag
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if userCurrentLocation != nil {
+            return
+        }
         userCurrentLocation = locations[0]
         print("User's current location fetched \(userCurrentLocation.debugDescription)")
         locationManager.stopUpdatingLocation()
