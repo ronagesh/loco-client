@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import CoreLocation
+import Parse
+
 
 class RecommendationsContentViewController: UIViewController {
 
@@ -24,7 +25,6 @@ class RecommendationsContentViewController: UIViewController {
     //MARK: Properties
     var restaurant: Restaurant!
     var reservation: Reservation!
-    let geocoder = CLGeocoder()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,16 @@ class RecommendationsContentViewController: UIViewController {
         let res = Reservation(merchantName: "\(restaurant.name)", dateTime: NSDate(dateString: "2016-07-31T19:00:00"), partySize: 2, customerFirstName: "Rohan", customerLastName: "Nagesh", customerEmail: "ronagesh@gmail.com", customerPhone: "6506226720", merchantCountry: "US")
         
         reservation = res
-        self.performSegueWithIdentifier("recommendationsToConfirmSchedule", sender: self)
+        
+        if PFUser.currentUser()?.email != nil && PFUser.currentUser()?["phone"] != nil {
+            print("Transitioning from recs to confirm schedule")
+            print("Current PF User's email \(PFUser.currentUser()!.email)")
+            print("Current PF User \(PFUser.currentUser()?.sessionToken)")
+            self.performSegueWithIdentifier("recsToConfirmSchedule", sender: self)
+        } else {
+            self.performSegueWithIdentifier("recsToLogin", sender: self)
+            print("Transitioning from recs to login")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,8 +64,12 @@ class RecommendationsContentViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let identifer = segue.identifier {
-            if identifer == "recommendationsToConfirmSchedule" {
+        //Compute Uber Pickup time string
+        let calendar = NSCalendar.currentCalendar()
+        let uberPickupTime = calendar.dateByAddingUnit(.Minute, value: reservation.getUberHailETA(), toDate: NSDate(), options: [])!
+        
+        if let identifier = segue.identifier {
+            if identifier == "recsToConfirmSchedule" {
                 if let vc = segue.destinationViewController as? ConfirmScheduleViewController {
                     //Set properties
                     vc.bizName = restaurant.name
@@ -64,13 +77,18 @@ class RecommendationsContentViewController: UIViewController {
                     vc.bizDriveETA = restaurant.getRideTime()
                     vc.resTimeDisplay = reservation.dateTime.toShortTimeString()
                     vc.dropoffLocation = restaurant.geocodedAddress
-                    
-                    //Compute Uber Pickup time string
-                    
-                    let calendar = NSCalendar.currentCalendar()
-                    let uberPickupTime = calendar.dateByAddingUnit(.Minute, value: reservation.getUberHailETA(), toDate: NSDate(), options: [])!
                     vc.uberPickupTimeDisplay = uberPickupTime.toShortTimeString()
                 }
+            } else if identifier == "recsToLogin" {
+                if let vc = segue.destinationViewController as? LoginViewController {
+                    vc.bizName = restaurant.name
+                    vc.bizAddress = restaurant.address
+                    vc.bizDriveETA = restaurant.getRideTime()
+                    vc.resTimeDisplay = reservation.dateTime.toShortTimeString()
+                    vc.dropoffLocation = restaurant.geocodedAddress
+                    vc.uberPickupTimeDisplay = uberPickupTime.toShortTimeString()
+                }
+
             }
         }
     }

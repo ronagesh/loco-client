@@ -40,6 +40,10 @@ class CuisinePreferencesViewController: UIViewController {
             }
         }
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.tabBarController?.tabBar.hidden = true
+    }
    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

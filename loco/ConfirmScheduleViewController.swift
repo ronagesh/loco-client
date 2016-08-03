@@ -62,10 +62,12 @@ class ConfirmScheduleViewController: UIViewController {
         // Pass in a UIViewController to modally present the Uber Ride Request Widget over
         var builder = RideParametersBuilder()
         let behavior = RideRequestViewRequestingBehavior(presentingViewController: self)
+        let delegate = ConfirmScheduleViewController()
+        behavior.modalRideRequestViewController.rideRequestViewController.delegate = delegate
 
         if dropoffLocation != nil {
             print("Setting dropoff location: \(dropoffLocation.debugDescription)")
-            builder = builder.setDropoffLocation(dropoffLocation!)
+            builder = builder.setDropoffLocation(dropoffLocation!, address: bizAddress)
         }
         
         //Prefill current location and type of Uber
@@ -76,16 +78,16 @@ class ConfirmScheduleViewController: UIViewController {
         
         //Prefill uber product for user's budget rating
         if uberProductID != nil {
+            print("Setting uber product ID: \(uberProductID) ")
             builder = builder.setProductID(uberProductID!)
         }
-        
         
         //Create Uber button
         print("Creating uber button")
         uberButton = RideRequestButton(rideParameters: builder.build(), requestingBehavior: behavior)
         uberButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(uberButton)
-        setConstraintsForSubmitButton(uberButton)
+        ConfirmScheduleViewController.setConstraintsForSubmitButton(uberButton, view: self.view, bottomGuide: self.bottomLayoutGuide)
         
         //Create Confirm button for drive on own case
         driveOnOwnButton = UIButton(type: UIButtonType.System)
@@ -94,6 +96,7 @@ class ConfirmScheduleViewController: UIViewController {
         driveOnOwnButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         driveOnOwnButton.backgroundColor = UIColor.blackColor()
         driveOnOwnButton.translatesAutoresizingMaskIntoConstraints = false
+        driveOnOwnButton.addTarget(self, action: #selector(ConfirmScheduleViewController.showReceiptPage), forControlEvents: .TouchUpInside)
     }
 
     override func didReceiveMemoryWarning() {
@@ -109,19 +112,22 @@ class ConfirmScheduleViewController: UIViewController {
         if driveMode.selectedSegmentIndex == 0 {
             driveOnOwnButton.removeFromSuperview()
             self.view.addSubview(uberButton)
-            setConstraintsForSubmitButton(uberButton)
+           ConfirmScheduleViewController.setConstraintsForSubmitButton(uberButton, view: self.view, bottomGuide: self.bottomLayoutGuide)
             pickupDetails.text = "\(uberPickupTimeDisplay) Uber pickup"
         } else { //drive on own case
             uberButton.removeFromSuperview()
             self.view.addSubview(driveOnOwnButton)
-            setConstraintsForSubmitButton(driveOnOwnButton)
+           ConfirmScheduleViewController.setConstraintsForSubmitButton(driveOnOwnButton, view: self.view, bottomGuide: self.bottomLayoutGuide)
             pickupDetails.text = "\(bizDriveETA) minute drive to \(bizName)"
         }
     }
     
+    func showReceiptPage() {
+        self.performSegueWithIdentifier("confirmScheduleToReceipt", sender: self)
+    }
 
     
-    func setConstraintsForSubmitButton(button: UIButton) {
+    static func setConstraintsForSubmitButton(button: UIButton, view:UIView, bottomGuide: UILayoutSupport) {
         
         let heightConstraint = NSLayoutConstraint(
             item: button,
@@ -136,7 +142,7 @@ class ConfirmScheduleViewController: UIViewController {
             item: button,
             attribute: NSLayoutAttribute.Leading,
             relatedBy: NSLayoutRelation.Equal,
-            toItem: self.view,
+            toItem: view,
             attribute: NSLayoutAttribute.LeadingMargin,
             multiplier: 1,
             constant: 0)
@@ -145,7 +151,7 @@ class ConfirmScheduleViewController: UIViewController {
             item: button,
             attribute: NSLayoutAttribute.Trailing,
             relatedBy: NSLayoutRelation.Equal,
-            toItem: self.view,
+            toItem: view,
             attribute: NSLayoutAttribute.TrailingMargin,
             multiplier: 1,
             constant: 0)
@@ -154,39 +160,59 @@ class ConfirmScheduleViewController: UIViewController {
             item: button,
             attribute: NSLayoutAttribute.Bottom,
             relatedBy: NSLayoutRelation.Equal,
-            toItem: self.bottomLayoutGuide,
+            toItem: bottomGuide,
             attribute: NSLayoutAttribute.Top,
             multiplier: 1,
             constant: -20)
         
         NSLayoutConstraint.activateConstraints([heightConstraint, leadingConstraint, trailingConstraint, bottomConstraint])
     }
-    
-    
-    
-    
-    /*
-    
-    @IBAction func confirmSchedule() {
-        if driveMode.selectedSegmentIndex == 0 {
-            //TODO: Dispatch Uber
-            
-        } else {
-            //TODO: Segue to date night itinerary screen
-            
-        }
-    }*/
-    
-    
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let identifier = segue.identifier {
+            if identifier == "confirmScheduleToReceipt" {
+                if let vc = segue.destinationViewController as? ReceiptPageNavController {
+                    vc.bizName = bizName
+                    vc.bizAddress = bizAddress
+                    vc.bizDriveETA = bizDriveETA
+                    vc.resTimeDisplay = resTimeDisplay
+                    vc.uberPickupTimeDisplay = uberPickupTimeDisplay
+                    vc.userStartingLocation = userCurrentLocation
+                    vc.transportationMode = driveMode.selectedSegmentIndex
+                    vc.uberProductID = uberProductID
+                }
+            }
+        }
     }
-    */
+    
 
 }
+
+extension ConfirmScheduleViewController : RideRequestViewControllerDelegate {
+    func rideRequestViewController(rideRequestViewController: RideRequestViewController, didReceiveError error: NSError) {
+        let errorType = RideRequestViewErrorType(rawValue: error.code) ?? .Unknown
+        // Handle error here
+        switch errorType {
+        case .AccessTokenMissing:
+            print("Access token missing")
+            break
+        // No AccessToken saved
+        case .AccessTokenExpired:
+            print("Uber access token expired")
+            break
+        // AccessToken expired / invalid
+        case .NetworkError:
+            print("uber network error")
+            break
+        default:
+            print("unknown uber error")
+            break
+
+        }
+    }
+}
+

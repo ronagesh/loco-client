@@ -39,7 +39,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="hnc-9J-X45" kind="relationship" relationship="viewControllers" id="osJ-HW-bZ7"/>
-                        <segue destination="6zk-r6-dZK" kind="relationship" relationship="viewControllers" id="r5Y-Gr-lC1"/>
+                        <segue destination="BjE-Sr-uyi" kind="relationship" relationship="viewControllers" id="XSI-nK-FnR"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aQR-6D-SgA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -65,22 +65,15 @@
             </objects>
             <point key="canvasLocation" x="-826" y="2337"/>
         </scene>
-        <!--Profile-->
-        <scene sceneID="sJk-Wt-wrR">
+        <!--profileRootNav-->
+        <scene sceneID="z1i-XN-tpz">
             <objects>
-                <navigationController title="Profile" id="6zk-r6-dZK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="L6A-fl-lKC"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o0U-Dp-GkH">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="PCf-uJ-NEx" kind="relationship" relationship="rootViewController" id="7WJ-qj-aHh"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HZB-Mf-TnB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="profileRootNav" id="BjE-Sr-uyi" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="XQy-tf-dWY"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zbx-Eb-nSM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-826" y="3307"/>
+            <point key="canvasLocation" x="-855.5" y="2929"/>
         </scene>
         <!--Top Picks-->
         <scene sceneID="VEY-jJ-YEP">
@@ -322,17 +315,26 @@
                         <outlet property="merchantDriveETA" destination="Qte-ZH-rtn" id="JxG-Nv-3Z8"/>
                         <outlet property="merchantImage" destination="iXc-xq-TdW" id="3Em-fZ-ELK"/>
                         <outlet property="merchantName" destination="UBX-Um-xZB" id="2GU-nS-JIi"/>
-                        <segue destination="a6V-yp-Oyr" kind="show" identifier="recommendationsToConfirmSchedule" id="30j-js-97L"/>
+                        <segue destination="a6V-yp-Oyr" kind="show" identifier="recsToConfirmSchedule" id="30j-js-97L"/>
+                        <segue destination="Qvj-eV-zPu" kind="show" identifier="recsToLogin" id="PLm-63-uH9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r8E-3Q-PY7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="583" y="2337"/>
+            <point key="canvasLocation" x="582" y="2337"/>
+        </scene>
+        <!--login-->
+        <scene sceneID="0cG-Zg-Ww1">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" referencedIdentifier="login" id="Qvj-eV-zPu" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v1H-8b-yMA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="838" y="2799"/>
         </scene>
         <!--Confirm Schedule-->
         <scene sceneID="fBR-XN-i0H">
             <objects>
-                <viewController title="Confirm Schedule" id="a6V-yp-Oyr" customClass="ConfirmScheduleViewController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="confirmSchedule" title="Confirm Schedule" id="a6V-yp-Oyr" customClass="ConfirmScheduleViewController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GiP-bS-peS"/>
                         <viewControllerLayoutGuide type="bottom" id="zbf-qE-my3"/>
@@ -401,14 +403,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8:00pm Reservation at Wayfare Tavern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdL-m9-TNk">
-                                <rect key="frame" x="20" y="301" width="297" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7:30pm Uber pickup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8UP-f6-ID0">
+                                <rect key="frame" x="20" y="272" width="157" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7:30pm Uber pickup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8UP-f6-ID0">
-                                <rect key="frame" x="20" y="272" width="157" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8:00pm Reservation at Wayfare Tavern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdL-m9-TNk">
+                                <rect key="frame" x="20" y="301" width="297" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -448,16 +450,33 @@
                         <outlet property="merchantName" destination="ClO-sF-cIM" id="Yqn-zh-7v3"/>
                         <outlet property="pickupDetails" destination="8UP-f6-ID0" id="fLX-g7-Ish"/>
                         <outlet property="reservationDetails" destination="QdL-m9-TNk" id="dkY-wy-aOX"/>
+                        <segue destination="04v-97-Kjx" kind="show" identifier="confirmScheduleToReceipt" id="Hx7-W6-5uW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cnp-us-a0N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1238" y="2336"/>
         </scene>
-        <!--View Controller-->
+        <!--Receipt Page Nav Controller-->
+        <scene sceneID="sdV-it-cS1">
+            <objects>
+                <navigationController id="04v-97-Kjx" customClass="ReceiptPageNavController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="slL-vZ-qyk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Xn4-8D-Urj" kind="relationship" relationship="rootViewController" id="iL4-V4-blE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vVX-ot-4o6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1870" y="3011"/>
+        </scene>
+        <!--Thank You-->
         <scene sceneID="w0X-PO-ahk">
             <objects>
-                <viewController id="Xn4-8D-Urj" sceneMemberID="viewController">
+                <viewController title="Thank You" id="Xn4-8D-Urj" customClass="ReceiptPageViewController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fKF-l6-y0o"/>
                         <viewControllerLayoutGuide type="bottom" id="484-u2-3Fe"/>
@@ -465,12 +484,86 @@
                     <view key="view" contentMode="scaleToFill" id="67k-fN-uey">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Wayfare Tavern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofI-Ru-YBv">
+                                <rect key="frame" x="20" y="116" width="171" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="San Francisco" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fku-l7-Dk7">
+                                <rect key="frame" x="20" y="148" width="108" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="15 min. drive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfZ-k1-tfj">
+                                <rect key="frame" x="136" y="148" width="97" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Schedule" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fie-mh-r0D">
+                                <rect key="frame" x="20" y="225" width="105" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="8:00pm Reservation at Wayfare Tavern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="law-Br-sbh">
+                                <rect key="frame" x="20" y="292" width="297" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="7:30pm Uber pickup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JpV-YL-BNz">
+                                <rect key="frame" x="20" y="263" width="157" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enjoy your date night. Go loco!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lir-vm-yjd">
+                                <rect key="frame" x="20" y="72" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Lir-vm-yjd" firstAttribute="centerX" secondItem="67k-fN-uey" secondAttribute="centerX" id="0Ga-BU-RQP"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="ofI-Ru-YBv" secondAttribute="leading" id="8eE-Sf-T6i"/>
+                            <constraint firstItem="JpV-YL-BNz" firstAttribute="leading" secondItem="Fie-mh-r0D" secondAttribute="leading" id="BB8-b6-vea"/>
+                            <constraint firstItem="Lir-vm-yjd" firstAttribute="top" secondItem="fKF-l6-y0o" secondAttribute="bottom" constant="8" symbolic="YES" id="FeS-qe-a9s"/>
+                            <constraint firstItem="law-Br-sbh" firstAttribute="top" secondItem="JpV-YL-BNz" secondAttribute="bottom" constant="8" id="HaH-I2-TlD"/>
+                            <constraint firstItem="Fku-l7-Dk7" firstAttribute="top" secondItem="ofI-Ru-YBv" secondAttribute="bottom" constant="2" id="IHi-V9-wJL"/>
+                            <constraint firstItem="Fie-mh-r0D" firstAttribute="top" secondItem="Fku-l7-Dk7" secondAttribute="bottom" constant="56" id="Yzt-KI-AHd"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Fku-l7-Dk7" secondAttribute="leading" id="Zak-RG-liL"/>
+                            <constraint firstItem="ofI-Ru-YBv" firstAttribute="top" secondItem="Lir-vm-yjd" secondAttribute="bottom" constant="58" id="ZrU-vl-r2R"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Lir-vm-yjd" secondAttribute="trailing" id="aPp-OG-0cx"/>
+                            <constraint firstItem="Fku-l7-Dk7" firstAttribute="leading" secondItem="ofI-Ru-YBv" secondAttribute="leading" id="aoY-3q-0NY"/>
+                            <constraint firstItem="AfZ-k1-tfj" firstAttribute="leading" secondItem="Fku-l7-Dk7" secondAttribute="trailing" constant="8" id="fQV-aa-rF9"/>
+                            <constraint firstItem="Fie-mh-r0D" firstAttribute="leading" secondItem="Fku-l7-Dk7" secondAttribute="leading" id="gOt-4N-Ycs"/>
+                            <constraint firstItem="AfZ-k1-tfj" firstAttribute="top" secondItem="ofI-Ru-YBv" secondAttribute="bottom" constant="2" id="hHY-BP-yZf"/>
+                            <constraint firstItem="JpV-YL-BNz" firstAttribute="top" secondItem="Fie-mh-r0D" secondAttribute="bottom" constant="8" id="ko6-PJ-BAc"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Lir-vm-yjd" secondAttribute="leading" id="m0h-ks-rRk"/>
+                            <constraint firstItem="law-Br-sbh" firstAttribute="leading" secondItem="JpV-YL-BNz" secondAttribute="leading" id="zlM-UH-tSP"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Thank You" id="Mf3-yi-Pga">
+                        <barButtonItem key="rightBarButtonItem" title="Cancel Reservation" id="2nF-XG-YGL"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="greeting" destination="Lir-vm-yjd" id="8Sa-Hc-jWu"/>
+                        <outlet property="merchantAddress" destination="Fku-l7-Dk7" id="xjD-yu-Eib"/>
+                        <outlet property="merchantDriveETA" destination="AfZ-k1-tfj" id="UgD-WG-I7M"/>
+                        <outlet property="merchantName" destination="ofI-Ru-YBv" id="daV-ys-DSV"/>
+                        <outlet property="pickupDetails" destination="JpV-YL-BNz" id="MRo-OQ-Qcw"/>
+                        <outlet property="reservationDetails" destination="law-Br-sbh" id="3Yw-gK-qGp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kIj-SH-fsN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1886" y="2337"/>
+            <point key="canvasLocation" x="2354" y="2336"/>
         </scene>
     </scenes>
     <resources>

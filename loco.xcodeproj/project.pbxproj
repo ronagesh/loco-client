@@ -16,11 +16,20 @@
 		1C1E4D091D2095BE00A714C9 /* locoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E4D081D2095BE00A714C9 /* locoTests.swift */; };
 		1C1E4D141D2095BE00A714C9 /* locoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E4D131D2095BE00A714C9 /* locoUITests.swift */; };
 		1C23A6321D303AD2007F563D /* TutorialPageContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C23A6311D303AD2007F563D /* TutorialPageContentController.swift */; };
+		1C369CD31D46F237003F8A20 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C369CD21D46F237003F8A20 /* Login.storyboard */; };
+		1C369CD51D4709C4003F8A20 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C369CD41D4709C4003F8A20 /* LoginViewController.swift */; };
+		1C369CD71D47E1FE003F8A20 /* LoginDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C369CD61D47E1FE003F8A20 /* LoginDetailsViewController.swift */; };
+		1C369CD91D483C4F003F8A20 /* ReceiptPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C369CD81D483C4F003F8A20 /* ReceiptPageViewController.swift */; };
+		1C369CDB1D489866003F8A20 /* ReceiptPageNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C369CDA1D489866003F8A20 /* ReceiptPageNavController.swift */; };
+		1C40F0B51D516AFA00010BF4 /* LabelTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C40F0B41D516AFA00010BF4 /* LabelTextFieldTableViewCell.swift */; };
+		1C40F0B71D516FBB00010BF4 /* LabelSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C40F0B61D516FBB00010BF4 /* LabelSwitchTableViewCell.swift */; };
 		1C4473441D414393007605BF /* ConfirmScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4473431D414393007605BF /* ConfirmScheduleViewController.swift */; };
 		1C4473461D4176D2007605BF /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4473451D4176D2007605BF /* Reservation.swift */; };
 		1C4473481D41903D007605BF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4473471D41903D007605BF /* Extensions.swift */; };
 		1C44734C1D4410CB007605BF /* ObtainUserCurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C44734B1D4410CB007605BF /* ObtainUserCurrentLocationViewController.swift */; };
 		1C44734E1D441547007605BF /* CoreTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C44734D1D441547007605BF /* CoreTabBarController.swift */; };
+		1C57C48D1D51614700CC4BFE /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C57C48C1D51614700CC4BFE /* Profile.storyboard */; };
+		1C57C4931D5164EC00CC4BFE /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57C4921D5164EC00CC4BFE /* UserInfoViewController.swift */; };
 		1C7A04A31D37102D001B6924 /* BudgetPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A04A21D37102D001B6924 /* BudgetPreferencesViewController.swift */; };
 		1C7A04A71D39926A001B6924 /* ManualLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A04A61D39926A001B6924 /* ManualLocationViewController.swift */; };
 		1CA39A7E1D2F163B000DAA01 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA39A7D1D2F163B000DAA01 /* TutorialPageViewController.swift */; };
@@ -71,11 +80,20 @@
 		1C1E4D131D2095BE00A714C9 /* locoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locoUITests.swift; sourceTree = "<group>"; };
 		1C1E4D151D2095BE00A714C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C23A6311D303AD2007F563D /* TutorialPageContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageContentController.swift; sourceTree = "<group>"; };
+		1C369CD21D46F237003F8A20 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		1C369CD41D4709C4003F8A20 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1C369CD61D47E1FE003F8A20 /* LoginDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginDetailsViewController.swift; sourceTree = "<group>"; };
+		1C369CD81D483C4F003F8A20 /* ReceiptPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptPageViewController.swift; sourceTree = "<group>"; };
+		1C369CDA1D489866003F8A20 /* ReceiptPageNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptPageNavController.swift; sourceTree = "<group>"; };
+		1C40F0B41D516AFA00010BF4 /* LabelTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		1C40F0B61D516FBB00010BF4 /* LabelSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		1C4473431D414393007605BF /* ConfirmScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmScheduleViewController.swift; sourceTree = "<group>"; };
 		1C4473451D4176D2007605BF /* Reservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		1C4473471D41903D007605BF /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1C44734B1D4410CB007605BF /* ObtainUserCurrentLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObtainUserCurrentLocationViewController.swift; sourceTree = "<group>"; };
 		1C44734D1D441547007605BF /* CoreTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreTabBarController.swift; sourceTree = "<group>"; };
+		1C57C48C1D51614700CC4BFE /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		1C57C4921D5164EC00CC4BFE /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		1C743C291D28960C00CA622A /* loco-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "loco-Bridging-Header.h"; sourceTree = "<group>"; };
 		1C7A04A21D37102D001B6924 /* BudgetPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetPreferencesViewController.swift; sourceTree = "<group>"; };
 		1C7A04A61D39926A001B6924 /* ManualLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualLocationViewController.swift; sourceTree = "<group>"; };
@@ -159,10 +177,19 @@
 				1C1E4CF51D2095BE00A714C9 /* ViewController.swift */,
 				1C1E4CF71D2095BE00A714C9 /* Main.storyboard */,
 				1CD25A611D3F0B4B00751A68 /* Core.storyboard */,
+				1C57C48C1D51614700CC4BFE /* Profile.storyboard */,
+				1C40F0B61D516FBB00010BF4 /* LabelSwitchTableViewCell.swift */,
+				1C369CD21D46F237003F8A20 /* Login.storyboard */,
+				1C40F0B41D516AFA00010BF4 /* LabelTextFieldTableViewCell.swift */,
+				1C57C4921D5164EC00CC4BFE /* UserInfoViewController.swift */,
+				1C369CD81D483C4F003F8A20 /* ReceiptPageViewController.swift */,
+				1C369CD61D47E1FE003F8A20 /* LoginDetailsViewController.swift */,
 				1C44734D1D441547007605BF /* CoreTabBarController.swift */,
+				1C369CD41D4709C4003F8A20 /* LoginViewController.swift */,
 				1C4473471D41903D007605BF /* Extensions.swift */,
 				1C44734B1D4410CB007605BF /* ObtainUserCurrentLocationViewController.swift */,
 				1C4473431D414393007605BF /* ConfirmScheduleViewController.swift */,
+				1C369CDA1D489866003F8A20 /* ReceiptPageNavController.swift */,
 				1CD25A5B1D3D7EE700751A68 /* Restaurant.swift */,
 				1C4473451D4176D2007605BF /* Reservation.swift */,
 				1CD25A5D1D3D80CE00751A68 /* RestaurantCuisines.swift */,
@@ -346,9 +373,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C57C48D1D51614700CC4BFE /* Profile.storyboard in Resources */,
 				1C1E4CFE1D2095BE00A714C9 /* LaunchScreen.storyboard in Resources */,
 				1C1E4CFB1D2095BE00A714C9 /* Assets.xcassets in Resources */,
 				1C1E4CF91D2095BE00A714C9 /* Main.storyboard in Resources */,
+				1C369CD31D46F237003F8A20 /* Login.storyboard in Resources */,
 				1CD25A621D3F0B4C00751A68 /* Core.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,13 +527,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CD25A1E1D3ABC5600751A68 /* RecommendationsContentViewController.swift in Sources */,
+				1C57C4931D5164EC00CC4BFE /* UserInfoViewController.swift in Sources */,
+				1C40F0B71D516FBB00010BF4 /* LabelSwitchTableViewCell.swift in Sources */,
 				1C1E4CF61D2095BE00A714C9 /* ViewController.swift in Sources */,
 				1CD25A1C1D3ABBD500751A68 /* RecommendationsPageViewController.swift in Sources */,
 				1C4473441D414393007605BF /* ConfirmScheduleViewController.swift in Sources */,
+				1C369CD91D483C4F003F8A20 /* ReceiptPageViewController.swift in Sources */,
 				1CD25A5E1D3D80CE00751A68 /* RestaurantCuisines.swift in Sources */,
 				1C1E4CF41D2095BE00A714C9 /* AppDelegate.swift in Sources */,
+				1C40F0B51D516AFA00010BF4 /* LabelTextFieldTableViewCell.swift in Sources */,
 				1C7A04A31D37102D001B6924 /* BudgetPreferencesViewController.swift in Sources */,
 				1CABC8EA1D35C6BF00B8D30A /* CuisinePreferencesViewController.swift in Sources */,
+				1C369CD51D4709C4003F8A20 /* LoginViewController.swift in Sources */,
 				1C23A6321D303AD2007F563D /* TutorialPageContentController.swift in Sources */,
 				1C44734C1D4410CB007605BF /* ObtainUserCurrentLocationViewController.swift in Sources */,
 				1C44734E1D441547007605BF /* CoreTabBarController.swift in Sources */,
@@ -513,9 +547,11 @@
 				1CD25A201D3B050700751A68 /* WelcomeViewController.swift in Sources */,
 				1CA39A7E1D2F163B000DAA01 /* TutorialPageViewController.swift in Sources */,
 				1CD25A601D3D826800751A68 /* RestaurantBudgetRatings.swift in Sources */,
+				1C369CD71D47E1FE003F8A20 /* LoginDetailsViewController.swift in Sources */,
 				1C4473481D41903D007605BF /* Extensions.swift in Sources */,
 				1C4473461D4176D2007605BF /* Reservation.swift in Sources */,
 				1C7A04A71D39926A001B6924 /* ManualLocationViewController.swift in Sources */,
+				1C369CDB1D489866003F8A20 /* ReceiptPageNavController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

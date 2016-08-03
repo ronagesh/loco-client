@@ -26,6 +26,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>loco</string>
+                <string>uberconnect</string>
 				<string>fb1747668542182293</string>
 			</array>
 		</dict>
@@ -40,6 +41,7 @@
 	<array>
 		<string>fbapi</string>
 		<string>fbauth2</string>
+        <string>uberconnect</string>
 		<string>uberauth</string>
 		<string>uber</string>
 		<string>fb-messenger-api</string>
@@ -79,5 +81,7 @@
 	<string>Zutd3Ycqk-sDfhFYzbzobI7Gdt6pc2IW</string>
 	<key>UberDisplayName</key>
 	<string>loco</string>
+	<key>UberServerToken</key>
+	<string>XrUc1m_Do6R56-l0x6hcs8zF8iuoyEtBh_iwgtbc</string>
 </dict>
 </plist>

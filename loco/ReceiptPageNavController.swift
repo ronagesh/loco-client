@@ -1,20 +1,27 @@
 //
-//  CoreTabBarController.swift
+//  ReceiptPageNavController.swift
 //  loco
 //
-//  Created by Rohan Nagesh on 7/23/16.
+//  Created by Rohan Nagesh on 7/27/16.
 //  Copyright © 2016 Rohan Nagesh. All rights reserved.
 //
 
 import UIKit
 import CoreLocation
 
-class CoreTabBarController: UITabBarController {
+class ReceiptPageNavController: UINavigationController {
 
-    var userCurrentLocation: CLLocation?
+    //MARK: Properties
+    var bizName = ""
+    var bizAddress = ""
+    var bizDriveETA = 0
+    var uberPickupTimeDisplay = ""
+    var resTimeDisplay = ""
+    
+    var transportationMode: Int?
+    var userStartingLocation: CLLocation?
     var uberProductID: String?
-    var restaurants: [Restaurant]?
-    var fbProfilePic: NSData?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

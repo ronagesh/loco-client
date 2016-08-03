@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 
 extension NSDate
 {
@@ -53,4 +54,21 @@ extension NSDate
         return timeString
     }
     
+}
+
+extension ProfileViewController {
+    
+    static func fetchFBProfilePic() {
+        
+        if let currentUser = PFUser.currentUser() {
+            let fbID = currentUser["fb_id"]
+            let profilePictureURL = NSURL(string: "https://graph.facebook.com/" +  String(fbID) + "/picture?type=normal")
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                if let contents = NSData(contentsOfURL: profilePictureURL!) {
+                    NSUserDefaults.standardUserDefaults().setObject(contents, forKey: "fbProfilePic")
+                }
+            }
+        }
+    }
 }

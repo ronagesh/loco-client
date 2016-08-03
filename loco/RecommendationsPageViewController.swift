@@ -1,4 +1,4 @@
-//
+ //
 //  RecommendationsPageViewController.swift
 //  loco
 //
@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import UberRides
+import Parse
 
 class RecommendationsPageViewController: UIPageViewController, UIPageViewControllerDataSource {
 
@@ -42,15 +43,47 @@ class RecommendationsPageViewController: UIPageViewController, UIPageViewControl
         }
         let ridesClient = RidesClient()
         
+        //Async call #1: Refresh Uber access token if required
+        if let token = ridesClient.fetchAccessToken() {
+            if token.expirationDate?.compare(NSDate()) == NSComparisonResult.OrderedAscending { //Access token is expired
+                print("Access token expired for this old token: \(token.tokenString)")
+                if let refreshToken = token.refreshToken {
+                    ridesClient.refreshAccessToken(refreshToken) { (newAccessToken, response)  in
+                        if response.error != nil {
+                            print("Error refreshing Uber access token for user")
+                        } else {
+                            print("Successfully refreshed Uber access token for user. New access token: \(newAccessToken?.tokenString)")
+                        }
+                    }
+                }
+            }
+        }
+        
+        //Async call #2: Geocode first restaurant's address if it hasn't already been
+        if restaurants[0].geocodedAddress == nil {
+            let geocoder = CLGeocoder()
+            geocoder.geocodeAddressString(restaurants[0].address, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
+                if error != nil {
+                    print(error)
+                } else {
+                    if let placemarksArr = placemarks {
+                        self.restaurants[0].geocodedAddress = placemarksArr[0].location
+                        print("Geocoded dropoff location for restaurant \(self.restaurants[0].name): \(self.restaurants[0].geocodedAddress.debugDescription)")
+                    }
+                }
+            })
+        }
+        
         //Default user budget rating to Smart if there's no value obtained
         var prefilledUberProduct = RestaurantBudgetRatings.budgetToUberProdMap[RestaurantBudgetRatings.Smart]
-        
+
         if let userBudgetRating = NSUserDefaults.standardUserDefaults().objectForKey("userBudgetPreferences") as? String {
             prefilledUberProduct = RestaurantBudgetRatings.getUberProductForBudgetRating(userBudgetRating)
         }
         
-        //Async call #1: Fetch list of uber products available for user's current location
-        
+
+        //Async call #3: Fetch list of uber products available for user's current location
+
         ridesClient.fetchProducts(pickupLocation: userCurrentLocation!) { (products, response) in
             if let error = response.error {
                 print("Error fetching uber products \(error)")
@@ -68,23 +101,10 @@ class RecommendationsPageViewController: UIPageViewController, UIPageViewControl
             }
         }
 
-        
-        //Async call #2: Geocode first restaurant's address if it hasn't already been
-        if restaurants[0].geocodedAddress == nil {
-            let geocoder = CLGeocoder()
-            geocoder.geocodeAddressString(restaurants[0].address, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
-                if error != nil {
-                    print(error)
-                } else {
-                    if let placemarksArr = placemarks {
-                        self.restaurants[0].geocodedAddress = placemarksArr[0].location
-                        print("Geocoded dropoff location for restaurant \(self.restaurants[0].name): \(self.restaurants[0].geocodedAddress.debugDescription)")
-                    }
-                }
-            })
+        //Async call #4: Fetch user's FB profile picture for Profile tab
+        if PFUser.currentUser()?.email != nil {
+            ProfileViewController.fetchFBProfilePic()
         }
-
-        
         setViewControllers([contentViewController], direction: .Forward, animated: true, completion: nil)
 
     }
