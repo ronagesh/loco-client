@@ -23,51 +23,67 @@ class ReceiptPageViewController: UIViewController {
     @IBOutlet weak var pickupDetails: UILabel!
     @IBOutlet weak var reservationDetails: UILabel!
     
+    //MARK: Properties
+    var bizName: String!
+    var bizAddress: String!
+    var bizDriveETA: Int!
+    var uberPickupTimeDisplay: String!
+    var resTimeDisplay: String!
+    
+    var transportationMode: Int!
+    var userStartingLocation: CLLocation?
+    var uberProductID: String?
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.hidesBackButton = true
+    
+        merchantName.text = bizName
+        merchantAddress.text = bizAddress
+        merchantDriveETA.text = "\(bizDriveETA) min. drive away"
+        reservationDetails.text = "\(resTimeDisplay) Reservation at \(bizName)"
+        greeting.text = "Enjoy your date night \(PFUser.currentUser()!["first_name"]!). Go loco!"
         
-        
-        if let nav = self.navigationController as? ReceiptPageNavController {
-            merchantName.text = nav.bizName
-            merchantAddress.text = nav.bizAddress
-            merchantDriveETA.text = "\(nav.bizDriveETA) min. drive away"
-            reservationDetails.text = "\(nav.resTimeDisplay) Reservation at \(nav.bizName)"
-            greeting.text = "Enjoy your date night \(PFUser.currentUser()!["first_name"]!). Go loco!"
+        if transportationMode == 0 {
+            pickupDetails.text = "\(uberPickupTimeDisplay) Uber pickup"
             
-            if nav.transportationMode == 0 {
-                pickupDetails.text = "\(nav.uberPickupTimeDisplay) Uber pickup"
-                
-                // Pass in a UIViewController to modally present the Uber Ride Request Widget over
-                var builder = RideParametersBuilder()
-                let behavior = RideRequestViewRequestingBehavior(presentingViewController: self)
-                
-                builder.setPickupToCurrentLocation()
-                
-                if nav.userStartingLocation != nil {
-                    print("Setting dropoff location: \(nav.userStartingLocation.debugDescription)")
-                    builder = builder.setDropoffLocation(nav.userStartingLocation!)
-                }
-                
-                
-                //Prefill uber product for user's budget rating
-                if nav.uberProductID != nil {
-                    builder = builder.setProductID(nav.uberProductID!)
-                }
-                
-                //Create Uber button
-                print("Creating uber button")
-                let uberButton = RideRequestButton(rideParameters: builder.build(), requestingBehavior: behavior)
-                uberButton.setTitle("Ride back home", forState: .Normal)
-                uberButton.translatesAutoresizingMaskIntoConstraints = false
-                self.view.addSubview(uberButton)
-                ConfirmScheduleViewController.setConstraintsForSubmitButton(uberButton, view: self.view, bottomGuide: self.bottomLayoutGuide)
-                
-            } else {
-                pickupDetails.text = "\(nav.bizDriveETA) minute drive to \(nav.bizName)"
+            // Pass in a UIViewController to modally present the Uber Ride Request Widget over
+            var builder = RideParametersBuilder()
+            let behavior = RideRequestViewRequestingBehavior(presentingViewController: self)
+            
+            builder.setPickupToCurrentLocation()
+            
+            if userStartingLocation != nil {
+                print("Setting dropoff location: \(userStartingLocation.debugDescription)")
+                builder = builder.setDropoffLocation(userStartingLocation!)
             }
+            
+            
+            //Prefill uber product for user's budget rating
+            if uberProductID != nil {
+                builder = builder.setProductID(uberProductID!)
+            }
+            
+            //Create Uber button
+            print("Creating uber button")
+            let uberButton = RideRequestButton(rideParameters: builder.build(), requestingBehavior: behavior)
+            uberButton.setButtonTitle("Ride back home")
+            uberButton.translatesAutoresizingMaskIntoConstraints = false
+            self.view.addSubview(uberButton)
+            ConfirmScheduleViewController.setConstraintsForSubmitButton(uberButton, view: self.view, bottomGuide: self.bottomLayoutGuide)
+            
+        } else {
+            pickupDetails.text = "\(bizDriveETA) minute drive to \(bizName)"
         }
-    }
+        
+        delay(3.0) {
+            self.performSegueWithIdentifier("thankYouToReview", sender: self)
+        }
 
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

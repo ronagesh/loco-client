@@ -28,10 +28,11 @@
             </objects>
             <point key="canvasLocation" x="-2562" y="2336"/>
         </scene>
-        <!--Core Tab Bar Controller-->
+        <!--Top Picks-->
         <scene sceneID="PTG-gX-uxf">
             <objects>
                 <tabBarController storyboardIdentifier="coreLoopHome" id="3Ub-1i-STY" customClass="CoreTabBarController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Top Picks" id="d98-MH-AnZ"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="gD8-x8-dm7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -85,37 +86,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wR6-Aj-1NS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-161" y="2337"/>
-        </scene>
-        <!--Profile-->
-        <scene sceneID="osz-x3-Id4">
-            <objects>
-                <viewController id="PCf-uJ-NEx" customClass="ProfileViewController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="T5V-xo-mk4"/>
-                        <viewControllerLayoutGuide type="bottom" id="9Jq-1k-L11"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="FBS-dA-rxK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Profile Tab" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHW-nM-YE8">
-                                <rect key="frame" x="259" y="72" width="82" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="JHW-nM-YE8" firstAttribute="centerX" secondItem="FBS-dA-rxK" secondAttribute="centerX" id="Utu-k6-TQc"/>
-                            <constraint firstItem="JHW-nM-YE8" firstAttribute="top" secondItem="T5V-xo-mk4" secondAttribute="bottom" constant="8" id="bw4-Mu-XE2"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Profile" id="YoO-Pw-4Sw"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WYl-po-go4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-161" y="3307"/>
         </scene>
         <!--Recommendations Content View Controller-->
         <scene sceneID="6i5-cL-jJl">
@@ -443,6 +413,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <navigationItem key="navigationItem" title="Confirm Schedule" id="htG-ae-OHr"/>
                     <connections>
                         <outlet property="driveMode" destination="IJu-4v-3sC" id="JBL-ep-sex"/>
                         <outlet property="merchantAddress" destination="fQa-30-8KK" id="baT-Yl-ZlN"/>
@@ -450,28 +421,12 @@
                         <outlet property="merchantName" destination="ClO-sF-cIM" id="Yqn-zh-7v3"/>
                         <outlet property="pickupDetails" destination="8UP-f6-ID0" id="fLX-g7-Ish"/>
                         <outlet property="reservationDetails" destination="QdL-m9-TNk" id="dkY-wy-aOX"/>
-                        <segue destination="04v-97-Kjx" kind="show" identifier="confirmScheduleToReceipt" id="Hx7-W6-5uW"/>
+                        <segue destination="Xn4-8D-Urj" kind="show" identifier="confirmScheduleToReceipt" id="8la-NL-Ssu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cnp-us-a0N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1238" y="2336"/>
-        </scene>
-        <!--Receipt Page Nav Controller-->
-        <scene sceneID="sdV-it-cS1">
-            <objects>
-                <navigationController id="04v-97-Kjx" customClass="ReceiptPageNavController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="slL-vZ-qyk">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Xn4-8D-Urj" kind="relationship" relationship="rootViewController" id="iL4-V4-blE"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vVX-ot-4o6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1870" y="3011"/>
         </scene>
         <!--Thank You-->
         <scene sceneID="w0X-PO-ahk">
@@ -485,43 +440,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Wayfare Tavern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofI-Ru-YBv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wayfare Tavern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofI-Ru-YBv">
                                 <rect key="frame" x="20" y="116" width="171" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="San Francisco" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fku-l7-Dk7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="San Francisco" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fku-l7-Dk7">
                                 <rect key="frame" x="20" y="148" width="108" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="15 min. drive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfZ-k1-tfj">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 min. drive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfZ-k1-tfj">
                                 <rect key="frame" x="136" y="148" width="97" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Schedule" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fie-mh-r0D">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schedule" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fie-mh-r0D">
                                 <rect key="frame" x="20" y="225" width="105" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="8:00pm Reservation at Wayfare Tavern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="law-Br-sbh">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8:00pm Reservation at Wayfare Tavern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="law-Br-sbh">
                                 <rect key="frame" x="20" y="292" width="297" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="7:30pm Uber pickup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JpV-YL-BNz">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7:30pm Uber pickup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JpV-YL-BNz">
                                 <rect key="frame" x="20" y="263" width="157" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enjoy your date night. Go loco!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lir-vm-yjd">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Enjoy your date night. Go loco!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lir-vm-yjd">
                                 <rect key="frame" x="20" y="72" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -559,11 +514,66 @@
                         <outlet property="merchantName" destination="ofI-Ru-YBv" id="daV-ys-DSV"/>
                         <outlet property="pickupDetails" destination="JpV-YL-BNz" id="MRo-OQ-Qcw"/>
                         <outlet property="reservationDetails" destination="law-Br-sbh" id="3Yw-gK-qGp"/>
+                        <segue destination="Wmw-dx-9ZI" kind="show" identifier="thankYouToReview" id="bD0-rs-mEN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kIj-SH-fsN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2354" y="2336"/>
+            <point key="canvasLocation" x="1944" y="2337"/>
+        </scene>
+        <!--Rate Your Experience-->
+        <scene sceneID="nsQ-Dy-cKc">
+            <objects>
+                <viewController title="Rate Your Experience" id="Wmw-dx-9ZI" customClass="ReviewViewController" customModule="loco" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tXX-GQ-RGh"/>
+                        <viewControllerLayoutGuide type="bottom" id="TUp-V8-L1c"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oMI-o2-4Mb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5rW-jn-XPx" customClass="CosmosView" customModule="Cosmos">
+                                <rect key="frame" x="155" y="59" width="290" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="starMargin">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How did you enjoy your experience at Wayfare Tavern?" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgv-o9-gdE">
+                                <rect key="frame" x="20" y="28" width="560" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="kgv-o9-gdE" secondAttribute="leading" id="Aaz-v8-QqT"/>
+                            <constraint firstItem="kgv-o9-gdE" firstAttribute="centerX" secondItem="oMI-o2-4Mb" secondAttribute="centerX" id="cJp-cM-GQn"/>
+                            <constraint firstItem="5rW-jn-XPx" firstAttribute="centerX" secondItem="oMI-o2-4Mb" secondAttribute="centerX" id="cR1-SU-NCy"/>
+                            <constraint firstItem="kgv-o9-gdE" firstAttribute="top" secondItem="tXX-GQ-RGh" secondAttribute="bottom" constant="8" id="dPs-Bg-kQH"/>
+                            <constraint firstItem="5rW-jn-XPx" firstAttribute="top" secondItem="kgv-o9-gdE" secondAttribute="bottom" constant="8" id="lhN-aL-ww6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kgv-o9-gdE" secondAttribute="trailing" id="tbJ-bg-nPD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Rate Your Experience" id="8oD-af-e5x"/>
+                    <connections>
+                        <outlet property="cosmosStars" destination="5rW-jn-XPx" id="Q0M-WK-jsa"/>
+                        <outlet property="ratingQuestionPrompt" destination="kgv-o9-gdE" id="Ixw-gl-2rw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LYE-UE-SeO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2614" y="2338"/>
         </scene>
     </scenes>
     <resources>

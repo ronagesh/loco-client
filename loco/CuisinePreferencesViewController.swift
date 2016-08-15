@@ -14,16 +14,16 @@ class CuisinePreferencesViewController: UIViewController {
 
     //maps cuisine string to storyboard tag to identify corresponding button
     let cuisineChoices = [
-        "American": 0,
-        "Chinese": 1,
-        "French": 2,
-        "Indian": 3,
-        "Italian": 4,
-        "Japanese": 5,
-        "Mediterranean": 6,
-        "Mexican": 7,
-        "Thai": 8,
-        "Vegetarian": 9,
+        "American": 1,
+        "Chinese": 2,
+        "French": 3,
+        "Indian": 4,
+        "Italian": 5,
+        "Japanese": 6,
+        "Mediterranean": 7,
+        "Mexican": 8,
+        "Thai": 9,
+        "Vegetarian": 10,
     ]
 
     override func viewDidLoad() {

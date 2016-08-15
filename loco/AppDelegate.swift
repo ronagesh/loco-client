@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         PFUser.enableAutomaticUser()
         
+        //Configuration.setSandboxEnabled(true)
         Configuration.setFallbackEnabled(false)
 
         

@@ -14,18 +14,19 @@ class Restaurant {
     var name: String
     var imageURL: String
     var cuisineType: RestaurantCuisines
+    var neighborhood: String?
     var address: String
     var geocodedAddress: CLLocation?
     var budgetRating: RestaurantBudgetRatings
-    var blurb: String
+    var blurb: String?
+    var reservation: Reservation?
     
-    init(name: String, imageURL: String, cuisineType: RestaurantCuisines, address: String, budgetRating: RestaurantBudgetRatings, blurb: String) {
+    init(name: String, imageURL: String, cuisineType: RestaurantCuisines, address: String, budgetRating: RestaurantBudgetRatings) {
         self.name = name
         self.imageURL = imageURL
         self.cuisineType = cuisineType
         self.address = address
         self.budgetRating = budgetRating
-        self.blurb = blurb
     }
     
 }

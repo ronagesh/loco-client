@@ -9,6 +9,8 @@
 import UIKit
 import CoreLocation
 import UberRides
+import Alamofire
+import SwiftyJSON
 
 
 class ObtainUserCurrentLocationViewController: UIViewController, CLLocationManagerDelegate {
@@ -17,27 +19,39 @@ class ObtainUserCurrentLocationViewController: UIViewController, CLLocationManag
     var userCurrentLocation: CLLocation?
     
     var restaurants = [Restaurant]()
+    var activityIndicator = UIActivityIndicatorView()
+    
+    let DEFAULT_PARTY_SIZE = 2
+    let MAX_RESULTS = 5
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        self.view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        
         
         self.navigationController?.navigationBarHidden = true
-
+        
         //print("In ObtainUserCurrentLocation VC view did load")
         
-        //TODO: Call backend to fetch list of restaurants to recommend to user
+        //Call backend to fetch list of restaurants to recommend to user
         
-        //Hardcoded Restaurants for now
+        /*
         let rest1 = Restaurant(name: "Rangoon Ruby", imageURL: "rangoon_ruby", cuisineType: RestaurantCuisines.Thai, address: "445 Emerson Street, Palo Alto, CA 94031", budgetRating: RestaurantBudgetRatings.Smart, blurb: "Relaxed Burmese restaurant with contemporary decor, a trendy bar & exotic tiki cocktails.")
         
         let rest2 = Restaurant(name: "La Viga Restaurant", imageURL: "la_viga", cuisineType: RestaurantCuisines.Mexican, address: "1772 Broadway Street, Redwood City, CA 94063", budgetRating: RestaurantBudgetRatings.Smart, blurb: "Cozy Latin eatery features classic seafood dishes & comfort eats in a warm space with a casual vibe.")
         
         let rest3 = Restaurant(name: "Osteria", imageURL: "osteria", cuisineType: RestaurantCuisines.Italian, address: "247 Hamilton Ave Palo Alto, CA 94301", budgetRating: RestaurantBudgetRatings.Smart, blurb: "This Italian kitchen offers Tuscan fare in a simply appointed corner space with white linens.")
-        
+ 
         restaurants.append(rest1)
         restaurants.append(rest2)
         restaurants.append(rest3)
-
+        */
         
         //Fetch user's current location if authorized
         locationManager.delegate = self
@@ -58,11 +72,93 @@ class ObtainUserCurrentLocationViewController: UIViewController, CLLocationManag
         if userCurrentLocation != nil {
             return
         }
+        
         userCurrentLocation = locations[0]
         print("User's current location fetched \(userCurrentLocation.debugDescription)")
         locationManager.stopUpdatingLocation()
         
-        self.performSegueWithIdentifier("networkCallStallingToRecs", sender: self)
+        
+        var parameters = [String:String]()
+        parameters["startLatitude"] = userCurrentLocation!.coordinate.latitude.description
+        parameters["startLongitude"] = userCurrentLocation!.coordinate.longitude.description
+        
+        //Fetch cuisine preferences from client store
+        if let userCuisinePreferences = NSUserDefaults.standardUserDefaults().objectForKey("userCuisinePreferences") as? [String] {
+            let cuisineString = userCuisinePreferences.joinWithSeparator(",")
+            parameters["cuisinePrefs"] = cuisineString
+        }
+        
+        //Fetch budget preferences from client store
+        if let userBudgetPreferences = NSUserDefaults.standardUserDefaults().objectForKey("userBudgetPreferences") as? String {
+            let budgetString = locoAPIBudgetMap[userBudgetPreferences]!
+            parameters["budgetScale"] = budgetString
+            
+            //Async fetch Uber Product ID
+            if let uberProductID = NSUserDefaults.standardUserDefaults().objectForKey("uberProductID") as? String {
+                parameters["uberProductID"] = uberProductID
+            } else {
+                fetchUberProductID(userCurrentLocation!, budgetRating: userBudgetPreferences)
+            }
+        }
+
+        parameters["isVegetarian"] = "false"
+        parameters["partySize"] = String(DEFAULT_PARTY_SIZE)
+        
+        Alamofire.request(.GET, "http://127.0.0.1:5000/api/v1/restaurants.json", parameters: parameters, encoding: .URL)
+            .validate()
+            .responseJSON { response in
+                switch response.result {
+                case .Success:
+                    if let value = response.result.value {
+                        let json = JSON(value)
+                        print("JSON: \(json)")
+                        
+                        for result in json.arrayValue {
+                            //Populate restaurant parameters
+                            let businessName = result["business_name"].stringValue
+                            //Async fetch merchant image
+                            let profileImageURL = result["profile_image_google"].stringValue ?? result["profile_image_yelp"].stringValue
+                            let cuisine = result["cuisine"].stringValue
+                            let address = result["address"].stringValue
+                            let budgetRating = result["budget_rating"].stringValue
+                            
+                            //Populate reservation parameters
+                            let yelpBizID = result["biz_id"].stringValue
+                            let yelpPermalink = result["permalink"].stringValue
+                            let reservationDate = result["currentDate"].stringValue
+                            let reservationTime = result["first_compatible_timeslot"].stringValue
+                            let partySize = self.DEFAULT_PARTY_SIZE
+                            let uberHailTime = result["uber_hail_time"].int
+                            let driveTime = result["drive_time"].int
+                            let totalTripTime = result["total_trip_time"].int
+                            
+                            
+                            
+                            let restaurant = Restaurant(name: businessName, imageURL: profileImageURL, cuisineType: RestaurantCuisines(rawValue: cuisine)!, address: address, budgetRating: locoYelpBudgetMap[budgetRating]!)
+                            
+                            let reservation = Reservation(yelpBizID: yelpBizID, yelpPermalink: yelpPermalink, reservationDate: reservationDate, reservationTime: reservationTime, partySize: partySize, uberHailTime: uberHailTime!, driveTime: driveTime!, totalTripTime: totalTripTime!)
+                            
+                            restaurant.reservation = reservation
+                            
+                            
+                            self.restaurants.append(restaurant)
+                            if self.restaurants.count == self.MAX_RESULTS {
+                                break
+                            }
+    
+                        }
+                    }
+                    break
+                case .Failure(let error):
+                    print(error)
+                    break
+                }
+                
+                self.activityIndicator.stopAnimating()
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                self.performSegueWithIdentifier("networkCallStallingToRecs", sender: self)
+
+        }
     }
     
     

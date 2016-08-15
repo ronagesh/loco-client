@@ -14,8 +14,31 @@ enum RestaurantBudgetRatings: String {
     case Luxe = "Luxe"
 }
 
+let locoAPIBudgetMap = [
+    "Smart": "oneDollar,twoDollar",
+    "Upscale": "twoDollar,threeDollar",
+    "Luxe": "threeDollar,fourDollar"
+]
+
+let budgetToUberProdMap = [
+    "Smart": "uberX",
+    "Upscale": "UberSELECT",
+    "Luxe": "UberBLACK"
+]
+
+let locoYelpBudgetMap = [
+    "$": RestaurantBudgetRatings.Smart,
+    "$$": RestaurantBudgetRatings.Smart,
+    "$$$": RestaurantBudgetRatings.Upscale,
+    "$$$$": RestaurantBudgetRatings.Luxe
+]
+
+/*
 extension RestaurantBudgetRatings {
     
+  
+    
+ 
     static var budgetToUberProdMap: [RestaurantBudgetRatings: String] {
         get {
             return [RestaurantBudgetRatings.Smart: "uberX", RestaurantBudgetRatings.Upscale: "UberSELECT", RestaurantBudgetRatings.Luxe: "UberBLACK"]
@@ -37,4 +60,4 @@ extension RestaurantBudgetRatings {
         }
     }
 }
-
+*/

@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import Kingfisher
 
 
 class RecommendationsContentViewController: UIViewController {
@@ -24,12 +25,11 @@ class RecommendationsContentViewController: UIViewController {
     
     //MARK: Properties
     var restaurant: Restaurant!
-    var reservation: Reservation!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        merchantImage.image = UIImage(named: restaurant.imageURL)
+        merchantImage.kf_setImageWithURL(NSURL(string: restaurant.imageURL)!)
+        merchantImage.kf_showIndicatorWhenLoading = true
         merchantName.text = restaurant.name
         merchantCuisine.text = restaurant.cuisineType.rawValue
         merchantAddress.text = restaurant.address
@@ -43,9 +43,8 @@ class RecommendationsContentViewController: UIViewController {
     @IBAction func goButtonPressed() {
         
         //TODO: Make backend call to lock/confirm reservation
-        let res = Reservation(merchantName: "\(restaurant.name)", dateTime: NSDate(dateString: "2016-07-31T19:00:00"), partySize: 2, customerFirstName: "Rohan", customerLastName: "Nagesh", customerEmail: "ronagesh@gmail.com", customerPhone: "6506226720", merchantCountry: "US")
+       // let res = Reservation(merchantName: "\(restaurant.name)", dateTime: NSDate(dateString: "2016-07-31T19:00:00"), partySize: 2, customerFirstName: "Rohan", customerLastName: "Nagesh", customerEmail: "ronagesh@gmail.com", customerPhone: "6506226720", merchantCountry: "US")
         
-        reservation = res
         
         if PFUser.currentUser()?.email != nil && PFUser.currentUser()?["phone"] != nil {
             print("Transitioning from recs to confirm schedule")
@@ -75,7 +74,7 @@ class RecommendationsContentViewController: UIViewController {
                     vc.bizName = restaurant.name
                     vc.bizAddress = restaurant.address
                     vc.bizDriveETA = restaurant.getRideTime()
-                    vc.resTimeDisplay = reservation.dateTime.toShortTimeString()
+                    vc.resTimeDisplay = restaurant.reservation.dateTime.toShortTimeString()
                     vc.dropoffLocation = restaurant.geocodedAddress
                     vc.uberPickupTimeDisplay = uberPickupTime.toShortTimeString()
                 }

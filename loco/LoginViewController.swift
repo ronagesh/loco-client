@@ -14,12 +14,12 @@ import ParseFacebookUtilsV4
 class LoginViewController: UIViewController {
 
     //MARK: Properties
-    var bizName: String!
-    var bizAddress: String!
-    var bizDriveETA: Int!
-    var resTimeDisplay: String!
+    var bizName: String?
+    var bizAddress: String?
+    var bizDriveETA: Int?
+    var resTimeDisplay: String?
     var dropoffLocation: CLLocation?
-    var uberPickupTimeDisplay: String!
+    var uberPickupTimeDisplay: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,8 +75,12 @@ class LoginViewController: UIViewController {
                 } else {
                     print("User already exists and logged in through Facebook!")
                     ProfileViewController.fetchFBProfilePic()
-                    self.performSegueWithIdentifier("loginToConfirmSchedule", sender: self)
                     
+                    if self.bizName != nil { //user came here off confirming a restaurant
+                        self.performSegueWithIdentifier("loginToConfirmSchedule", sender: self)
+                    } else { //user came here off being unauthenticated on profile tab so unwind to profile
+                        self.performSegueWithIdentifier("loginToProfile", sender: self)
+                    }
                 }
             } else {
                 print("Uh oh. The user cancelled the Facebook login.")

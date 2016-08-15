@@ -1,32 +1,26 @@
 //
-//  ReceiptPageNavController.swift
+//  ReviewViewController.swift
 //  loco
 //
-//  Created by Rohan Nagesh on 7/27/16.
+//  Created by Rohan Nagesh on 8/6/16.
 //  Copyright © 2016 Rohan Nagesh. All rights reserved.
 //
 
 import UIKit
-import CoreLocation
+import Cosmos
 
-class ReceiptPageNavController: UINavigationController {
+class ReviewViewController: UIViewController {
 
-    //MARK: Properties
-    var bizName = ""
-    var bizAddress = ""
-    var bizDriveETA = 0
-    var uberPickupTimeDisplay = ""
-    var resTimeDisplay = ""
-    
-    var transportationMode: Int?
-    var userStartingLocation: CLLocation?
-    var uberProductID: String?
-
+    //MARK: Outlets
+    @IBOutlet weak var ratingQuestionPrompt: UILabel!
+    @IBOutlet weak var cosmosStars: CosmosView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        cosmosStars.didFinishTouchingCosmos = { (rating) in
+            print("User rated a rating of \(rating)")
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -41,8 +41,8 @@ class RecommendationsPageViewController: UIPageViewController, UIPageViewControl
         if restaurants.count > 0 {
             contentViewController.restaurant = restaurants.first
         }
-        let ridesClient = RidesClient()
         
+        /*
         //Async call #1: Refresh Uber access token if required
         if let token = ridesClient.fetchAccessToken() {
             if token.expirationDate?.compare(NSDate()) == NSComparisonResult.OrderedAscending { //Access token is expired
@@ -57,7 +57,7 @@ class RecommendationsPageViewController: UIPageViewController, UIPageViewControl
                     }
                 }
             }
-        }
+        }*/
         
         //Async call #2: Geocode first restaurant's address if it hasn't already been
         if restaurants[0].geocodedAddress == nil {
@@ -74,34 +74,7 @@ class RecommendationsPageViewController: UIPageViewController, UIPageViewControl
             })
         }
         
-        //Default user budget rating to Smart if there's no value obtained
-        var prefilledUberProduct = RestaurantBudgetRatings.budgetToUberProdMap[RestaurantBudgetRatings.Smart]
-
-        if let userBudgetRating = NSUserDefaults.standardUserDefaults().objectForKey("userBudgetPreferences") as? String {
-            prefilledUberProduct = RestaurantBudgetRatings.getUberProductForBudgetRating(userBudgetRating)
-        }
-        
-
-        //Async call #3: Fetch list of uber products available for user's current location
-
-        ridesClient.fetchProducts(pickupLocation: userCurrentLocation!) { (products, response) in
-            if let error = response.error {
-                print("Error fetching uber products \(error)")
-            } else {
-                for product in products {
-                    print("Iterating through uber product with name: \(product.name) and prefilledProductName: \(prefilledUberProduct)")
-                    if product.name == prefilledUberProduct {
-                        if product.productID != nil {
-                            print("Obtained Uber Product ID")
-                            tabBarCont.uberProductID = product.productID
-                            break
-                        }
-                    }
-                }
-            }
-        }
-
-        //Async call #4: Fetch user's FB profile picture for Profile tab
+        //Async call #3: Fetch user's FB profile picture for Profile tab
         if PFUser.currentUser()?.email != nil {
             ProfileViewController.fetchFBProfilePic()
         }

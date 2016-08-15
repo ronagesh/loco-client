@@ -19,6 +19,7 @@ class UserInfoViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.hidden = true
         
         userInfoTableView.delegate = self
         userInfoTableView.dataSource = self

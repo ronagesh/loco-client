@@ -8,6 +8,7 @@
 
 import Foundation
 import Parse
+import UberRides
 
 extension NSDate
 {
@@ -72,3 +73,40 @@ extension ProfileViewController {
         }
     }
 }
+
+//Fetches and stores the uber product ID corresponding to the user's budget rating and current location into NSUserDefaults
+public func fetchUberProductID(userCurrentLocation: CLLocation, budgetRating: String) {
+    let ridesClient = RidesClient()
+    let desiredUberProduct = budgetToUberProdMap[budgetRating]
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        ridesClient.fetchProducts(pickupLocation: userCurrentLocation) { (products, response) in
+            if let error = response.error {
+                print("Error fetching uber products \(error)")
+            } else {
+                for product in products {
+                    if product.name == desiredUberProduct {
+                        if product.productID != nil {
+                            print("Obtained Uber Product ID")
+                            NSUserDefaults.standardUserDefaults().setObject(product.productID, forKey: "uberProductID")
+                            break
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+public func delay(delay: Double, closure: ()->()) {
+    dispatch_after(
+        dispatch_time(
+            DISPATCH_TIME_NOW,
+            Int64(delay * Double(NSEC_PER_SEC))
+        ),
+        dispatch_get_main_queue(),
+        closure
+    )
+}
+
