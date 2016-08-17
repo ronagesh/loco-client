@@ -68,7 +68,12 @@ extension Reservation {
             if intTime >= 1300 {
                 intTime -= 1200
                 let stringTime = String(intTime)
-                let hourEndIndex = stringTime.startIndex.advancedBy(1)
+                var hourEndIndex: String.CharacterView.Index
+                if intTime >= 1000 {
+                    hourEndIndex = stringTime.startIndex.advancedBy(2)
+                } else {
+                    hourEndIndex = stringTime.startIndex.advancedBy(1)
+                }
                 let hourString = stringTime.substringToIndex(hourEndIndex)
                 let minuteString = stringTime.substringFromIndex(hourEndIndex)
                 return hourString + ":" + minuteString + " PM"
