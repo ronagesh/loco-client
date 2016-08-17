@@ -32,8 +32,13 @@ class RecommendationsContentViewController: UIViewController {
         merchantImage.kf_showIndicatorWhenLoading = true
         merchantName.text = restaurant.name
         merchantCuisine.text = restaurant.cuisineType.rawValue
-        merchantAddress.text = restaurant.address
-        merchantDriveETA.text = "\(restaurant.getRideTime()) min. drive away"
+        if restaurant.neighborhood != "" {
+            merchantAddress.text = restaurant.neighborhood
+        } else {
+            merchantAddress.text = restaurant.address
+        }
+        
+        merchantDriveETA.text = "\(restaurant.reservation.driveTime / 60) min. drive away"
         merchantBudgetRating.text = restaurant.budgetRating.rawValue
         merchantBlurb.text = restaurant.blurb
         
@@ -41,10 +46,6 @@ class RecommendationsContentViewController: UIViewController {
     
 
     @IBAction func goButtonPressed() {
-        
-        //TODO: Make backend call to lock/confirm reservation
-       // let res = Reservation(merchantName: "\(restaurant.name)", dateTime: NSDate(dateString: "2016-07-31T19:00:00"), partySize: 2, customerFirstName: "Rohan", customerLastName: "Nagesh", customerEmail: "ronagesh@gmail.com", customerPhone: "6506226720", merchantCountry: "US")
-        
         
         if PFUser.currentUser()?.email != nil && PFUser.currentUser()?["phone"] != nil {
             print("Transitioning from recs to confirm schedule")
@@ -63,31 +64,17 @@ class RecommendationsContentViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        //Compute Uber Pickup time string
-        let calendar = NSCalendar.currentCalendar()
-        let uberPickupTime = calendar.dateByAddingUnit(.Minute, value: reservation.getUberHailETA(), toDate: NSDate(), options: [])!
         
         if let identifier = segue.identifier {
             if identifier == "recsToConfirmSchedule" {
                 if let vc = segue.destinationViewController as? ConfirmScheduleViewController {
                     //Set properties
-                    vc.bizName = restaurant.name
-                    vc.bizAddress = restaurant.address
-                    vc.bizDriveETA = restaurant.getRideTime()
-                    vc.resTimeDisplay = restaurant.reservation.dateTime.toShortTimeString()
-                    vc.dropoffLocation = restaurant.geocodedAddress
-                    vc.uberPickupTimeDisplay = uberPickupTime.toShortTimeString()
+                    vc.restaurant = restaurant
                 }
             } else if identifier == "recsToLogin" {
                 if let vc = segue.destinationViewController as? LoginViewController {
-                    vc.bizName = restaurant.name
-                    vc.bizAddress = restaurant.address
-                    vc.bizDriveETA = restaurant.getRideTime()
-                    vc.resTimeDisplay = reservation.dateTime.toShortTimeString()
-                    vc.dropoffLocation = restaurant.geocodedAddress
-                    vc.uberPickupTimeDisplay = uberPickupTime.toShortTimeString()
+                    vc.restaurant = restaurant
                 }
-
             }
         }
     }

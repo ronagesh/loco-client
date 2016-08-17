@@ -14,12 +14,7 @@ import ParseFacebookUtilsV4
 class LoginViewController: UIViewController {
 
     //MARK: Properties
-    var bizName: String?
-    var bizAddress: String?
-    var bizDriveETA: Int?
-    var resTimeDisplay: String?
-    var dropoffLocation: CLLocation?
-    var uberPickupTimeDisplay: String?
+    var restaurant: Restaurant!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +71,7 @@ class LoginViewController: UIViewController {
                     print("User already exists and logged in through Facebook!")
                     ProfileViewController.fetchFBProfilePic()
                     
-                    if self.bizName != nil { //user came here off confirming a restaurant
+                    if self.restaurant != nil { //user came here off confirming a restaurant
                         self.performSegueWithIdentifier("loginToConfirmSchedule", sender: self)
                     } else { //user came here off being unauthenticated on profile tab so unwind to profile
                         self.performSegueWithIdentifier("loginToProfile", sender: self)
@@ -96,24 +91,13 @@ class LoginViewController: UIViewController {
         if let identifier = segue.identifier {
             if identifier == "loginToConfirmSchedule" {
                 if let vc = segue.destinationViewController as? ConfirmScheduleViewController {
-                    vc.bizName = bizName
-                    vc.bizAddress = bizAddress
-                    vc.bizDriveETA = bizDriveETA
-                    vc.resTimeDisplay = resTimeDisplay
-                    vc.dropoffLocation = dropoffLocation
-                    vc.uberPickupTimeDisplay = uberPickupTimeDisplay
+                    vc.restaurant = restaurant
                     
                 }
             } else if identifier == "loginToUserContactInfo" {
                 if let vc = segue.destinationViewController as? LoginDetailsViewController {
-                    vc.bizName = bizName
-                    vc.bizAddress = bizAddress
-                    vc.bizDriveETA = bizDriveETA
-                    vc.resTimeDisplay = resTimeDisplay
-                    vc.dropoffLocation = dropoffLocation
-                    vc.uberPickupTimeDisplay = uberPickupTimeDisplay
+                   vc.restaurant = restaurant
                 }
-                
             }
         }
     }

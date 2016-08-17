@@ -16,13 +16,8 @@ class LoginDetailsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var phoneField: UITextField!
     
     //MARK: Properties
-    var bizName: String!
-    var bizAddress: String!
-    var bizDriveETA: Int!
-    var resTimeDisplay: String!
-    var dropoffLocation: CLLocation?
-    var uberPickupTimeDisplay: String!
-    
+    var restaurant: Restaurant!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -90,12 +85,7 @@ class LoginDetailsViewController: UIViewController, UITextFieldDelegate {
         if let identifier = segue.identifier {
             if identifier == "userContactInfoToConfirmSchedule" {
                 if let vc = segue.destinationViewController as? ConfirmScheduleViewController {
-                    vc.bizName = bizName
-                    vc.bizAddress = bizAddress
-                    vc.bizDriveETA = bizDriveETA
-                    vc.resTimeDisplay = resTimeDisplay
-                    vc.dropoffLocation = dropoffLocation
-                    vc.uberPickupTimeDisplay = uberPickupTimeDisplay
+                    vc.restaurant = restaurant
                 }
             }
         }

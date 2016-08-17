@@ -23,6 +23,7 @@ class ObtainUserCurrentLocationViewController: UIViewController, CLLocationManag
     
     let DEFAULT_PARTY_SIZE = 2
     let MAX_RESULTS = 5
+    let GET_RESTAURANTS_REQUEST_URL = "http://127.0.0.1:5000/api/v1/restaurants.json"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,22 +37,6 @@ class ObtainUserCurrentLocationViewController: UIViewController, CLLocationManag
         
         
         self.navigationController?.navigationBarHidden = true
-        
-        //print("In ObtainUserCurrentLocation VC view did load")
-        
-        //Call backend to fetch list of restaurants to recommend to user
-        
-        /*
-        let rest1 = Restaurant(name: "Rangoon Ruby", imageURL: "rangoon_ruby", cuisineType: RestaurantCuisines.Thai, address: "445 Emerson Street, Palo Alto, CA 94031", budgetRating: RestaurantBudgetRatings.Smart, blurb: "Relaxed Burmese restaurant with contemporary decor, a trendy bar & exotic tiki cocktails.")
-        
-        let rest2 = Restaurant(name: "La Viga Restaurant", imageURL: "la_viga", cuisineType: RestaurantCuisines.Mexican, address: "1772 Broadway Street, Redwood City, CA 94063", budgetRating: RestaurantBudgetRatings.Smart, blurb: "Cozy Latin eatery features classic seafood dishes & comfort eats in a warm space with a casual vibe.")
-        
-        let rest3 = Restaurant(name: "Osteria", imageURL: "osteria", cuisineType: RestaurantCuisines.Italian, address: "247 Hamilton Ave Palo Alto, CA 94301", budgetRating: RestaurantBudgetRatings.Smart, blurb: "This Italian kitchen offers Tuscan fare in a simply appointed corner space with white linens.")
- 
-        restaurants.append(rest1)
-        restaurants.append(rest2)
-        restaurants.append(rest3)
-        */
         
         //Fetch user's current location if authorized
         locationManager.delegate = self
@@ -104,7 +89,7 @@ class ObtainUserCurrentLocationViewController: UIViewController, CLLocationManag
         parameters["isVegetarian"] = "false"
         parameters["partySize"] = String(DEFAULT_PARTY_SIZE)
         
-        Alamofire.request(.GET, "http://127.0.0.1:5000/api/v1/restaurants.json", parameters: parameters, encoding: .URL)
+        Alamofire.request(.GET, GET_RESTAURANTS_REQUEST_URL, parameters: parameters, encoding: .URL)
             .validate()
             .responseJSON { response in
                 switch response.result {
@@ -116,30 +101,33 @@ class ObtainUserCurrentLocationViewController: UIViewController, CLLocationManag
                         for result in json.arrayValue {
                             //Populate restaurant parameters
                             let businessName = result["business_name"].stringValue
+                            
                             //Async fetch merchant image
-                            let profileImageURL = result["profile_image_google"].stringValue ?? result["profile_image_yelp"].stringValue
+                            var profileImageURL = ""
+                            if result["profile_image_google"] != "" {
+                                profileImageURL = result["profile_image_google"].stringValue
+                            } else {
+                                profileImageURL = result["profile_image_yelp"].stringValue
+                            }
+                            
                             let cuisine = result["cuisine"].stringValue
                             let address = result["address"].stringValue
+                            let neighborhood = result["neighborhood"].stringValue
                             let budgetRating = result["budget_rating"].stringValue
                             
                             //Populate reservation parameters
                             let yelpBizID = result["biz_id"].stringValue
                             let yelpPermalink = result["permalink"].stringValue
-                            let reservationDate = result["currentDate"].stringValue
+                            let reservationDate = result["current_date"].stringValue
                             let reservationTime = result["first_compatible_timeslot"].stringValue
                             let partySize = self.DEFAULT_PARTY_SIZE
                             let uberHailTime = result["uber_hail_time"].int
                             let driveTime = result["drive_time"].int
                             let totalTripTime = result["total_trip_time"].int
                             
-                            
-                            
-                            let restaurant = Restaurant(name: businessName, imageURL: profileImageURL, cuisineType: RestaurantCuisines(rawValue: cuisine)!, address: address, budgetRating: locoYelpBudgetMap[budgetRating]!)
-                            
                             let reservation = Reservation(yelpBizID: yelpBizID, yelpPermalink: yelpPermalink, reservationDate: reservationDate, reservationTime: reservationTime, partySize: partySize, uberHailTime: uberHailTime!, driveTime: driveTime!, totalTripTime: totalTripTime!)
                             
-                            restaurant.reservation = reservation
-                            
+                            let restaurant = Restaurant(name: businessName, imageURL: profileImageURL, cuisineType: RestaurantCuisines(rawValue: cuisine)!, address: address, neighborhood: neighborhood, budgetRating: locoYelpBudgetMap[budgetRating]!, reservation: reservation)
                             
                             self.restaurants.append(restaurant)
                             if self.restaurants.count == self.MAX_RESULTS {
@@ -160,8 +148,6 @@ class ObtainUserCurrentLocationViewController: UIViewController, CLLocationManag
 
         }
     }
-    
-    
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("Error fetching location for user \(error)")

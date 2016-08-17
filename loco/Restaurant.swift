@@ -19,24 +19,16 @@ class Restaurant {
     var geocodedAddress: CLLocation?
     var budgetRating: RestaurantBudgetRatings
     var blurb: String?
-    var reservation: Reservation?
+    var reservation: Reservation
     
-    init(name: String, imageURL: String, cuisineType: RestaurantCuisines, address: String, budgetRating: RestaurantBudgetRatings) {
+    init(name: String, imageURL: String, cuisineType: RestaurantCuisines, address: String, neighborhood: String?, budgetRating: RestaurantBudgetRatings, reservation: Reservation) {
         self.name = name
         self.imageURL = imageURL
         self.cuisineType = cuisineType
         self.address = address
+        self.neighborhood = neighborhood
         self.budgetRating = budgetRating
-    }
-    
-}
-
-extension Restaurant {
-    
-    //TODO: Invoke backend to obtain ETA for user to leave now and arrive at this restaurant
-    
-    func getRideTime() -> Int {
-        return 15
+        self.reservation = reservation
     }
     
 }

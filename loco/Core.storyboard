@@ -505,7 +505,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Thank You" id="Mf3-yi-Pga">
-                        <barButtonItem key="rightBarButtonItem" title="Cancel Reservation" id="2nF-XG-YGL"/>
+                        <barButtonItem key="rightBarButtonItem" title="Cancel Reservation" id="2nF-XG-YGL">
+                            <connections>
+                                <action selector="cancelReservation:" destination="Xn4-8D-Urj" id="kHR-08-GCd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="greeting" destination="Lir-vm-yjd" id="8Sa-Hc-jWu"/>
@@ -533,7 +537,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5rW-jn-XPx" customClass="CosmosView" customModule="Cosmos">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5rW-jn-XPx" customClass="CosmosView" customModule="Cosmos">
                                 <rect key="frame" x="155" y="59" width="290" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>

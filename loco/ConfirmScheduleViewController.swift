@@ -28,22 +28,19 @@ class ConfirmScheduleViewController: UIViewController, RideRequestViewController
     
     
     //MARK: Properties
-    var bizName: String!
-    var bizAddress: String!
-    var bizDriveETA: Int!
-    var uberPickupTimeDisplay: String!
-    var resTimeDisplay: String!
+    var restaurant: Restaurant!
     
     var userCurrentLocation: CLLocation?
-    var dropoffLocation: CLLocation?
     
     var uberProductID: String?
     var uberButton: RideRequestButton!
     var driveOnOwnButton: UIButton!
+    var activityIndicator = UIActivityIndicatorView()
     
     let geocoder = CLGeocoder()
     var behavior: RideRequestViewRequestingBehavior!
     
+    let CONFIRM_RESERVATION_REQUEST_URL = "http://127.0.0.1:5000/api/v1/reservations.json"
     let DEFAULT_PARTY_SIZE = 2 //hardcode party size of 2 for now
     
     override func viewDidLoad() {
@@ -54,11 +51,16 @@ class ConfirmScheduleViewController: UIViewController, RideRequestViewController
             uberProductID = NSUserDefaults.standardUserDefaults().objectForKey("uberProductID") as? String
         }
 
-        merchantName.text = bizName
-        merchantAddress.text = bizAddress
-        merchantDriveETA.text = "\(bizDriveETA) min. drive away"
-        reservationDetails.text = "\(resTimeDisplay) Reservation at \(bizName)"
-        pickupDetails.text = "\(uberPickupTimeDisplay) Uber pickup"
+        merchantName.text = restaurant.name
+        if restaurant.neighborhood != "" {
+            merchantAddress.text = restaurant.neighborhood
+        } else {
+            merchantAddress.text = restaurant.address
+        }
+        
+        merchantDriveETA.text = "\(restaurant.reservation.driveTime / 60) min. drive away"
+        reservationDetails.text = "\(restaurant.reservation.formatReservationTimeString()) Reservation at \(restaurant.name)"
+        pickupDetails.text = "\(restaurant.reservation.getUberPickupTimeFormattedString()) Uber pickup"
         
         
         print("In confirm schedule VC view did load")
@@ -72,9 +74,10 @@ class ConfirmScheduleViewController: UIViewController, RideRequestViewController
         behavior.modalRideRequestViewController.rideRequestViewController.delegate = self
         behavior.modalRideRequestViewController.delegate = self
         
-        if dropoffLocation != nil {
-            print("Setting dropoff location: \(dropoffLocation.debugDescription)")
-            builder = builder.setDropoffLocation(dropoffLocation!, address: bizAddress)
+        //Prefill destination for Uber
+        if restaurant.geocodedAddress != nil {
+            print("Setting dropoff location: \(restaurant.geocodedAddress.debugDescription)")
+            builder = builder.setDropoffLocation(restaurant.geocodedAddress!, address: restaurant.address)
         }
         
         //Prefill current location and type of Uber
@@ -104,7 +107,7 @@ class ConfirmScheduleViewController: UIViewController, RideRequestViewController
         driveOnOwnButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         driveOnOwnButton.backgroundColor = UIColor.blackColor()
         driveOnOwnButton.translatesAutoresizingMaskIntoConstraints = false
-        driveOnOwnButton.addTarget(self, action: #selector(showReceiptPage), forControlEvents: .TouchUpInside)
+        driveOnOwnButton.addTarget(self, action: #selector(makeReservation), forControlEvents: .TouchUpInside)
         
         //Code to hide back button on uber widget
         //behavior.modalRideRequestViewController.rideRequestViewController.navigationItem.setLeftBarButtonItem(nil, animated: true)
@@ -205,38 +208,65 @@ class ConfirmScheduleViewController: UIViewController, RideRequestViewController
             driveOnOwnButton.removeFromSuperview()
             self.view.addSubview(uberButton)
            ConfirmScheduleViewController.setConstraintsForSubmitButton(uberButton, view: self.view, bottomGuide: self.bottomLayoutGuide)
-            pickupDetails.text = "\(uberPickupTimeDisplay) Uber pickup"
+            pickupDetails.text = "\(restaurant.reservation.getUberPickupTimeFormattedString()) Uber pickup"
         } else { //drive on own case
             uberButton.removeFromSuperview()
             self.view.addSubview(driveOnOwnButton)
            ConfirmScheduleViewController.setConstraintsForSubmitButton(driveOnOwnButton, view: self.view, bottomGuide: self.bottomLayoutGuide)
-            pickupDetails.text = "\(bizDriveETA) minute drive to \(bizName)"
+            pickupDetails.text = "\(restaurant.reservation.driveTime / 60) minute drive to \(restaurant.name)"
         }
     }
     
-    func showReceiptPage() {
-        self.performSegueWithIdentifier("confirmScheduleToReceipt", sender: self)
-    }
-    
     func makeReservation() {
-       
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        self.view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+
+        
+        
         guard let currentUser = PFUser.currentUser() where currentUser.email != nil else {
             print("ERROR: User is null. Cannot make reservation")
             return
         }
         
         var reservationParameters = [String:String]()
-        reservationParameters["rez_date"] = 
-        reservationParameters["rez_time"]
-        reservationParameters["biz_id"]
-        reservationParameters["permalink"] = 
-        reservationParameters["party_size"] = String(DEFAULT_PARTY_SIZE)
-        reservationParameters["first_name"] = currentUser["first_name"] as? String
-        reservationParameters["last_name"] = currentUser["last_name"] as? String
-        reservationParameters["email"] = currentUser["first_name"] as? String
+        reservationParameters["rezDate"] = restaurant.reservation.reservationDate
+        reservationParameters["rezTime"] = restaurant.reservation.reservationTime
+        reservationParameters["bizId"] = restaurant.reservation.yelpBizID
+        reservationParameters["permalink"] = restaurant.reservation.yelpPermalink
+        reservationParameters["partySize"] = String(DEFAULT_PARTY_SIZE)
+        reservationParameters["firstName"] = currentUser["first_name"] as? String
+        reservationParameters["lastName"] = currentUser["last_name"] as? String
+        reservationParameters["email"] = currentUser.email
         reservationParameters["phone"] = currentUser["phone"] as? String
         
-        //Alamofire.request(<#T##method: Method##Method#>, <#T##URLString: URLStringConvertible##URLStringConvertible#>, parameters: <#T##[String : AnyObject]?#>, encoding: <#T##ParameterEncoding#>, headers: <#T##[String : String]?#>)*/
+        Alamofire.request(.POST, CONFIRM_RESERVATION_REQUEST_URL, parameters: reservationParameters, encoding: .URL, headers: nil)
+                .validate()
+            .responseJSON { response in
+                switch response.result {
+                case .Success:
+                    if let value = response.result.value {
+                        let json = JSON(value)
+                        print("JSON: \(json)")
+                        self.restaurant.reservation.cancellationURL = json["cancellation_url"].stringValue
+                        
+                        self.activityIndicator.stopAnimating()
+                        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                        if self.driveMode.selectedSegmentIndex == 1 {
+                            self.performSegueWithIdentifier("confirmScheduleToReceipt", sender: self)
+                        }
+                    }
+                    break
+                case .Failure(let error):
+                    print(error)
+                    break
+                }
+ 
+            }
     }
 
     
@@ -334,11 +364,7 @@ class ConfirmScheduleViewController: UIViewController, RideRequestViewController
         if let identifier = segue.identifier {
             if identifier == "confirmScheduleToReceipt" {
                 if let vc = segue.destinationViewController as? ReceiptPageViewController {
-                    vc.bizName = bizName
-                    vc.bizAddress = bizAddress
-                    vc.bizDriveETA = bizDriveETA
-                    vc.resTimeDisplay = resTimeDisplay
-                    vc.uberPickupTimeDisplay = uberPickupTimeDisplay
+                    vc.restaurant = restaurant
                     vc.userStartingLocation = userCurrentLocation
                     vc.transportationMode = driveMode.selectedSegmentIndex
                     vc.uberProductID = uberProductID

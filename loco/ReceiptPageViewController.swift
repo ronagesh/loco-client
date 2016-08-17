@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import UberRides
 import Parse
+import Alamofire
 
 class ReceiptPageViewController: UIViewController {
 
@@ -24,29 +25,26 @@ class ReceiptPageViewController: UIViewController {
     @IBOutlet weak var reservationDetails: UILabel!
     
     //MARK: Properties
-    var bizName: String!
-    var bizAddress: String!
-    var bizDriveETA: Int!
-    var uberPickupTimeDisplay: String!
-    var resTimeDisplay: String!
-    
+    var restaurant: Restaurant!
     var transportationMode: Int!
     var userStartingLocation: CLLocation?
     var uberProductID: String?
+    
+    let CANCEL_RESERVATION_REQUEST_URL = "http://127.0.0.1:5000/api/v1/reservation_cancellations.json"
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
     
-        merchantName.text = bizName
-        merchantAddress.text = bizAddress
-        merchantDriveETA.text = "\(bizDriveETA) min. drive away"
-        reservationDetails.text = "\(resTimeDisplay) Reservation at \(bizName)"
+        merchantName.text = restaurant.name
+        merchantAddress.text = restaurant.address
+        merchantDriveETA.text = "\(restaurant.reservation.driveTime / 60) min. drive away"
+        reservationDetails.text = "\(restaurant.reservation.formatReservationTimeString()) Reservation at \(restaurant.name)"
         greeting.text = "Enjoy your date night \(PFUser.currentUser()!["first_name"]!). Go loco!"
         
         if transportationMode == 0 {
-            pickupDetails.text = "\(uberPickupTimeDisplay) Uber pickup"
+            pickupDetails.text = "\(restaurant.reservation.getUberPickupTimeFormattedString()) Uber pickup"
             
             // Pass in a UIViewController to modally present the Uber Ride Request Widget over
             var builder = RideParametersBuilder()
@@ -73,16 +71,41 @@ class ReceiptPageViewController: UIViewController {
             self.view.addSubview(uberButton)
             ConfirmScheduleViewController.setConstraintsForSubmitButton(uberButton, view: self.view, bottomGuide: self.bottomLayoutGuide)
             
+            
+            
         } else {
-            pickupDetails.text = "\(bizDriveETA) minute drive to \(bizName)"
+            pickupDetails.text = "\(restaurant.reservation.driveTime / 60) minute drive to \(restaurant.name)"
         }
         
+        /*
         delay(3.0) {
             self.performSegueWithIdentifier("thankYouToReview", sender: self)
-        }
+        } */
 
     }
     
+    @IBAction func cancelReservation(sender: UIBarButtonItem) {
+        guard let currentUser = PFUser.currentUser() where currentUser.email != nil else {
+            print("ERROR: User is null. Cannot cancel reservation")
+            return
+        }
+        
+        var cancelParameters = [String:String]()
+        cancelParameters["cancellationUrl"] = restaurant.reservation.cancellationURL
+        
+        //Execute cancel POST request
+        Alamofire.request(.POST, CANCEL_RESERVATION_REQUEST_URL, parameters: cancelParameters, encoding: .URL, headers: nil)
+            .validate()
+            .response { request, response, data, error in
+                if error != nil {
+                    print(error)
+                    print("Error cancelling reservation")
+                } else {
+                    print("Successfully cancelled reservation")
+                    
+                }
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
