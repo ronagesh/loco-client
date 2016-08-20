@@ -65,8 +65,10 @@ extension Reservation {
     //Takes military time string and returns formatted time string (i.e. 1900 = 7:00pm)
     func formatReservationTimeString() -> String {
         if var intTime = Int(self.reservationTime) {
-            if intTime >= 1300 {
-                intTime -= 1200
+            if intTime >= 1200 {
+                if intTime >= 1300 {
+                    intTime -= 1200
+                }
                 let stringTime = String(intTime)
                 var hourEndIndex: String.CharacterView.Index
                 if intTime >= 1000 {

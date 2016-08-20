@@ -8,24 +8,87 @@
 
 import UIKit
 import Cosmos
+import Parse
 
-class ReviewViewController: UIViewController {
+class ReviewViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
     //MARK: Outlets
     @IBOutlet weak var ratingQuestionPrompt: UILabel!
     @IBOutlet weak var cosmosStars: CosmosView!
+    @IBOutlet weak var favoriteDish: UITextField!
+    @IBOutlet weak var comments: UITextView!
+    
+    //Mark: Properties
+    var restaurant: Restaurant!
+    var merchantTagsSelected = [String]()
+    var reviewRating: Double!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ratingQuestionPrompt.text = "How did you enjoy your experience at \(restaurant.name)"
         
         cosmosStars.didFinishTouchingCosmos = { (rating) in
             print("User rated a rating of \(rating)")
+            self.reviewRating = rating
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func tagSelected(sender: UIButton) {
+        if !sender.selected {
+            merchantTagsSelected.append(sender.currentTitle!)
+            sender.selected = true
+        } else if let tagIndex = merchantTagsSelected.indexOf(sender.currentTitle!) {
+            merchantTagsSelected.removeAtIndex(tagIndex)
+            sender.selected = false
+        } else {
+            print("Error processing merchant tags")
+        }
+
+    }
+    
+    // MARK: UITextFieldDelegate
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
+    }
+    
+    //MARK: UITextViewDelegate
+    func textViewDidEndEditing(textView: UITextView) {
+        textView.resignFirstResponder()
+    }
+
+    
+    @IBAction func submitReview() {
+        guard let currentUser = PFUser.currentUser() where currentUser.email != nil else {
+            print("Error: user is not logged in yet attempting to save review")
+            return
+        }
+        
+        guard reviewRating >= 1 && reviewRating <= 5 else {
+            let alert = UIAlertController(title: "Whoops!", message: "Please rate your experience", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+        
+        let review = PFObject(className: "Review")
+        review["user_id"] = currentUser["fb_id"]
+        review["merchant_permalink"] = restaurant.reservation.yelpPermalink
+        review["rating"] = reviewRating
+        review["tags"] = merchantTagsSelected
+        review["favorite_dish"] = favoriteDish.text
+        review["comments"] = comments.text
+        
+        review.saveInBackgroundWithBlock { (success, error) in
+            if error != nil {
+                print("Error saving user review to Parse \(error)")
+            } else {
+                print("Successfully saved user review to Parse")
+            }
+        }
+        
+        
     }
     
 

@@ -33,7 +33,8 @@ class ConfirmScheduleViewController: UIViewController, RideRequestViewController
     var userCurrentLocation: CLLocation?
     
     var uberProductID: String?
-    var uberButton: RideRequestButton!
+    //var uberButton: RideRequestButton!
+    var uberButton: UIButton!
     var driveOnOwnButton: UIButton!
     var activityIndicator = UIActivityIndicatorView()
     
@@ -94,9 +95,16 @@ class ConfirmScheduleViewController: UIViewController, RideRequestViewController
         
         //Create Uber button
         print("Creating uber button")
-        uberButton = RideRequestButton(rideParameters: builder.build(), requestingBehavior: behavior)
-        uberButton.delegate = self
+        //uberButton = RideRequestButton(rideParameters: builder.build(), requestingBehavior: behavior)
+        uberButton = UIButton(type: UIButtonType.System)
+        uberButton.setTitle("Ride there with Uber", forState: .Normal)
+        uberButton.titleLabel?.font = UIFont.systemFontOfSize(20)
+        uberButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        uberButton.backgroundColor = UIColor.blackColor()
+
+        //uberButton.delegate = self
         uberButton.translatesAutoresizingMaskIntoConstraints = false
+        uberButton.addTarget(self, action: #selector(makeReservation), forControlEvents: .TouchUpInside)
         self.view.addSubview(uberButton)
         ConfirmScheduleViewController.setConstraintsForSubmitButton(uberButton, view: self.view, bottomGuide: self.bottomLayoutGuide)
         
@@ -258,6 +266,8 @@ class ConfirmScheduleViewController: UIViewController, RideRequestViewController
                         UIApplication.sharedApplication().endIgnoringInteractionEvents()
                         if self.driveMode.selectedSegmentIndex == 1 {
                             self.performSegueWithIdentifier("confirmScheduleToReceipt", sender: self)
+                        } else {
+                            self.performSegueWithIdentifier("confirmScheduleToUber", sender: self)
                         }
                     }
                     break
@@ -368,6 +378,14 @@ class ConfirmScheduleViewController: UIViewController, RideRequestViewController
                     vc.userStartingLocation = userCurrentLocation
                     vc.transportationMode = driveMode.selectedSegmentIndex
                     vc.uberProductID = uberProductID
+                }
+            } else if identifier == "confirmScheduleToUber" {
+                if let vc = segue.destinationViewController as? EmbeddedUberViewController {
+                    vc.restaurant = restaurant
+                    vc.userStartingLocation = userCurrentLocation
+                    vc.transportationMode = driveMode.selectedSegmentIndex
+                    vc.uberProductID = uberProductID
+                    
                 }
             }
         }
