@@ -20,6 +20,7 @@ class UserInfoViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.hidden = true
+        self.automaticallyAdjustsScrollViewInsets = false
         
         userInfoTableView.delegate = self
         userInfoTableView.dataSource = self
@@ -33,7 +34,7 @@ class UserInfoViewController: UIViewController, UITableViewDelegate, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-        //MARK: Table View Datasource
+    //MARK: Table View Datasource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }

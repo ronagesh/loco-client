@@ -19,16 +19,18 @@ class RecommendationsPageViewController: UIPageViewController, UIPageViewControl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         guard let tabBarCont = self.tabBarController as? CoreTabBarController else {
             print("Error obtaining tab bar controller to load restaurants")
             return
         }
         
         guard tabBarCont.restaurants?.count > 0 else {
-            print("ERROR: Empty array of restaurants...nothing to show to user")
+            print("Error: found no restaurants to show user")
+            
             return
         }
-            
+        
         restaurants = tabBarCont.restaurants!
         userCurrentLocation = tabBarCont.userCurrentLocation
         
@@ -40,26 +42,10 @@ class RecommendationsPageViewController: UIPageViewController, UIPageViewControl
         
         if restaurants.count > 0 {
             contentViewController.restaurant = restaurants.first
+            contentViewController.userCurrentLocation = userCurrentLocation
         }
         
-        /*
-        //Async call #1: Refresh Uber access token if required
-        if let token = ridesClient.fetchAccessToken() {
-            if token.expirationDate?.compare(NSDate()) == NSComparisonResult.OrderedAscending { //Access token is expired
-                print("Access token expired for this old token: \(token.tokenString)")
-                if let refreshToken = token.refreshToken {
-                    ridesClient.refreshAccessToken(refreshToken) { (newAccessToken, response)  in
-                        if response.error != nil {
-                            print("Error refreshing Uber access token for user")
-                        } else {
-                            print("Successfully refreshed Uber access token for user. New access token: \(newAccessToken?.tokenString)")
-                        }
-                    }
-                }
-            }
-        }*/
-        
-        //Async call #2: Geocode first restaurant's address if it hasn't already been
+        //Async call #1: Geocode first restaurant's address if it hasn't already been
         if restaurants[0].geocodedAddress == nil {
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(restaurants[0].address, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
@@ -74,7 +60,7 @@ class RecommendationsPageViewController: UIPageViewController, UIPageViewControl
             })
         }
         
-        //Async call #3: Fetch user's FB profile picture for Profile tab
+        //Async call #2: Fetch user's FB profile picture for Profile tab
         if PFUser.currentUser()?.email != nil {
             ProfileViewController.fetchFBProfilePic()
         }
@@ -108,6 +94,7 @@ class RecommendationsPageViewController: UIPageViewController, UIPageViewControl
             let prevViewController = UIStoryboard(name: "Core", bundle: nil).instantiateViewControllerWithIdentifier("restaurantContentViewController") as! RecommendationsContentViewController
             
             prevViewController.restaurant = restaurants[prevIndex]
+            prevViewController.userCurrentLocation = userCurrentLocation
             
             //Fire off async call to geocode prev restaurant's address if it hasn't already been
             let geocoder = CLGeocoder()
@@ -151,6 +138,7 @@ class RecommendationsPageViewController: UIPageViewController, UIPageViewControl
             let nextViewController = UIStoryboard(name: "Core", bundle: nil).instantiateViewControllerWithIdentifier("restaurantContentViewController") as! RecommendationsContentViewController
             
             nextViewController.restaurant = restaurants[nextIndex]
+            nextViewController.userCurrentLocation = userCurrentLocation
             
             //Fire off async call to geocode next restaurant's address if it hasn't already been
             let geocoder = CLGeocoder()

@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
 
     //MARK: Properties
     var restaurant: Restaurant!
+    var userCurrentLocation: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,11 +93,13 @@ class LoginViewController: UIViewController {
             if identifier == "loginToConfirmSchedule" {
                 if let vc = segue.destinationViewController as? ConfirmScheduleViewController {
                     vc.restaurant = restaurant
+                    vc.userCurrentLocation = userCurrentLocation
                     
                 }
             } else if identifier == "loginToUserContactInfo" {
                 if let vc = segue.destinationViewController as? LoginDetailsViewController {
-                   vc.restaurant = restaurant
+                    vc.restaurant = restaurant
+                    vc.userCurrentLocation = userCurrentLocation
                 }
             }
         }

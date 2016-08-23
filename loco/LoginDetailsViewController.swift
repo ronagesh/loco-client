@@ -17,6 +17,7 @@ class LoginDetailsViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Properties
     var restaurant: Restaurant!
+    var userCurrentLocation: CLLocation?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +87,7 @@ class LoginDetailsViewController: UIViewController, UITextFieldDelegate {
             if identifier == "userContactInfoToConfirmSchedule" {
                 if let vc = segue.destinationViewController as? ConfirmScheduleViewController {
                     vc.restaurant = restaurant
+                    vc.userCurrentLocation = userCurrentLocation
                 }
             }
         }

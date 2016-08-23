@@ -25,6 +25,7 @@ class RecommendationsContentViewController: UIViewController {
     
     //MARK: Properties
     var restaurant: Restaurant!
+    var userCurrentLocation: CLLocation?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,10 +71,12 @@ class RecommendationsContentViewController: UIViewController {
                 if let vc = segue.destinationViewController as? ConfirmScheduleViewController {
                     //Set properties
                     vc.restaurant = restaurant
+                    vc.userCurrentLocation = userCurrentLocation
                 }
             } else if identifier == "recsToLogin" {
                 if let vc = segue.destinationViewController as? LoginViewController {
                     vc.restaurant = restaurant
+                    vc.userCurrentLocation = userCurrentLocation
                 }
             }
         }

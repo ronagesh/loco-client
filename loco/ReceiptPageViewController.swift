@@ -12,7 +12,7 @@ import UberRides
 import Parse
 import Alamofire
 
-class ReceiptPageViewController: UIViewController {
+class ReceiptPageViewController: UIViewController, ModalViewControllerDelegate {
 
     //MARK: Outlets
     @IBOutlet weak var merchantName: UILabel!
@@ -49,6 +49,7 @@ class ReceiptPageViewController: UIViewController {
             // Pass in a UIViewController to modally present the Uber Ride Request Widget over
             var builder = RideParametersBuilder()
             let behavior = RideRequestViewRequestingBehavior(presentingViewController: self)
+            behavior.modalRideRequestViewController.delegate = self
             
             builder.setPickupToCurrentLocation()
             
@@ -77,18 +78,27 @@ class ReceiptPageViewController: UIViewController {
             pickupDetails.text = "\(restaurant.reservation.driveTime / 60) minute drive to \(restaurant.name)"
         }
         
-        /*
-        delay(3.0) {
+        //2 hour delay to prompt user to fill out review
+        delay(7200) {
             self.performSegueWithIdentifier("thankYouToReview", sender: self)
-        } */
+        }
 
     }
     
     @IBAction func cancelReservation(sender: UIBarButtonItem) {
+    
         guard let currentUser = PFUser.currentUser() where currentUser.email != nil else {
             print("ERROR: User is null. Cannot cancel reservation")
             return
         }
+        
+        let activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 100, 100))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        self.view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
         var cancelParameters = [String:String]()
         cancelParameters["cancellationUrl"] = restaurant.reservation.cancellationURL
@@ -97,30 +107,40 @@ class ReceiptPageViewController: UIViewController {
         Alamofire.request(.POST, CANCEL_RESERVATION_REQUEST_URL, parameters: cancelParameters, encoding: .URL, headers: nil)
             .validate()
             .response { request, response, data, error in
+                activityIndicator.stopAnimating()
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                
                 if error != nil {
                     print(error)
                     print("Error cancelling reservation")
                 } else {
                     print("Successfully cancelled reservation")
+                    self.performSegueWithIdentifier("showCancelConfirmation", sender: self)
                     
                 }
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //MARK: ModalViewControllerDelegate
+    
+    func modalViewControllerWillDismiss(modalViewController: ModalViewController) {
+        self.performSegueWithIdentifier("thankYouToReview", sender: self)
     }
     
+    func modalViewControllerDidDismiss(modalViewController: ModalViewController) {
+    }
 
-    /*
+
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let identifier = segue.identifier {
+            if identifier == "thankYouToReview" {
+                if let vc = segue.destinationViewController as? ReviewViewController {
+                    vc.restaurant = restaurant
+                }
+            }
+        }
     }
-    */
-
 }

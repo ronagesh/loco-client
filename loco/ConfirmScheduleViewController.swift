@@ -47,10 +47,7 @@ class ConfirmScheduleViewController: UIViewController, RideRequestViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let tabBarCont = self.tabBarController as? CoreTabBarController {
-            userCurrentLocation = tabBarCont.userCurrentLocation
-            uberProductID = NSUserDefaults.standardUserDefaults().objectForKey("uberProductID") as? String
-        }
+        uberProductID = NSUserDefaults.standardUserDefaults().objectForKey("uberProductID") as? String
 
         merchantName.text = restaurant.name
         if restaurant.neighborhood != "" {
@@ -255,6 +252,9 @@ class ConfirmScheduleViewController: UIViewController, RideRequestViewController
         Alamofire.request(.POST, CONFIRM_RESERVATION_REQUEST_URL, parameters: reservationParameters, encoding: .URL, headers: nil)
                 .validate()
             .responseJSON { response in
+                self.activityIndicator.stopAnimating()
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                
                 switch response.result {
                 case .Success:
                     if let value = response.result.value {
@@ -262,8 +262,6 @@ class ConfirmScheduleViewController: UIViewController, RideRequestViewController
                         print("JSON: \(json)")
                         self.restaurant.reservation.cancellationURL = json["cancellation_url"].stringValue
                         
-                        self.activityIndicator.stopAnimating()
-                        UIApplication.sharedApplication().endIgnoringInteractionEvents()
                         if self.driveMode.selectedSegmentIndex == 1 {
                             self.performSegueWithIdentifier("confirmScheduleToReceipt", sender: self)
                         } else {

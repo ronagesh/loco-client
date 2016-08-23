@@ -60,6 +60,7 @@ class EmbeddedUberViewController: UIViewController, UIPopoverPresentationControl
                     return
                 }
                 
+                rideRequestView.accessToken = accessToken
                 rideRequestView.load()
                 
             })

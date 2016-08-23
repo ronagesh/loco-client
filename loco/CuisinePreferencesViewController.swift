@@ -28,6 +28,8 @@ class CuisinePreferencesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.hidden = false
 
         //Pull in already saved cuisine preferences
         if let userCuisinePreferences = NSUserDefaults.standardUserDefaults().objectForKey("userCuisinePreferences") as? [String] {

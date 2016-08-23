@@ -17,6 +17,7 @@ class ReviewViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     @IBOutlet weak var cosmosStars: CosmosView!
     @IBOutlet weak var favoriteDish: UITextField!
     @IBOutlet weak var comments: UITextView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     //Mark: Properties
     var restaurant: Restaurant!
@@ -25,12 +26,18 @@ class ReviewViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ratingQuestionPrompt.text = "How did you enjoy your experience at \(restaurant.name)"
+        ratingQuestionPrompt.text = "How did you enjoy your experience at \(restaurant.name)?"
         
         cosmosStars.didFinishTouchingCosmos = { (rating) in
             print("User rated a rating of \(rating)")
             self.reviewRating = rating
         }
+        
+        comments.layer.borderWidth = 1
+        comments.layer.borderColor = UIColor.grayColor().CGColor
+        
+        scrollView.contentSize = CGSizeMake(self.view.frame.width, self.view.frame.height+100)
+
     }
 
     @IBAction func tagSelected(sender: UIButton) {
@@ -65,7 +72,7 @@ class ReviewViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             return
         }
         
-        guard reviewRating >= 1 && reviewRating <= 5 else {
+        guard reviewRating != nil else {
             let alert = UIAlertController(title: "Whoops!", message: "Please rate your experience", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
@@ -74,18 +81,37 @@ class ReviewViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         
         let review = PFObject(className: "Review")
         review["user_id"] = currentUser["fb_id"]
+        review["merchant_name"] = restaurant.name
         review["merchant_permalink"] = restaurant.reservation.yelpPermalink
+        review["merchant_image_URL"] = restaurant.imageURL
+        review["reservation_date"] = restaurant.reservation.reservationDate
         review["rating"] = reviewRating
         review["tags"] = merchantTagsSelected
         review["favorite_dish"] = favoriteDish.text
         review["comments"] = comments.text
         
+        let activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 100, 100))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        self.view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        
         review.saveInBackgroundWithBlock { (success, error) in
+            activityIndicator.stopAnimating()
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            
             if error != nil {
                 print("Error saving user review to Parse \(error)")
             } else {
                 print("Successfully saved user review to Parse")
+                self.performSegueWithIdentifier("showReviewConfirmation", sender: self)
             }
+            
+          
+            
+
         }
         
         

@@ -16,6 +16,9 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        self.tabBarController?.tabBar.hidden = true
 
         //Prompt user to share location with app if they haven't already
         locationManager.delegate = self

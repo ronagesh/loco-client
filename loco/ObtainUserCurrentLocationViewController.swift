@@ -27,7 +27,10 @@ class ObtainUserCurrentLocationViewController: UIViewController, CLLocationManag
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+        //self.tabBarController?.tabBar.hidden = true
+        self.navigationController?.navigationBar.hidden = true
+        
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 100, 100))
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
@@ -36,7 +39,8 @@ class ObtainUserCurrentLocationViewController: UIViewController, CLLocationManag
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
         
-        self.navigationController?.navigationBarHidden = true
+        //self.navigationController?.navigationBarHidden = true
+        //self.navigationController?.navigationBar.hidden = true
         
         //Fetch user's current location if authorized
         locationManager.delegate = self
@@ -92,11 +96,20 @@ class ObtainUserCurrentLocationViewController: UIViewController, CLLocationManag
         Alamofire.request(.GET, GET_RESTAURANTS_REQUEST_URL, parameters: parameters, encoding: .URL)
             .validate()
             .responseJSON { response in
+                self.activityIndicator.stopAnimating()
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                
                 switch response.result {
                 case .Success:
                     if let value = response.result.value {
                         let json = JSON(value)
                         print("JSON: \(json)")
+                        
+                        guard json.count > 0 else {
+                            print("No results to show user")
+                            self.performSegueWithIdentifier("noResults", sender: self)
+                            return
+                        }
                         
                         for result in json.arrayValue {
                             //Populate restaurant parameters
@@ -135,17 +148,17 @@ class ObtainUserCurrentLocationViewController: UIViewController, CLLocationManag
                             }
     
                         }
+                        self.performSegueWithIdentifier("networkCallStallingToRecs", sender: self)
+                     
                     }
                     break
                 case .Failure(let error):
                     print(error)
+                    print("Server error: No results to show user")
+                    self.performSegueWithIdentifier("noResults", sender: self)
                     break
-                }
-                
-                self.activityIndicator.stopAnimating()
-                UIApplication.sharedApplication().endIgnoringInteractionEvents()
-                self.performSegueWithIdentifier("networkCallStallingToRecs", sender: self)
-
+                }  
+               
         }
     }
     

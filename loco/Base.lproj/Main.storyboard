@@ -402,7 +402,7 @@
                     <connections>
                         <outlet property="budgetSlider" destination="y7G-9C-wVq" id="cxI-qu-lzq"/>
                         <outlet property="submitButton" destination="bde-xf-6Hj" id="6tT-ja-gyA"/>
-                        <segue destination="gGv-BI-6rB" kind="show" identifier="budgetToAutoLocation" id="2m9-3b-9Ub"/>
+                        <segue destination="gGv-BI-6rB" kind="show" identifier="budgetToRecs" id="2m9-3b-9Ub"/>
                         <segue destination="KmH-dB-LSr" kind="unwind" identifier="unwindToProfile" unwindAction="unwindToProfileFromPreferencesAdjustment:" id="Rrt-9b-QAO"/>
                     </connections>
                 </viewController>
@@ -539,6 +539,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pLR-1W-TXu"/>
+        <segue reference="qea-Sn-fnh"/>
     </inferredMetricsTieBreakers>
 </document>

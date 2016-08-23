@@ -26,7 +26,6 @@
 		1C4473461D4176D2007605BF /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4473451D4176D2007605BF /* Reservation.swift */; };
 		1C4473481D41903D007605BF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4473471D41903D007605BF /* Extensions.swift */; };
 		1C44734C1D4410CB007605BF /* ObtainUserCurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C44734B1D4410CB007605BF /* ObtainUserCurrentLocationViewController.swift */; };
-		1C44734E1D441547007605BF /* CoreTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C44734D1D441547007605BF /* CoreTabBarController.swift */; };
 		1C4F0E351D56C08E00BDADDB /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4F0E341D56C08E00BDADDB /* ReviewViewController.swift */; };
 		1C57C48D1D51614700CC4BFE /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C57C48C1D51614700CC4BFE /* Profile.storyboard */; };
 		1C57C4931D5164EC00CC4BFE /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57C4921D5164EC00CC4BFE /* UserInfoViewController.swift */; };
@@ -36,6 +35,13 @@
 		1CA39A7E1D2F163B000DAA01 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA39A7D1D2F163B000DAA01 /* TutorialPageViewController.swift */; };
 		1CABC8EA1D35C6BF00B8D30A /* CuisinePreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CABC8E91D35C6BF00B8D30A /* CuisinePreferencesViewController.swift */; };
 		1CAEFCF21D67B2740014BA6F /* ReservationPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEFCF11D67B2740014BA6F /* ReservationPopoverViewController.swift */; };
+		1CAEFCF41D69127B0014BA6F /* ReviewCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEFCF31D69127B0014BA6F /* ReviewCompleteViewController.swift */; };
+		1CAEFCF61D691D050014BA6F /* CancelConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEFCF51D691D050014BA6F /* CancelConfirmationViewController.swift */; };
+		1CAEFCF81D693D420014BA6F /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEFCF71D693D420014BA6F /* HistoryViewController.swift */; };
+		1CAEFCFA1D6982120014BA6F /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEFCF91D6982120014BA6F /* HistoryTableViewCell.swift */; };
+		1CAEFCFC1D6A59E50014BA6F /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEFCFB1D6A59E50014BA6F /* Review.swift */; };
+		1CAEFD001D6ADA080014BA6F /* NoResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEFCFF1D6ADA080014BA6F /* NoResultsViewController.swift */; };
+		1CAEFD021D6BE8420014BA6F /* CoreTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAEFD011D6BE8420014BA6F /* CoreTabBarController.swift */; };
 		1CD25A141D3AB93100751A68 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD25A131D3AB93100751A68 /* ProfileViewController.swift */; };
 		1CD25A1C1D3ABBD500751A68 /* RecommendationsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD25A1B1D3ABBD500751A68 /* RecommendationsPageViewController.swift */; };
 		1CD25A1E1D3ABC5600751A68 /* RecommendationsContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD25A1D1D3ABC5600751A68 /* RecommendationsContentViewController.swift */; };
@@ -92,7 +98,6 @@
 		1C4473451D4176D2007605BF /* Reservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		1C4473471D41903D007605BF /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1C44734B1D4410CB007605BF /* ObtainUserCurrentLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObtainUserCurrentLocationViewController.swift; sourceTree = "<group>"; };
-		1C44734D1D441547007605BF /* CoreTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreTabBarController.swift; sourceTree = "<group>"; };
 		1C4F0E341D56C08E00BDADDB /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		1C57C48C1D51614700CC4BFE /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		1C57C4921D5164EC00CC4BFE /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +110,13 @@
 		1CA39A7D1D2F163B000DAA01 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
 		1CABC8E91D35C6BF00B8D30A /* CuisinePreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisinePreferencesViewController.swift; sourceTree = "<group>"; };
 		1CAEFCF11D67B2740014BA6F /* ReservationPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationPopoverViewController.swift; sourceTree = "<group>"; };
+		1CAEFCF31D69127B0014BA6F /* ReviewCompleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewCompleteViewController.swift; sourceTree = "<group>"; };
+		1CAEFCF51D691D050014BA6F /* CancelConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelConfirmationViewController.swift; sourceTree = "<group>"; };
+		1CAEFCF71D693D420014BA6F /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		1CAEFCF91D6982120014BA6F /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		1CAEFCFB1D6A59E50014BA6F /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		1CAEFCFF1D6ADA080014BA6F /* NoResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoResultsViewController.swift; sourceTree = "<group>"; };
+		1CAEFD011D6BE8420014BA6F /* CoreTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreTabBarController.swift; sourceTree = "<group>"; };
 		1CD25A131D3AB93100751A68 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1CD25A1B1D3ABBD500751A68 /* RecommendationsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendationsPageViewController.swift; sourceTree = "<group>"; };
 		1CD25A1D1D3ABC5600751A68 /* RecommendationsContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendationsContentViewController.swift; sourceTree = "<group>"; };
@@ -181,17 +193,23 @@
 				1C1E4CF51D2095BE00A714C9 /* ViewController.swift */,
 				1C1E4CF71D2095BE00A714C9 /* Main.storyboard */,
 				1CD25A611D3F0B4B00751A68 /* Core.storyboard */,
+				1CAEFD011D6BE8420014BA6F /* CoreTabBarController.swift */,
+				1CAEFCF31D69127B0014BA6F /* ReviewCompleteViewController.swift */,
+				1CAEFCFF1D6ADA080014BA6F /* NoResultsViewController.swift */,
 				1CAEFCF11D67B2740014BA6F /* ReservationPopoverViewController.swift */,
 				1C778ACE1D64E7D600FE324A /* EmbeddedUberViewController.swift */,
 				1C4F0E341D56C08E00BDADDB /* ReviewViewController.swift */,
 				1C57C48C1D51614700CC4BFE /* Profile.storyboard */,
+				1CAEFCFB1D6A59E50014BA6F /* Review.swift */,
+				1CAEFCF71D693D420014BA6F /* HistoryViewController.swift */,
 				1C40F0B61D516FBB00010BF4 /* LabelSwitchTableViewCell.swift */,
 				1C369CD21D46F237003F8A20 /* Login.storyboard */,
 				1C40F0B41D516AFA00010BF4 /* LabelTextFieldTableViewCell.swift */,
+				1CAEFCF91D6982120014BA6F /* HistoryTableViewCell.swift */,
 				1C57C4921D5164EC00CC4BFE /* UserInfoViewController.swift */,
 				1C369CD81D483C4F003F8A20 /* ReceiptPageViewController.swift */,
+				1CAEFCF51D691D050014BA6F /* CancelConfirmationViewController.swift */,
 				1C369CD61D47E1FE003F8A20 /* LoginDetailsViewController.swift */,
-				1C44734D1D441547007605BF /* CoreTabBarController.swift */,
 				1C369CD41D4709C4003F8A20 /* LoginViewController.swift */,
 				1C4473471D41903D007605BF /* Extensions.swift */,
 				1C44734B1D4410CB007605BF /* ObtainUserCurrentLocationViewController.swift */,
@@ -533,24 +551,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C778ACF1D64E7D600FE324A /* EmbeddedUberViewController.swift in Sources */,
+				1CAEFCF81D693D420014BA6F /* HistoryViewController.swift in Sources */,
+				1CAEFD021D6BE8420014BA6F /* CoreTabBarController.swift in Sources */,
 				1CAEFCF21D67B2740014BA6F /* ReservationPopoverViewController.swift in Sources */,
 				1CD25A1E1D3ABC5600751A68 /* RecommendationsContentViewController.swift in Sources */,
+				1CAEFCF41D69127B0014BA6F /* ReviewCompleteViewController.swift in Sources */,
 				1C57C4931D5164EC00CC4BFE /* UserInfoViewController.swift in Sources */,
 				1C4F0E351D56C08E00BDADDB /* ReviewViewController.swift in Sources */,
 				1C40F0B71D516FBB00010BF4 /* LabelSwitchTableViewCell.swift in Sources */,
 				1C1E4CF61D2095BE00A714C9 /* ViewController.swift in Sources */,
 				1CD25A1C1D3ABBD500751A68 /* RecommendationsPageViewController.swift in Sources */,
+				1CAEFCFA1D6982120014BA6F /* HistoryTableViewCell.swift in Sources */,
 				1C4473441D414393007605BF /* ConfirmScheduleViewController.swift in Sources */,
 				1C369CD91D483C4F003F8A20 /* ReceiptPageViewController.swift in Sources */,
 				1CD25A5E1D3D80CE00751A68 /* RestaurantCuisines.swift in Sources */,
+				1CAEFD001D6ADA080014BA6F /* NoResultsViewController.swift in Sources */,
 				1C1E4CF41D2095BE00A714C9 /* AppDelegate.swift in Sources */,
 				1C40F0B51D516AFA00010BF4 /* LabelTextFieldTableViewCell.swift in Sources */,
 				1C7A04A31D37102D001B6924 /* BudgetPreferencesViewController.swift in Sources */,
+				1CAEFCFC1D6A59E50014BA6F /* Review.swift in Sources */,
 				1CABC8EA1D35C6BF00B8D30A /* CuisinePreferencesViewController.swift in Sources */,
 				1C369CD51D4709C4003F8A20 /* LoginViewController.swift in Sources */,
+				1CAEFCF61D691D050014BA6F /* CancelConfirmationViewController.swift in Sources */,
 				1C23A6321D303AD2007F563D /* TutorialPageContentController.swift in Sources */,
 				1C44734C1D4410CB007605BF /* ObtainUserCurrentLocationViewController.swift in Sources */,
-				1C44734E1D441547007605BF /* CoreTabBarController.swift in Sources */,
 				1CD25A141D3AB93100751A68 /* ProfileViewController.swift in Sources */,
 				1CD25A5C1D3D7EE700751A68 /* Restaurant.swift in Sources */,
 				1CD25A201D3B050700751A68 /* WelcomeViewController.swift in Sources */,

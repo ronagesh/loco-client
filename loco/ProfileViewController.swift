@@ -33,6 +33,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profileTableView.tableFooterView = UIView(frame: CGRectZero)
         profileTableView.separatorInset = UIEdgeInsetsZero
         
+        
         //Set up image view presentation
         profileImage.layer.borderWidth = 1.0
         profileImage.layer.masksToBounds = false
@@ -124,8 +125,33 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             break
         case "History":
-            break
+            self.performSegueWithIdentifier("profileToHistory", sender: self)
         case "Logout":
+            guard let currentUser = PFUser.currentUser() where currentUser.email != nil else {
+                print("Error cannot logout user who is not logged in")
+                return
+            }
+            
+            let activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 100, 100))
+            activityIndicator.center = self.view.center
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+            self.view.addSubview(activityIndicator)
+            activityIndicator.startAnimating()
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+            
+            PFUser.logOutInBackgroundWithBlock({ (error) in
+                activityIndicator.stopAnimating()
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                
+                guard error == nil else {
+                    print("Error logging out user")
+                    return
+                }
+                
+                print("Successfully logged out user")
+                self.performSegueWithIdentifier("profileToWelcome", sender: self)
+            })
             break
         default:
             break

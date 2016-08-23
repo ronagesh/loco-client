@@ -126,7 +126,7 @@ class BudgetPreferencesViewController: UIViewController {
             //let coreLoopStoryboard = UIStoryboard(name: "Core", bundle: nil)
             //let nextVC = coreLoopStoryboard.instantiateViewControllerWithIdentifier("coreLoopLocation")
             //self.presentViewController(nextVC, animated: true, completion: nil)
-            self.performSegueWithIdentifier("budgetToAutoLocation", sender: self)
+            self.performSegueWithIdentifier("budgetToRecs", sender: self)
         
     }
     
