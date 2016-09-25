@@ -23,17 +23,17 @@ class ObtainUserCurrentLocationViewController: UIViewController, CLLocationManag
     
     let DEFAULT_PARTY_SIZE = 2
     let MAX_RESULTS = 5
-    let GET_RESTAURANTS_REQUEST_URL = "http://127.0.0.1:5000/api/v1/restaurants.json"
+    let GET_RESTAURANTS_REQUEST_URL = "http://159.203.251.219:5000/api/v1/restaurants.json"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.tabBarController?.tabBar.hidden = true
         self.navigationController?.navigationBar.hidden = true
         
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 100, 100))
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
         self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()

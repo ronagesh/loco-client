@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "tutorial1_spec.png",
+      "filename" : "B7693B6C-8E76-4787-9333-56F374682D1B@1x.png",
       "scale" : "1x"
     },
     {
@@ -11,6 +11,7 @@
     },
     {
       "idiom" : "universal",
+      "filename" : "loco_logo_3x.png",
       "scale" : "3x"
     }
   ],

@@ -17,15 +17,36 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.setHidesBackButton(true, animated: true)
-        self.tabBarController?.tabBar.hidden = true
+        styleNavBar()
+        styleTabBar()
+     
 
         //Prompt user to share location with app if they haven't already
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         initialAuthStatus = CLLocationManager.authorizationStatus()
-        print("Initial authorization status: \(CLLocationManager.authorizationStatus().rawValue)")
+        
+        /*
+        for family: String in UIFont.familyNames()
+        {
+            print("\(family)")
+            for names: String in UIFont.fontNamesForFamilyName(family)
+            {
+                print("== \(names)")
+            }
+        }*/
     
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,6 +91,22 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
                 break
             }
         }
+    }
+    
+    private func styleNavBar() {
+        let logo = UIImage(named: "loco_logo")
+        let logoView = UIImageView(image: logo)
+        self.navigationItem.titleView = logoView
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 38, green: 34, blue: 23)
+        self.navigationController?.navigationBar.translucent = false
+        
+        self.navigationItem.setHidesBackButton(true, animated: true)
+
+    }
+    
+    private func styleTabBar() {
+        self.tabBarController?.tabBar.hidden = true
     }
     
 

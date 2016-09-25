@@ -41,7 +41,7 @@ class ConfirmScheduleViewController: UIViewController, RideRequestViewController
     let geocoder = CLGeocoder()
     var behavior: RideRequestViewRequestingBehavior!
     
-    let CONFIRM_RESERVATION_REQUEST_URL = "http://127.0.0.1:5000/api/v1/reservations.json"
+    let CONFIRM_RESERVATION_REQUEST_URL = "http://159.203.251.219:5000/api/v1/reservations.json"
     let DEFAULT_PARTY_SIZE = 2 //hardcode party size of 2 for now
     
     override func viewDidLoad() {

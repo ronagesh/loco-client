@@ -12,7 +12,7 @@ class TutorialPageViewController: UIPageViewController, UIPageViewControllerData
     
     // MARK: Model
     private var tutorialImages = ["tutorial_screen_1", "tutorial_screen_2", "tutorial_screen_3"]
-    private var tutorialBlurbs = [NSLocalizedString("Tell us what foods you like and your budget.", comment: "Blurb on first tutorial screen"), NSLocalizedString("We will show you 5 personalized experiences ready to go.", comment: "Blurb on second tutorial screen"), NSLocalizedString("Pick one. We'll make reservations and send a car to pick you up!", comment: "Blurb on third tutorial screen")]
+    private var tutorialBlurbs = [NSLocalizedString("Tell us your cuisine preferences and budget.", comment: "Blurb on first tutorial screen"), NSLocalizedString("Select one of five personalized, ready-to-go dining experiences.", comment: "Blurb on second tutorial screen"), NSLocalizedString("We'll take care of the reservations and send a car to pick you up!", comment: "Blurb on third tutorial screen")]
     
     
     override func viewDidLoad() {
@@ -20,9 +20,7 @@ class TutorialPageViewController: UIPageViewController, UIPageViewControllerData
         
         stylePageControl()
         dataSource = self
-        
-        self.view.backgroundColor = UIColor.whiteColor()
-        
+                
         let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("tutorialContentViewController") as! TutorialPageContentController
         
         contentViewController.imageName = tutorialImages[0]
@@ -104,9 +102,10 @@ class TutorialPageViewController: UIPageViewController, UIPageViewControllerData
     private func stylePageControl() {
         let pageControl = UIPageControl.appearanceWhenContainedInInstancesOfClasses([self.dynamicType])
         
-        pageControl.currentPageIndicatorTintColor = UIColor.blackColor()
+        pageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
         pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
-        pageControl.backgroundColor = UIColor.whiteColor()
+        pageControl.backgroundColor = UIColor(red: 38, green: 34, blue: 23)
+
         
     }
     

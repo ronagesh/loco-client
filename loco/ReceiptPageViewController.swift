@@ -30,7 +30,7 @@ class ReceiptPageViewController: UIViewController, ModalViewControllerDelegate {
     var userStartingLocation: CLLocation?
     var uberProductID: String?
     
-    let CANCEL_RESERVATION_REQUEST_URL = "http://127.0.0.1:5000/api/v1/reservation_cancellations.json"
+    let CANCEL_RESERVATION_REQUEST_URL = "http://159.203.251.219:5000/api/v1/reservation_cancellations.json"
 
     
     override func viewDidLoad() {
