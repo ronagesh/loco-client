@@ -17,9 +17,9 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        styleNavBar()
-        styleTabBar()
-     
+        let logo = UIImage(named: "loco_logo")
+        let logoView = UIImageView(image: logo)
+        self.navigationItem.titleView = logoView
 
         //Prompt user to share location with app if they haven't already
         locationManager.delegate = self
@@ -41,6 +41,8 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.sharedApplication().statusBarStyle = .LightContent
+        styleNavBar()
+        styleTabBar()
         
     }
     
@@ -94,9 +96,7 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func styleNavBar() {
-        let logo = UIImage(named: "loco_logo")
-        let logoView = UIImageView(image: logo)
-        self.navigationItem.titleView = logoView
+        
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 38, green: 34, blue: 23)
         self.navigationController?.navigationBar.translucent = false

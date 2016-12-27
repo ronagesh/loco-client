@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "tutorial1_spec.png",
+      "filename" : "tutorial1_image.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "tutorial1_image@2x.png",
       "scale" : "2x"
     },
     {

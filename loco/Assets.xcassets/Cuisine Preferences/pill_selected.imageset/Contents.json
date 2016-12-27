@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "pill_filled.png",
+      "filename" : "0B193852-C806-42CE-8548-05ED5B8CF55E@1x.png",
       "scale" : "1x"
     },
     {
@@ -11,6 +11,7 @@
     },
     {
       "idiom" : "universal",
+      "filename" : "0B193852-C806-42CE-8548-05ED5B8CF55E@3x.png",
       "scale" : "3x"
     }
   ],

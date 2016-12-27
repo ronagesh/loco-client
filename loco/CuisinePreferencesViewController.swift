@@ -28,6 +28,7 @@ class CuisinePreferencesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        styleNavBar()
         
         self.navigationController?.navigationBar.hidden = false
 
@@ -51,6 +52,21 @@ class CuisinePreferencesViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    private func styleNavBar() {
+        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
+        
+        //Set display attributes on Nav Bar title
+        let titleAttributes = [
+            NSForegroundColorAttributeName: UIColor(red: 115, green: 103, blue: 69),
+            NSFontAttributeName: UIFont(name: "Lato-Regular", size: 18)!
+        ]
+        self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 51, green: 50, blue: 48)
+        
+        
+    }
+
     
     @IBAction func selectCuisine(sender: UIButton) {
         if !sender.selected {
